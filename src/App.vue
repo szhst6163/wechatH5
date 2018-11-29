@@ -5,18 +5,6 @@
         <router-view/>
       </keep-alive>
     </transition>
-    <x-dialog class="m-pushMsg" :show="pushMsg.show">
-      <div class="m-dialog-info">
-        <div class="title">
-          <img src="./images/icon/dialog-info.png" alt="">
-          <div>推送消息</div>
-        </div>
-        <div class="info-cont">
-          【{{pushMsg.data.plate_number}}】<br>该车辆现已出现故障，请尽快处理！
-        </div>
-        <div @click="pushMsg.show = false" class="okBtn">我知道了</div>
-      </div>
-    </x-dialog>
   </div>
 </template>
 
@@ -45,10 +33,8 @@ export default {
     }
   },
   mounted() {
-    window.webBridge.socket = this.socket
   },
   methods: {
-    ...mapActions(["socket"]),
     socket(evt) {
       let data;
       if (typeof evt === 'string') {
@@ -72,7 +58,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background: #f9f9f9;
   .slide-right-enter-active,
   .slide-right-leave-active,
   .slide-left-enter-active,
@@ -95,9 +80,5 @@ export default {
   .slide-left-leave-active {
     opacity: 0;
   }
-}
-
-.m-top-slot {
-  height: 88px;
 }
 </style>
