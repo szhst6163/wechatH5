@@ -1,16 +1,18 @@
 <template>
   <div class="m-head">
     <div class="m-head-contain">
-      <div class="head-item" :class="{active:active === 0}">
-        <div>推荐</div>
+      <div @click="href('/')" class="head-item" :class="{active:active === 0}">
+        <div>推荐
+          <div class="line"></div>
+        </div>
       </div>
-      <div class="head-item" :class="{active:active === 1}">
+      <div @click="href('/tvList')" class="head-item" :class="{active:active === 1}">
         <div>栏目</div>
       </div>
-      <div class="head-item" :class="{active:active === 2}">
+      <div @click="href('/shop')" class="head-item" :class="{active:active === 2}">
         <div>商品</div>
       </div>
-      <div class="head-item" :class="{active:active === 3}">
+      <div @click="href('/my')" class="head-item" :class="{active:active === 3}">
         <div>我的</div>
       </div>
     </div>
@@ -29,7 +31,11 @@
       }
     },
     computed: {},
-    methods: {},
+    methods: {
+      href(url){
+        this.$router.push(url)
+      }
+    },
     mounted() {
     }
   }
@@ -46,31 +52,32 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      height: 100px;
       .head-item {
         &.active {
-          &:nth-child(1) > div:before {
-            background: @c1;
+          &:nth-child(1) > div {
+            border-color: @c1;
+            &:before {
+              background: @c1;
+            }
           }
-          &:nth-child(1) > div:after {
-            background: @c1;
+          &:nth-child(2) > div {
+            border-color: @c2;
+            &:before {
+              background: @c2;
+            }
           }
-          &:nth-child(2) > div:before {
-            background: @c2;
+          &:nth-child(3) > div {
+            border-color: @c3;
+            &:before {
+              background: @c3;
+            }
           }
-          &:nth-child(2) > div:after {
-            background: @c2;
-          }
-          &:nth-child(3) > div:before {
-            background: @c3;
-          }
-          &:nth-child(3) > div:after {
-            background: @c3;
-          }
-          &:nth-child(4) > div:before {
-            background: @c4;
-          }
-          &:nth-child(4) > div:after {
-            background: @c4;
+          &:nth-child(4) > div {
+            border-color: @c4;
+            &:before {
+              background: @c4;
+            }
           }
         }
         &:nth-child(1) > div:before {
@@ -86,10 +93,13 @@
           border-color: @c4;
         }
         > div {
+          box-sizing: border-box;
           height: 100px;
           display: flex;
           align-items: center;
           position: relative;
+          padding: 0 10px;
+          border-bottom: 2PX solid #000;
           &:before {
             content: '';
             display: block;
@@ -98,14 +108,6 @@
             border: 2PX solid;
             border-radius: 50%;
             margin-right: 10px;
-          }
-          &:after{
-            content: '';
-            display: block;
-            width: 105%;
-            height: 2PX;
-            position: absolute;
-            bottom:2px;
           }
         }
       }
