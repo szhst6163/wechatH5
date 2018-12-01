@@ -1,7 +1,7 @@
 <template>
     <div class="m-search">
-      <input type="text"  placeholder="搜索栏目名称或主持人...">
-      <i></i>
+      <input type="text" placeholder="搜索栏目名称或主持人...">
+      <img src="../images/icon/search.png" alt="">
     </div>
 </template>
 
@@ -15,12 +15,18 @@
   .m-search{
     margin:0 auto;
     width: 600px;
-    height: 72px;
+    height: 66px;
     line-height: 72px;
     background: #3c3e3f;
     border-radius: 5px;
     position: relative;
     display: flex;
+    align-items: center;
+    padding-right:20px;
+    >img{
+      width: 40px;
+      height:40px;
+    }
     >input{
       flex:1;
       height: 100%;

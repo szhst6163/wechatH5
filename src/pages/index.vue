@@ -2,38 +2,43 @@
   <div class="m-cont">
     <web-head :active="0"></web-head>
     <div class="m-swiper">
-      <swiper loop auto dots-position="right" height="100%" :show-desc-mask="false" class="m-swiper" :list="bannerList"></swiper>
+      <swiper></swiper>
     </div>
     <div class="m-classify">
       <search-bar></search-bar>
+      <div class="funList">
+        <div class="item">
+          <div class="img"><img src="../images/icon/baoming.png" alt=""></div>
+          <div>报名</div>
+        </div>
+        <div class="item">
+          <div class="img"><img src="../images/icon/shop.png" alt=""></div>
+          <div>商品</div>
+        </div>
+      </div>
     </div>
+    <tv-list-components class="m-tvList"></tv-list-components>
   </div>
 </template>
 
 <script>
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import WebHead from '../components/webHead';
-import { Swiper } from 'vux'
+import Swiper from '../components/swiperBanner.vue'
 import SearchBar from "../components/searchBar";
+import TvListComponents from "../components/tvListComponents.vue";
 
 export default {
   name: 'index',
   components: {
+    TvListComponents,
     SearchBar,
     WebHead,
     Swiper
   },
   data() {
     return {
-      bannerList:[{
-        url: 'javascript:',
-        img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
-        title: '送你一朵fua'
-      }, {
-        url: 'javascript:',
-        img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
-        title: '送你一辆车'
-      }]
+
     }
   },
   watch: {
@@ -65,6 +70,44 @@ export default {
     }
     .m-classify{
       padding:30px 0;
+      background: @c5;
+      .funList{
+        display: flex;
+        justify-content: space-around;
+        margin-top:40px;
+        .item{
+          color:#fff;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          .img{
+            width: 90px;
+            height:90px;
+            border-radius: 10px;
+            padding:10px;
+            margin-bottom:10px;
+            box-sizing: border-box;
+            >img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+          &:nth-child(1){
+            >.img{
+              background: @c1;
+            }
+          }
+          &:nth-child(2){
+            >.img{
+              background: @c2;
+            }
+          }
+        }
+      }
+    }
+    .m-tvList{
+      margin-top:20px;
+      padding:30px 10px;
       background: @c5;
     }
   }
