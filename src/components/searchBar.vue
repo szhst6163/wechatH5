@@ -1,6 +1,6 @@
 <template>
     <div class="m-search">
-      <input type="text" placeholder="搜索栏目名称或主持人...">
+      <input type="search" placeholder="搜索栏目名称或主持人...">
       <img src="../images/icon/search.png" alt="">
     </div>
 </template>

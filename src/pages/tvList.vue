@@ -11,10 +11,10 @@
       </div>
     </div>
     <div class="m-hot-tv">
-      <div class="m-title">热门栏目</div>
+      <div class="m-line-title">热门栏目</div>
       <div class="funList">
         <div v-for="item in hotList" class="item">
-          <div  :style="{background:item.color}" class="img"><img :src="item.img" alt=""></div>
+          <div :style="{background:item.color}" class="img"><img :src="item.img" alt=""></div>
           <div>{{item.title}}</div>
         </div>
       </div>
@@ -38,8 +38,8 @@
     },
     data() {
       return {
-        list:[{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"}],
-        hotList:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
+        list:[{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"}],
+        hotList:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
       }
     },
     watch: {
@@ -71,33 +71,20 @@
     }
     .m-hot-tv{
       padding:20px;
+      padding-bottom:0;
       margin-top:20px;
       background: @c5;
-      .m-title{
-        height:38px;
-        line-height: 38px;
-        display: flex;
-        align-items: center;
-        font-size: 36px;
-        color:#fff;
-        &:before{
-          content: '';
-          display: inline-block;
-          height: 100%;
-          width: 4px;
-          margin-right:20px;
-          background: @c1;
-        }
-      }
       .funList{
         display: flex;
-        justify-content: space-around;
+        flex-wrap: wrap;
         margin-top:40px;
         .item{
+          margin-bottom:20px;
           color:#fff;
           display: flex;
           align-items: center;
           flex-direction: column;
+          width: 25%;
           .img{
             width: 90px;
             height:90px;

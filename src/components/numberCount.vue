@@ -39,7 +39,7 @@
     line-height: 50px;
     text-align: center;
     align-items: center;
-    border: 1PX solid #19C280;
+    border: 1PX solid #fff;
     border-radius: 1000px;
     overflow: hidden;
     img {
@@ -52,7 +52,7 @@
       padding: 0;
       box-sizing: border-box;
         font-size: 36px;
-        color: #19C280;
+        color: #fff;
         text-align: center;
         width: 60px;
         border: none;
@@ -64,12 +64,11 @@
       height: 100%;
       &.reduce {
         width: 50px;
-        border-right: 1PX solid #19C280;
+        border-right: 1PX solid #fff;
       }
       &.add {
-        background: #19C280;
         width: 50px;
-        border-left: 1PX solid #19C280;
+        border-left: 1PX solid #fff;
       }
     }
 

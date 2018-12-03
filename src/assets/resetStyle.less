@@ -1,4 +1,5 @@
 @import "~vux/src/styles/reset.less";
+@import "common";
 *{
   //-webkit-touch-callout:none;
   //-webkit-user-select:none;
@@ -6,6 +7,24 @@
   -moz-user-select:none;
   -ms-user-select:none;
   user-select:none;
+}
+.m-cont{
+  .m-line-title{
+    height:38px;
+    line-height: 38px;
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+    color:#fff;
+    &:before{
+      content: '';
+      display: inline-block;
+      height: 100%;
+      width: 4px;
+      margin-right:20px;
+      background: @c1;
+    }
+  }
 }
 html,body{-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
 html{

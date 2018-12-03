@@ -1,6 +1,6 @@
 <template>
   <div class="m-tvList-comp">
-    <div class="m-title">
+    <div class="m-line-title">
       {{title}}
     </div>
     <div class="list">
@@ -40,22 +40,6 @@
 <style lang="less" scoped>
   @import "../assets/common";
   .m-tvList-comp{
-    .m-title{
-      height:38px;
-      line-height: 38px;
-      display: flex;
-      align-items: center;
-      font-size: 36px;
-      color:#fff;
-      &:before{
-        content: '';
-        display: inline-block;
-        height: 100%;
-        width: 4px;
-        margin-right:20px;
-        background: @c1;
-      }
-    }
     .list{
       padding-top:10px;
       display: flex;

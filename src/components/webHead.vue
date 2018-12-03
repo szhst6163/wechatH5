@@ -99,7 +99,7 @@
           align-items: center;
           position: relative;
           padding: 0 10px;
-          border-bottom: 2PX solid #000;
+          border-bottom: 2PX solid @c5;
           &:before {
             content: '';
             display: block;
