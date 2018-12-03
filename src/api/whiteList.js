@@ -1,1 +1,1 @@
-export default ['index'].join(',')
+export default ['pageName'].join(',')

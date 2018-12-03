@@ -38,7 +38,6 @@ export default {
   },
   data() {
     return {
-
     }
   },
   watch: {
@@ -56,8 +55,17 @@ export default {
   computed: {
   },
   mounted() {
+    window.addEventListener('scroll', this.handleScroll)
   },
-  methods:{}
+  methods:{
+    handleScroll(e){
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      let height = window.height;
+      if(height-scrollTop-window.innerHeight <=50){
+        alert("load")
+      }
+    }
+  }
 }
 
 </script>

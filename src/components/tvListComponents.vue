@@ -12,7 +12,8 @@
         <div v-if="item.status == 0" class="tag end">截 止</div>
       </div>
     </div>
-
+    <div class="noData" v-if="!list.length">暂无数据</div>
+    <div class="noData" v-if="isLock">加载中...</div>
   </div>
 </template>
 
@@ -21,7 +22,13 @@
     name: 'tv-list-components',
     data(){
       return {
-        list:[{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:0},{title:"精英汇",date:"2018.12.12",status:0}]
+        list:[{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:0},{title:"精英汇",date:"2018.12.12",status:0}],
+        params:{
+          page:0,
+          pageSize:10
+        },
+        isLock:false,
+        isOver:false
       }
     },
     props: {
@@ -32,7 +39,30 @@
         }
       }
     },
+    beforeDestroy(){
+      window.removeEventListener('scroll',this.handleScroll)
+    },
+    mounted(){
+      window.addEventListener('scroll', this.handleScroll)
+    },
     methods: {
+      loadMore(){
+        if(this.isLock||this.isOver) return;
+        this.isLock = true;
+        setTimeout(()=>{
+          this.list.push({title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:1},{title:"精英汇",date:"2018.12.12",status:0},{title:"精英汇",date:"2018.12.12",status:0})
+          this.isLock = false;
+          this.params.page++;
+          // if(res.length < this.params.pageSize){this.isOver = true;}
+        },1000)
+      },
+      handleScroll(evt){
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        let height = window.document.body.offsetHeight;
+        if(height-scrollTop-window.innerHeight <=50){
+          this.loadMore();
+        }
+      }
     }
   }
 </script>
@@ -74,6 +104,11 @@
           width: 100%;
         }
       }
+    }
+    .noData{
+      padding:30px;
+      text-align: center;
+      color:#fff;
     }
   }
 </style>
