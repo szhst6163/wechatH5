@@ -4,17 +4,18 @@ import {
   ToastPlugin
 } from 'vux'
 import storage from '../storage'
+import Qs from 'qs'
 let apiHead = process.env.NODE_ENV === 'development'?'/proxy/':'';
 // create an axios instance
 const service = axios.create({
   baseURL: apiHead, // api的base_url
   timeout: 30000, // request timeout,
-  // transformRequest: [function (data) {//若要继续使用mock 注释这一段
-  //   data = Qs.stringify(data);
-  //   return data;
-  // }],
+  transformRequest: [function (data) {//若要继续使用mock 注释这一段
+    data = Qs.stringify(data);
+    return data;
+  }],
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
   }
 
 })
@@ -49,11 +50,9 @@ service.interceptors.response.use(
    */
   response => {
     if (response.status === 200) {
-      if (response.data.code === 4010) {
+      if (response.data.error !== 0) {
         Vue.$vux.toast.show(response.data.msg);
-        setTimeout(res => {
-          webBridge.logoutApp();
-        }, 1500)
+        return Promise.reject(response)
       } else {
         return Promise.resolve(response.data)
       }

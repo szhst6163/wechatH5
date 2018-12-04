@@ -2,7 +2,7 @@
   <div class="m-cont">
     <web-head :active="0"></web-head>
     <div class="m-swiper">
-      <swiper></swiper>
+      <swiper :list="bannerList"></swiper>
     </div>
     <div class="m-classify">
       <search-bar></search-bar>
@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      bannerList:[]
     }
   },
   watch: {
@@ -55,16 +56,20 @@ export default {
   computed: {
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
+    this.init()
   },
   methods:{
-    handleScroll(e){
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      let height = window.height;
-      if(height-scrollTop-window.innerHeight <=50){
-        alert("load")
-      }
-    }
+    init(){
+      this.$vux.loading.show();
+      this.$axios.post(this.$api.index.getList)
+        .then(res=>{
+          this.$vux.loading.hide();
+          this.bannerList = res.data.ad;
+        })
+        .catch(err=>{
+          this.$vux.loading.hide();
+        })
+    },
   }
 }
 

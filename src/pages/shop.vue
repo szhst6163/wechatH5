@@ -8,11 +8,11 @@
       <div class="shopList">
         <div class="m-line-title">商品推荐</div>
         <div class="list">
-          <div @click="detail" v-for="item in shopList" class="item">
+          <div @click="detail(item)" v-for="item in shopList" class="item">
             <div class="img">
               <img src="../images/tv.jpg" alt="">
             </div>
-            <div class="title">{{item.title}}</div>
+            <div class="title">{{item.name}}</div>
             <div class="price">
               <div>￥{{item.price}}</div>
             </div>
@@ -39,7 +39,7 @@
     },
     data() {
       return {
-        shopList:[{title:"XXXXX",price:2100},{title:"XXXXX",price:2100},{title:"XXXXX",price:2100},]
+        shopList:[]
       }
     },
     watch: {},
@@ -55,11 +55,23 @@
     },
     computed: {},
     mounted() {
+      this.init()
     },
     methods: {
       detail(item){
-        this.$router.push({name: '/shopDetail',params:item})
-      }
+        this.$router.push({path: '/shopDetail',query:item})
+      },
+      init(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.shop.getList)
+          .then(res=>{
+            this.$vux.loading.hide();
+            this.shopList = res.data.goods;
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
+      },
     }
   }
 

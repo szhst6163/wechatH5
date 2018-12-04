@@ -12,11 +12,11 @@
           <ul>
             <li>
               <i><img src="../images/icon/shopName.png" alt=""></i>
-              <div class="text">品名：贵州茅台</div>
+              <div class="text">品名：{{data.name}}</div>
             </li>
             <li>
               <i><img src="../images/icon/shopPrice.png" alt=""></i>
-              <div class="text">价格￥1000</div>
+              <div class="text">价格￥{{data.price}}</div>
             </li>
             <li>
               <i><img src="../images/icon/shopNum.png" alt=""></i>
@@ -79,15 +79,30 @@
     name: 'shopDetail',
     components: {NumberCount},
     data() {
-      return {}
+      return {
+        data:{}
+      }
     },
     watch: {},
     created() {
     },
     computed: {},
     mounted() {
+      this.init()
     },
-    methods: {}
+    methods: {
+      init(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.shop.shopDetail,{id:this.$route.query.id})
+          .then(res=>{
+            this.$vux.loading.hide();
+            this.data = res.data;
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
+      },
+    }
   }
 
 </script>
