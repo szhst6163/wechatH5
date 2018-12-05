@@ -44,14 +44,6 @@
     },
     watch: {},
     created() {
-      // this.$wechat.config({
-      //   debug: true, // 开启调试模式,
-      //   appId: 'wx5c35248abe6d8824', // 必填，企业号的唯一标识，此处填写企业号corpid,
-      //   jsApiList: [
-      //     "onMenuShareTimeline",//分享朋友圈接口
-      //     "onMenuShareAppMessage"//分享给朋友接口
-      //   ]
-      // });
     },
     computed: {},
     mounted() {
@@ -66,7 +58,7 @@
         this.$axios.post(this.$api.shop.getList)
           .then(res=>{
             this.$vux.loading.hide();
-            this.shopList = res.data.goods;
+            this.shopList = res.data;
           })
           .catch(err=>{
             this.$vux.loading.hide();

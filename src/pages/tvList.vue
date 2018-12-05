@@ -4,16 +4,16 @@
     <div class="m-classify">
       <search-bar></search-bar>
       <div class="tvType">
-        <div v-for="item in list" class="tvItem">
-          <div class="name1">{{item.name1}}</div>
-          <div class="name2">{{item.name2}}</div>
+        <div v-for="item in tv" class="tvItem">
+          <div class="name1">{{item.name}}</div>
+          <div class="name2">{{item.introduce}}</div>
         </div>
       </div>
     </div>
     <div class="m-hot-tv">
       <div class="m-line-title">热门栏目</div>
       <div class="funList">
-        <div v-for="item in hotList" class="item">
+        <div v-for="item in hotcolumn" class="item">
           <div :style="{background:item.color}" class="img"><img :src="item.img" alt=""></div>
           <div>{{item.title}}</div>
         </div>
@@ -38,27 +38,30 @@
     },
     data() {
       return {
-        list:[{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"},{name1:"CCTV",name2:"中央电视台"}],
-        hotList:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
+        tv:[],
+        hotcolumn:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
       }
     },
     watch: {
     },
-    created() {
-      // this.$wechat.config({
-      //   debug: true, // 开启调试模式,
-      //   appId: 'wx5c35248abe6d8824', // 必填，企业号的唯一标识，此处填写企业号corpid,
-      //   jsApiList: [
-      //     "onMenuShareTimeline",//分享朋友圈接口
-      //     "onMenuShareAppMessage"//分享给朋友接口
-      //   ]
-      // });
-    },
     computed: {
     },
-    mounted() {
+    methods: {
+      init(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.tvList.index,{code:this.code})
+          .then(res=>{
+            this.tv = res.data.tv;
+            this.$vux.loading.hide();
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
+      },
     },
-    methods:{}
+    mounted() {
+      this.init()
+    },
   }
 
 </script>

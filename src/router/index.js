@@ -5,6 +5,7 @@ import tvList from '@/pages/tvList'
 import shop from '@/pages/shop'
 import my from '@/pages/my'
 import shopDetail from '@/pages/shopDetail'
+import tvDetail from '@/pages/tvDetail'
 
 Vue.use(Router)
 
@@ -25,6 +26,12 @@ export default new Router({
       path: '/shopDetail',
       name: '/shopDetail',
       component: shopDetail,
+      meta: {}
+    },
+    {
+      path: '/tvDetail',
+      name: '/tvDetail',
+      component: tvDetail,
       meta: {}
     },
     {

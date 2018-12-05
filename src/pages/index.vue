@@ -2,7 +2,7 @@
   <div class="m-cont">
     <web-head :active="0"></web-head>
     <div class="m-swiper">
-      <swiper :list="bannerList"></swiper>
+      <swiper :code="1"></swiper>
     </div>
     <div class="m-classify">
       <search-bar></search-bar>
@@ -56,20 +56,8 @@ export default {
   computed: {
   },
   mounted() {
-    this.init()
   },
   methods:{
-    init(){
-      this.$vux.loading.show();
-      this.$axios.post(this.$api.index.getList)
-        .then(res=>{
-          this.$vux.loading.hide();
-          this.bannerList = res.data.ad;
-        })
-        .catch(err=>{
-          this.$vux.loading.hide();
-        })
-    },
   }
 }
 
