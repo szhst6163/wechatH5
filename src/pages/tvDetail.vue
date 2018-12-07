@@ -21,9 +21,29 @@
       </div>
       <div class="infoDesc">
         <div class="head">录制地点：XXXXXXXX</div>
-        <div class="main">
+        <div class="main" :class="{showAll:showAll}">
           <p>《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。</p>
           <p>《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。</p>
+        </div>
+        <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
+      </div>
+      <div class="emcee">
+        <div class="m-line-title">
+          主持人
+        </div>
+        <div class="emceeList">
+          <div @click="emcee" class="item">
+            <div class="img">
+              <img src="../images/tv.jpg" alt="">
+            </div>
+            <span>AAA</span>
+          </div>
+          <div class="item">
+            <div class="img">
+              <img src="../images/tv.jpg" alt="">
+            </div>
+            <span>AAA</span>
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +66,7 @@
     },
     data() {
       return {
+        showAll:false,
         tv:[],
         hotcolumn:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
       }
@@ -66,6 +87,9 @@
             this.$vux.loading.hide();
           })
       },
+      emcee(data){
+        this.$router.push({name:'/emcee',params:{data}})
+      }
     },
     mounted() {
       this.init()
@@ -133,7 +157,7 @@
         }
       }
       .infoDesc{
-        padding:30px 0;
+        padding:20px 0;
         font-size: 24px;
         .head{
           padding-left:30px;
@@ -141,6 +165,49 @@
         }
         .main{
           color:#7a7c8c;
+          max-height: 200px;
+          overflow: hidden;
+          transition:all .5s;
+          &.showAll{
+            max-height: none;
+          }
+        }
+        .footer{
+          padding-top:10px;
+          text-align: center;
+          img{
+            width: 30px;
+            height:30px;
+            transform: rotate(90deg);
+            transition:all .5s;
+            &.showAll{
+              transform: rotate(270deg);
+            }
+          }
+        }
+      }
+      .emceeList{
+        display: flex;
+        padding:20px 0 10px;
+        .item{
+          color:#fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          margin-right:20px;
+          .img{
+            width: 140px;
+            height: 140px;
+            margin-bottom:10px;
+            border-radius: 1000px;
+            overflow: hidden;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+
         }
       }
     }

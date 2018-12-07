@@ -13,7 +13,7 @@
     <div class="m-hot-tv">
       <div class="m-line-title">热门栏目</div>
       <div class="funList">
-        <div v-for="item in hotcolumn" class="item">
+        <div @click="tvcloums(item)" v-for="item in hotcolumn" class="item">
           <div :style="{background:item.color}" class="img"><img :src="item.img" alt=""></div>
           <div>{{item.title}}</div>
         </div>
@@ -58,6 +58,9 @@
             this.$vux.loading.hide();
           })
       },
+      tvcloums(data){
+        this.$router.push({name:"/tvcloums",params:{data}})
+      }
     },
     mounted() {
       this.init()

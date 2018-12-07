@@ -44,6 +44,7 @@
       window.removeEventListener('scroll',this.handleScroll)
     },
     mounted(){
+      console.log(this.$route.params)
       window.addEventListener('scroll', this.handleScroll);
       this.loadMore();
     },
