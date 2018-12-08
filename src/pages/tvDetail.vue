@@ -7,7 +7,7 @@
       <iframe src="http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=13c4a0dd5845af892fe5100715792e50&tvId=242541007&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
-      <div><img src="../images/icon/baoming.png" alt="">报名</div>
+      <div @click="apply"><img src="../images/icon/baoming.png" alt="">报名</div>
       <div><img src="../images/icon/baoming.png" alt="">收藏</div>
       <div><img src="../images/icon/baoming.png" alt="">导航</div>
     </div>
@@ -48,6 +48,14 @@
       </div>
     </div>
     <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
+    <common-dialog @close="dialogShow = false" v-if="dialogShow">
+      <slot>hello word</slot>
+      <div slot="btn" class="bottom" @click="nextPage">
+        <div class="btns">
+          <div class="okBtn" :class="{disable:confirmTime > 0}">确定 <span v-if="confirmTime>0">({{confirmTime}}s)</span></div>
+        </div>
+      </div>
+    </common-dialog>
   </div>
 </template>
 
@@ -57,28 +65,63 @@
   import SearchBar from "../components/searchBar";
   import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
+  import CommonDialog from "../components/commonDialog.vue";
   export default {
     name: 'tv-detail',
     components: {
+      CommonDialog,
       TvListComponents,
       SearchBar,
       WebHead,
     },
     data() {
       return {
+        confirmTime:3,
         showAll:false,
+        dialogShow:false,
+        Timmer:null,
         tv:[],
         hotcolumn:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
       }
     },
     watch: {
+      '$route' (to, from) {
+        this.init()
+      }
     },
     computed: {
     },
     methods: {
+      nextPage(){
+        if(this.confirmTime <= 0){
+          this.dialogShow = false;
+          this.$router.push({name:"/applyPage1"})
+        }
+      },
+      confirm(){
+
+      },
+      apply(){
+        let _this = this;
+        this.dialogShow = true;
+        function countDown(){
+          _this.confirmTime--;
+          _this.Timmer = setTimeout(()=>{
+            if(_this.confirmTime<=0){
+              _this.Timmer = null;
+              return
+            }else{
+              countDown()
+            }
+          },1000)
+        }
+        if(!this.Timmer){
+          countDown()
+        }
+      },
       init(){
         this.$vux.loading.show();
-        this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.params.id})
+        this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id})
           .then(res=>{
             this.tv = res.data.tv;
             this.$vux.loading.hide();
@@ -164,7 +207,7 @@
           color:@c1;
         }
         .main{
-          color:#7a7c8c;
+          color:@c6;
           max-height: 200px;
           overflow: hidden;
           transition:all .5s;

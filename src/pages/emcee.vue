@@ -113,7 +113,7 @@
           color:@c1;
         }
         .main{
-          color:#7a7c8c;
+          color:@c6;
           max-height: 200px;
           overflow: hidden;
           transition:all .5s;

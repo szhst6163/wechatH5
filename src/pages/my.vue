@@ -26,7 +26,7 @@
       </div>
       <div class="m-func-list">
         <ul>
-          <li class="item">
+          <li @click="href('/myApply')" class="item">
             <div class="name">
               <img src="../images/icon/shopPrice.png" alt="">
               <div>我的报名</div>
@@ -36,7 +36,7 @@
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
-          <li class="item">
+          <li @click="href('/myOrder')" class="item">
             <div class="name">
               <img src="../images/icon/shopPrice.png" alt="">
               <div>我的订单</div>
@@ -46,7 +46,7 @@
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
-          <li class="item">
+          <li @click="href('/myCollect')" class="item">
             <div class="name">
               <img src="../images/icon/shopPrice.png" alt="">
               <div>我的收藏</div>
@@ -94,7 +94,11 @@
     },
     mounted() {
     },
-    methods:{}
+    methods:{
+      href(url){
+        this.$router.push({name:url})
+      }
+    }
   }
 
 </script>

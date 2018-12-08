@@ -2,16 +2,16 @@
   <div class="m-cont">
     <web-head :active="0"></web-head>
     <div class="m-swiper">
-      <swiper :code="1"></swiper>
+      <swiper :code="'index'"></swiper>
     </div>
     <div class="m-classify">
       <search-bar></search-bar>
       <div class="funList">
-        <div class="item">
+        <div @click="href('/tvList')" class="item">
           <div class="img"><img src="../images/icon/baoming.png" alt=""></div>
           <div>报名</div>
         </div>
-        <div class="item">
+        <div @click="href('/shop')" class="item">
           <div class="img"><img src="../images/icon/shop.png" alt=""></div>
           <div>商品</div>
         </div>
@@ -58,6 +58,9 @@ export default {
   mounted() {
   },
   methods:{
+    href(url){
+      this.$router.push({name:url})
+    }
   }
 }
 

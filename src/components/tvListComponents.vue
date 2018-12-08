@@ -44,13 +44,12 @@
       window.removeEventListener('scroll',this.handleScroll)
     },
     mounted(){
-      console.log(this.$route.params)
       window.addEventListener('scroll', this.handleScroll);
       this.loadMore();
     },
     methods: {
       tvDetail(item){
-        this.$router.push({name:'/tvDetail',params:item})
+        this.$router.push({name:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
       },
       loadMore(){
         if(this.isLock||this.isOver) return;

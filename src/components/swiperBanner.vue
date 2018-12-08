@@ -12,9 +12,9 @@
     },
     props:{
       code:{
-        type:Number,
+        type:String,
         default(){
-          return 1
+          return 'index'
         }
       }
     },
@@ -24,7 +24,7 @@
         this.$axios.post(this.$api.index.getList,{code:this.code})
           .then(res=>{
             this.$vux.loading.hide();
-            this.list = res.data.ad;
+            this.list = res.data;
           })
           .catch(err=>{
             this.$vux.loading.hide();
