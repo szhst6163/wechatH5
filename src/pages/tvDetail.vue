@@ -49,7 +49,7 @@
     </div>
     <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
     <common-dialog @close="dialogShow = false" v-if="dialogShow">
-      <slot>hello word</slot>
+      <slot>确定人数后锁座，10分钟内填写完资料 否则报名资格失效</slot>
       <div slot="btn" class="bottom" @click="nextPage">
         <div class="btns">
           <div class="okBtn" :class="{disable:confirmTime > 0}">确定 <span v-if="confirmTime>0">({{confirmTime}}s)</span></div>
