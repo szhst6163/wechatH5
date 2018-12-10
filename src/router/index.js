@@ -13,14 +13,29 @@ import myOrder from '@/pages/myOrder'
 import myApply from '@/pages/myApply'
 import applyPage1 from '@/pages/applyPage1'
 import applyPage2 from '@/pages/applyPage2'
+import login from '@/pages/login'
+import register from '@/pages/register'
+import userIndex from '@/pages/userIndex'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
-      path: '/',
+      path: '/index',
       name: 'index',
       component: index,
+      meta: {}
+    },
+    {
+      path: '/',
+      name: '/userIndex',
+      component: userIndex,
+      meta: {}
+    },
+    {
+      path: '/register',
+      name: '/register',
+      component: register,
       meta: {}
     },
     {
@@ -30,15 +45,27 @@ export default new Router({
       meta: {}
     },
     {
-      path: '/applyPage2',
-      name: '/applyPage2',
-      component: applyPage2,
+      path: '/tvList',
+      name: '/tvList',
+      component: tvList,
+      meta: {}
+    },
+    {
+      path: '/login',
+      name: '/login',
+      component: login,
       meta: {}
     },
     {
       path: '/applyPage1',
       name: '/applyPage1',
       component: applyPage1,
+      meta: {}
+    },
+    {
+      path: '/applyPage2',
+      name: '/applyPage2',
+      component: applyPage2,
       meta: {}
     },
     {

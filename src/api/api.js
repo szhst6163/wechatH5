@@ -1,5 +1,8 @@
 // api接口
 const apiUrl = {
+  login:"/api/user/login",
+  register:"/api/user/register",
+  sendSms:'/api/user/sendsms',
   index: {
     getList: '/api/ad/lists',
   },
