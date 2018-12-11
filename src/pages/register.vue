@@ -188,7 +188,7 @@
               .getCode{
                 position: absolute;
                 right:20px;
-                top:15px;
+                top:20%;
                 display: flex;
                 align-items: center;
                 justify-content: center;

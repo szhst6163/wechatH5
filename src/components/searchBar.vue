@@ -1,8 +1,8 @@
 <template>
   <div class="m-search">
     <form @search='search' action="">
-      <input type="search" placeholder="搜索栏目名称或主持人...">
-      <img src="../images/icon/search.png" alt="">
+      <input type="search" v-model="keyWord" placeholder="搜索栏目名称或主持人...">
+      <img @click="search" src="../images/icon/search.png" alt="">
     </form>
   </div>
 </template>
@@ -10,19 +10,25 @@
 <script>
   export default {
     name: "searchBar",
+    data(){
+      return{
+        keyWord:''
+      }
+    },
     methods:{
       search(){
-        alert(1)
+        this.$axios.post(this.$api.tvList.componentList,{keyWord:this.keyWord})
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
+  @import "../assets/common";
   .m-search {
     margin: 0 auto;
     width: 600px;
-    background: #3c3e3f;
+    background: @c7;
     border-radius: 5px;
     position: relative;
     padding-right: 20px;

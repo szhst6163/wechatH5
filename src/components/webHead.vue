@@ -1,7 +1,7 @@
 <template>
   <div class="m-head">
     <div class="m-head-contain">
-      <div @click="href('/')" class="head-item" :class="{active:active === 0}">
+      <div @click="href('/index')" class="head-item" :class="{active:active === 0}">
         <div>推荐
           <div class="line"></div>
         </div>

@@ -24,7 +24,7 @@
         }
       },
       add () {
-        if (this.num < 99) {
+        if (this.num < 1) {
           this.$emit("input",++this.num)
         }
       }

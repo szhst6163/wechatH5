@@ -5,7 +5,7 @@
     </div>
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
-        <img src="../images/tv.jpg" alt="">
+        <img :src="`${item.column_img}`" alt="">
         <div class="title">{{item.column_title}}</div>
         <div class="date">{{item.number}}</div>
         <div v-if="item.status == 1" class="tag">报 名</div>
@@ -24,10 +24,7 @@
     data(){
       return {
         list:[],
-        params:{
-          page:0,
-          page_size:10
-        },
+
         isLock:false,
         isOver:false
       }
@@ -38,12 +35,20 @@
         default() {
           return "栏目报名推荐"
         }
+      },
+      params:{
+        type:Object,
+        default() {
+          return {
+          }
+        }
       }
     },
     beforeDestroy(){
       window.removeEventListener('scroll',this.handleScroll)
     },
     mounted(){
+      this.params = {...this.params,page:1, page_size:10};
       window.addEventListener('scroll', this.handleScroll);
       this.loadMore();
     },
@@ -54,7 +59,7 @@
       loadMore(){
         if(this.isLock||this.isOver) return;
         this.isLock = true;
-        this.$axios.post(this.$api.tvList.componentList)
+        this.$axios.post(this.$api.tvList.componentList,this.params)
           .then(res=>{
             this.isLock = false;
             if(res.data.length < this.params.page_size){this.isOver = true;}

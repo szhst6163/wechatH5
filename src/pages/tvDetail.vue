@@ -1,29 +1,28 @@
 <template>
   <div class="m-cont">
     <div class="m-head">
-      <span @click="$router.go(-1)">返回</span>
+      <span @click="$router.push({name:'/tvList'})">返回</span>
     </div>
     <div class="m-video">
-      <iframe src="http://open.iqiyi.com/developer/player_js/coopPlayerIndex.html?vid=13c4a0dd5845af892fe5100715792e50&tvId=242541007&accessToken=2.f22860a2479ad60d8da7697274de9346&appKey=3955c3425820435e86d0f4cdfe56f5e7&appId=1368&height=100%&width=100%" frameborder=0 allowfullscreen></iframe>
+      <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
       <div @click="apply"><img src="../images/icon/baoming.png" alt="">报名</div>
-      <div><img src="../images/icon/baoming.png" alt="">收藏</div>
+      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/baoming.png" alt="">收藏</div>
+      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/baoming.png" alt="">取消收藏</div>
       <div><img src="../images/icon/baoming.png" alt="">导航</div>
     </div>
     <div class="tv-info">
       <div class="title">
-        《国家宝藏》
+        《{{tv.detail.column_title}}》
       </div>
       <div class="infoItem">
-        <div><img src="../images/icon/baoming.png" alt=""><span>录制时间</span><span>2018-10-19</span></div>
+        <div><img src="../images/icon/baoming.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
         <div><img src="../images/icon/baoming.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
       <div class="infoDesc">
-        <div class="head">录制地点：XXXXXXXX</div>
-        <div class="main" :class="{showAll:showAll}">
-          <p>《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。</p>
-          <p>《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。</p>
+        <div class="head">录制地点：{{tv.detail.address}}</div>
+        <div class="main" :class="{showAll:showAll}" v-html="tv.detail.introduce">
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
       </div>
@@ -31,18 +30,12 @@
         <div class="m-line-title">
           主持人
         </div>
-        <div class="emceeList">
-          <div @click="emcee" class="item">
+        <div v-if="tv.compere" class="emceeList">
+          <div v-for="item in tv.compere" @click="emcee(item)" class="item">
             <div class="img">
               <img src="../images/tv.jpg" alt="">
             </div>
-            <span>AAA</span>
-          </div>
-          <div class="item">
-            <div class="img">
-              <img src="../images/tv.jpg" alt="">
-            </div>
-            <span>AAA</span>
+            <span>{{item.name}}</span>
           </div>
         </div>
       </div>
@@ -66,6 +59,7 @@
   import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
   import CommonDialog from "../components/commonDialog.vue";
+  import formatDate from "../lib/formatDate";
   export default {
     name: 'tv-detail',
     components: {
@@ -80,8 +74,9 @@
         showAll:false,
         dialogShow:false,
         Timmer:null,
-        tv:[],
-        hotcolumn:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
+        tv:{
+          detail:{}
+        },
       }
     },
     watch: {
@@ -92,11 +87,27 @@
     computed: {
     },
     methods: {
+      translateTime(date){
+        return formatDate(date)
+      },
       nextPage(){
         if(this.confirmTime <= 0){
           this.dialogShow = false;
-          this.$router.push({name:"/applyPage1"})
+          this.$router.push({name:"/applyPage1",params:{column_item_id:this.$route.query.id}})
         }
+      },
+      collect(){
+        let url = ''
+        if(this.tv.is_collect){
+          url = this.$api.unCollect;
+        }else{
+          url = this.$api.collect;
+        }
+        this.$axios.post(url,{id:this.$route.query.id})
+          .then(res=>{
+            this.$vux.toast.show(res.msg);
+            this.tv.is_collect = +!this.tv.is_collect;
+          })
       },
       confirm(){
 
@@ -123,7 +134,7 @@
         this.$vux.loading.show();
         this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id})
           .then(res=>{
-            this.tv = res.data.tv;
+            this.tv = res.data;
             this.$vux.loading.hide();
           })
           .catch(err=>{
@@ -162,9 +173,9 @@
       padding:5px 20px;
       background: @c5;
       >div{
-        width: 100px;
         display: flex;
         align-items: center;
+        margin-right:10px;
         img{
           width:32px;
           height: 80px;
@@ -207,7 +218,6 @@
           color:@c1;
         }
         .main{
-          color:@c6;
           max-height: 200px;
           overflow: hidden;
           transition:all .5s;

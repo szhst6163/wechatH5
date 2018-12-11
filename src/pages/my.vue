@@ -4,8 +4,8 @@
     <div class="m-my">
       <div class="my-head">
         <div class="pic">
-          <img src="../images/picAdd.png" alt="">
-          <div class="name">XXXX</div>
+          <img :src="my.headimg" alt="">
+          <div class="name">{{my.name}}</div>
         </div>
         <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
       </div>
@@ -26,6 +26,16 @@
       </div>
       <div class="m-func-list">
         <ul>
+          <li class="item">
+            <div class="name">
+              <img src="../images/icon/shopPrice.png" alt="">
+              <div>我的报名机会</div>
+            </div>
+            <div class="right">
+              <span>{{my.numchance}}</span>
+              <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
+            </div>
+          </li>
           <li @click="href('/myApply')" class="item">
             <div class="name">
               <img src="../images/icon/shopPrice.png" alt="">
@@ -83,6 +93,7 @@
     },
     data() {
       return {
+        my:{},
         history:[{title:"《超级星光大道》",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"}]
       }
     },
@@ -93,10 +104,22 @@
     computed: {
     },
     mounted() {
+      this.init()
     },
     methods:{
       href(url){
         this.$router.push({name:url})
+      },
+      init(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.myview)
+          .then(res=>{
+            this.my = res.data;
+            this.$vux.loading.hide();
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
       }
     }
   }

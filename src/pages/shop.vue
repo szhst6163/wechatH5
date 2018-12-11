@@ -10,7 +10,7 @@
         <div class="list">
           <div @click="detail(item)" v-for="item in shopList" class="item">
             <div class="img">
-              <img src="../images/tv.jpg" alt="">
+              <img :src="item.img" alt="">
             </div>
             <div class="title">{{item.name}}</div>
             <div class="price">

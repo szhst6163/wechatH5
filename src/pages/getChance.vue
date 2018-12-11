@@ -1,22 +1,21 @@
 <template>
   <div class="m-cont">
+    <div class="m-head">
+      <span @click="$router.go(-1)">返回</span>
+    </div>
     <div class="m-login">
       <div class="form">
         <div class="formHead">
-          用户登陆
+          用户注册
         </div>
         <ul>
           <li>
-            <div class="name">手机号</div>
-            <div class="value"><input v-model="form.username" type="tel" maxlength="11"></div>
-          </li>
-          <li>
-            <div class="name">密码</div>
-            <div class="value"><input v-model="form.password" type="password"></div>
+            <div class="name">兑换码</div>
+            <div class="value"><input v-model="form.code" type="text"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
-          <span>登陆</span>
+          <span>兑换</span>
         </div>
       </div>
     </div>
@@ -25,16 +24,15 @@
 
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
+  import regular from "../lib/regular";
 
   export default {
     name: 'tv-detail',
     components: {},
     data() {
       return {
-        veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
         form:{
-          username:'18675521031',
-          password:'123456'
+          code:''
         }
       }
     },
@@ -42,11 +40,8 @@
     methods: {
       very(){
         return new Promise((resolve,reject)=>{
-          if(!this.form.username){
-            this.$vux.toast.show('手机号不能为空');
-            reject()
-          }else if(!this.form.password){
-            this.$vux.toast.show('密码不能为空');
+          if(!this.form.code){
+            this.$vux.toast.show('兑换码不能为空');
             reject()
           }else{
             resolve()
@@ -57,12 +52,11 @@
         this.very()
           .then(()=>{
             this.$vux.loading.show();
-            this.$axios.post(this.$api.login,this.form)
+            this.$axios.post(this.$api.getchance,this.form)
               .then(res=>{
-                console.log(res)
                 this.$vux.loading.hide();
-                this.$vux.toast.show(res.msg);
-                this.$router.replace({name:"index"})
+                this.$vux.toast.show(res.msg)
+                this.$router.replace({name:"/my"})
               })
               .catch(err=>{
                 this.$vux.loading.hide();
@@ -103,7 +97,7 @@
     }
     .m-login {
       color: #fff;
-      height: 100vh;
+      height: 80vh;
       font-size: 30px;
       display: flex;
       align-items: center;
@@ -130,15 +124,14 @@
             margin-bottom: 20px;
             border-radius: 20px;
             .name {
+              width: 200px;
               height: 60px;
               line-height: 60px;
               padding-right: 20px;
-              width: 100px;
               border-right: 1px solid #fff;
             }
             .value {
               height: 100%;
-              flex: 1;
               display: flex;
               input {
                 padding: 0 20px;

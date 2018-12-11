@@ -7,7 +7,7 @@
       <div class="m-swiper">
         <swiper-banner></swiper-banner>
       </div>
-      <tv-list-components :title="'录制栏目'" class="m-tvList"></tv-list-components>
+      <tv-list-components :params="this.$route.params" :title="'录制栏目'" class="m-tvList"></tv-list-components>
     </div>
   </div>
 </template>
@@ -32,15 +32,6 @@
     computed: {},
     methods: {
       init() {
-        this.$vux.loading.show();
-        this.$axios.post(this.$api.tvList.index, {code: this.code})
-          .then(res => {
-            this.tv = res.data.tv;
-            this.$vux.loading.hide();
-          })
-          .catch(err => {
-            this.$vux.loading.hide();
-          })
       },
     },
     mounted() {

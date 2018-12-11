@@ -2,9 +2,12 @@
   <div class="m-cont">
     <web-head :active="1"></web-head>
     <div class="m-classify">
+      <div @click="getChance" class="getChance">
+        兑换报名机会
+      </div>
       <search-bar></search-bar>
       <div class="tvType">
-        <div v-for="item in tv" class="tvItem">
+        <div @click="tvcloums(item)" v-for="item in tv" class="tvItem">
           <div class="name1">{{item.name}}</div>
           <div class="name2">{{item.introduce}}</div>
         </div>
@@ -13,9 +16,9 @@
     <div class="m-hot-tv">
       <div class="m-line-title">热门栏目</div>
       <div class="funList">
-        <div @click="tvcloums(item)" v-for="item in hotcolumn" class="item">
-          <div :style="{background:item.color}" class="img"><img :src="item.img" alt=""></div>
-          <div>{{item.title}}</div>
+        <div @click="tvDetail(item)" v-for="item in hotcolumn" class="item">
+          <div class="img"><img :src="item.icon||defImg" alt=""></div>
+          <div>{{item.column_title}}</div>
         </div>
       </div>
     </div>
@@ -39,7 +42,8 @@
     data() {
       return {
         tv:[],
-        hotcolumn:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
+        defImg,
+        hotcolumn:[]
       }
     },
     watch: {
@@ -47,11 +51,15 @@
     computed: {
     },
     methods: {
+      tvDetail(item){
+        this.$router.push({name:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
+      },
       init(){
         this.$vux.loading.show();
-        this.$axios.post(this.$api.tvList.index,{code:this.code})
+        Promise.all([this.$axios.post(this.$api.tvList.index,{code:this.code}),this.$axios.post(this.$api.tvList.componentList,{ishot:2})])
           .then(res=>{
-            this.tv = res.data.tv;
+            this.tv = res[0].data.tv;
+            this.hotcolumn = res[1].data;
             this.$vux.loading.hide();
           })
           .catch(err=>{
@@ -59,7 +67,10 @@
           })
       },
       tvcloums(data){
-        this.$router.push({name:"/tvcloums",params:{data}})
+        this.$router.push({name:"/tvcloums",params:{tv_id:data.id}})
+      },
+      getChance(data){
+        this.$router.push({name:"/getChance",params:{tv_id:data.id}})
       }
     },
     mounted() {
@@ -76,7 +87,7 @@
       height:410px;
     }
     .m-hot-tv{
-      padding:20px;
+      padding:20px 10px;
       padding-bottom:0;
       margin-top:20px;
       background: @c5;
@@ -110,6 +121,19 @@
     .m-classify{
       padding:30px 0;
       background: @c5;
+      .getChance{
+        text-align: center;
+        width: 620px;
+        height: 80px;
+        line-height: 80px;
+        margin:0 auto 30px;
+        background: @c7;
+        color: @c2;
+        box-sizing: border-box;
+        border-radius: 20px;
+        font-size: 30px;
+
+      }
       .tvType{
         color:#fff;
         display: flex;

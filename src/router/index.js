@@ -16,6 +16,7 @@ import applyPage2 from '@/pages/applyPage2'
 import login from '@/pages/login'
 import register from '@/pages/register'
 import userIndex from '@/pages/userIndex'
+import getChance from '@/pages/getChance'
 
 Vue.use(Router)
 
@@ -39,9 +40,9 @@ export default new Router({
       meta: {}
     },
     {
-      path: '/tvList',
-      name: '/tvList',
-      component: tvList,
+      path: '/getChance',
+      name: '/getChance',
+      component: getChance,
       meta: {}
     },
     {
