@@ -5,18 +5,18 @@
     </div>
     <div class="m-shop-detail">
       <div class="pic">
-        <img src="../images/tv.jpg" alt="">
+        <img :src="data.goods.img" alt="">
       </div>
       <div class="m-sales-count">
         <div class="salesItem">
           <ul>
             <li>
               <i><img src="../images/icon/shopName.png" alt=""></i>
-              <div class="text">品名：{{data.name}}</div>
+              <div class="text">品名：{{data.goods.name}}</div>
             </li>
             <li>
               <i><img src="../images/icon/shopPrice.png" alt=""></i>
-              <div class="text">价格￥{{data.price}}</div>
+              <div class="text">价格￥{{data.goods.price}}</div>
             </li>
             <li>
               <i><img src="../images/icon/shopNum.png" alt=""></i>
@@ -50,20 +50,13 @@
         <div class="m-shop-info">
           <div class="m-line-title">购买须知</div>
           <div class="info-cont">
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
-            <img src="../images/tv.jpg" alt="">
+            <div v-html="data.goods.purchasedesc"></div>
           </div>
         </div>
         <div class="m-shop-info">
           <div class="m-line-title">商品详情</div>
           <div class="info-cont">
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
-            <div>sadsadsadsadasd</div>
+            <div v-html="data.goods.content"></div>
           </div>
         </div>
       </div>
@@ -80,7 +73,10 @@
     components: {NumberCount},
     data() {
       return {
-        data:{}
+        data:{
+          goods:{},
+          user:{}
+        }
       }
     },
     watch: {},

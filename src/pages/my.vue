@@ -16,7 +16,7 @@
         </div>
         <div class="m-historyList">
           <div v-for="item in history" class="item">
-            <div class="pic"><img src="../images/tv.jpg" alt=""></div>
+            <div class="pic"><img :src="item.column_img" alt=""></div>
             <div class="text">
               <div>{{item.title}}</div>
               <div>{{item.time}}</div>
@@ -94,7 +94,7 @@
     data() {
       return {
         my:{},
-        history:[{title:"《超级星光大道》",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"},{title:"超级星光大道",time:"2010-10-10"}]
+        history:[]
       }
     },
     watch: {
@@ -112,9 +112,10 @@
       },
       init(){
         this.$vux.loading.show();
-        this.$axios.post(this.$api.myview)
+        Promise.all([this.$axios.post(this.$api.myview),this.$axios.post(this.$api.myhistory),])
           .then(res=>{
-            this.my = res.data;
+            this.my = res[0].data;
+            this.history = res[1].data;
             this.$vux.loading.hide();
           })
           .catch(err=>{

@@ -4,20 +4,24 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-myCollect">
-      <ul>
-        <li @click="href()">
+      <ul v-if="list.length">
+        <li v-for="item in list" @click="href()">
           <div class="left">
-            <img src="../images/tv.jpg" alt="">
+            <img :src="item.column_img" alt="">
           </div>
           <div class="right">
             <div class="title">古绵纯</div>
             <div class="info">
-              <div>价格￥100</div>
-              <div>数量：300</div>
+              <div>总价￥{{item.price}}</div>
+              <div>数量：{{item.num}}</div>
+              <div>状态：{{status(item.status)}}</div>
             </div>
           </div>
         </li>
       </ul>
+      <div v-if="!list.length" class="noData">
+        暂无数据...
+      </div>
     </div>
   </div>
 </template>
@@ -30,29 +34,52 @@
     },
     data() {
       return {
-        collectList:[{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道1",color:"#07c29a"},{img:defImg,title:"星光大道2",color:"#e3c75f"},{img:defImg,title:"星光大道3",color:"#e93c58"},{img:defImg,title:"星光大道4",color:"#9f74c8"}]
+        list:[],
+        isLock:false,
+        isOver:false,
+        params:{page:1, page_size:10}
       }
     },
     computed: {
     },
+    beforeDestroy(){
+      window.removeEventListener('scroll',this.handleScroll)
+    },
+    mounted(){
+      window.addEventListener('scroll', this.handleScroll);
+      this.loadMore();
+    },
     methods: {
-      init(){
-//        this.$vux.loading.show();
-//        this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id})
-//          .then(res=>{
-//            this.tv = res.data.tv;
-//            this.$vux.loading.hide();
-//          })
-//          .catch(err=>{
-//            this.$vux.loading.hide();
-//          })
+      status(data){
+        let map = {1:"待处理",2:"已处理"}
+        return map[data]
+      },
+      loadMore(){
+        if(this.isLock||this.isOver) return;
+        this.isLock = true;
+        this.$axios.post(this.$api.myorder,this.params)
+          .then(res=>{
+            this.isLock = false;
+            if(res.data.length < this.params.page_size){this.isOver = true;}
+            this.params.page++;
+            this.list = this.list.concat(res.data);
+            this.$vux.loading.hide();
+          })
+          .catch(err=>{
+            this.isLock = false;
+            this.$vux.loading.hide();
+          })
+      },
+      handleScroll(evt){
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        let height = window.document.body.offsetHeight;
+        if(height-scrollTop-window.innerHeight <=50){
+          this.loadMore();
+        }
       },
       href(data){
-        this.$router.push({name:'/shopDetail',params:{data}})
+        this.$router.push({name:'/tvDetail',params:{data}})
       }
-    },
-    mounted() {
-      this.init()
     },
   }
 
@@ -67,6 +94,9 @@
       color: #fff;
       padding: 30px;
       font-size: 32px;
+    }
+    .noData{
+      text-align: center;
     }
     .m-myCollect{
       padding:20px;

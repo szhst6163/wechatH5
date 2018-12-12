@@ -9,7 +9,11 @@ const apiUrl = {
   myview:"/api/user/myview",
   getchance:"/api/user/getchance",
   getTicket1:'/api/user/add_signup_first',
-  getTicket2:'/api/user/add_signup_second ',
+  getTicket2:'/api/user/add_signup_second',
+  myhistory:'/api/user/myhistory',
+  myorder:'/api/user/myorder',
+  mycollect:'/api/user/mycollect',
+  emcee:'/api/compere/view',
   index: {
     getList: '/api/ad/lists',
   },

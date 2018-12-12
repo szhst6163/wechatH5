@@ -8,19 +8,13 @@
         <div class="emcess-info">
           <div class="item">
             <div class="img">
-              <img src="../images/tv.jpg" alt="">
+              <img :src="data.img" alt="">
             </div>
-            <span>主持人：AAA</span>
+            <span>主持人：{{data.name}}</span>
           </div>
         </div>
         <div class="main" :class="{showAll:showAll}">
-          <p>
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
-            《国家宝藏》是由中央电视台、央视纪录国际传媒有限公司承制的文博探索节目，由张国立担任001号讲解员，李晨、王凯、梁家辉、王刚、段奕宏、刘涛等担任国宝守护人。
+          <p v-html="data.introduce">
           </p>
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
@@ -45,6 +39,7 @@
     data() {
       return {
         showAll:false,
+        data:{}
       }
     },
     watch: {},
@@ -52,9 +47,9 @@
     methods: {
       init() {
         this.$vux.loading.show();
-        this.$axios.post(this.$api.tvList.index, {code: this.code})
+        this.$axios.post(this.$api.emcee, {id: this.$route.params.data.id})
           .then(res => {
-            this.tv = res.data.tv;
+            this.data = res.data;
             this.$vux.loading.hide();
           })
           .catch(err => {
