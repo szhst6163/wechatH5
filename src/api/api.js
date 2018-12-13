@@ -14,6 +14,7 @@ const apiUrl = {
   myorder:'/api/user/myorder',
   mycollect:'/api/user/mycollect',
   emcee:'/api/compere/view',
+  addGoods:'/api/goods/add',
   index: {
     getList: '/api/ad/lists',
   },

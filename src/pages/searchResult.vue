@@ -4,7 +4,7 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-emcee">
-      <div class="infoDesc">
+      <div v-if="data.id" class="infoDesc">
         <div class="emcess-info">
           <div class="item">
             <div class="img">
@@ -19,37 +19,57 @@
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
       </div>
-      <tv-list-components :params="{compere_id:this.$route.params.data.id}" :title="'相关推荐'" class="m-tvList"></tv-list-components>
+      <div v-if="!data.id" class="noData">
+        无主持人信息...
+      </div>
     </div>
+    <div v-if="list.length" class="m-tvList-comp">
+      <div class="m-line-title">
+        录制栏目
+      </div>
+      <div class="list">
+        <div @click="tvDetail(item)" v-for="item in list" class="item">
+          <img :src="`${item.column_img}`" alt="">
+          <div class="title">{{item.column_title}}</div>
+          <div class="date">{{item.number}}</div>
+          <div v-if="item.status == 1" class="tag">报 名</div>
+          <div v-if="item.status == 0" class="tag end">截 止</div>
+        </div>
+      </div>
+    </div>
+    <tv-list-components v-if="!list.length"></tv-list-components>
   </div>
 </template>
 
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
-  import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
-  import SwiperBanner from "../components/swiperBanner";
+  import TvListComponents from "../components/tvListComponents.vue";
 
   export default {
     name: 'tv-list',
     components: {
-      SwiperBanner,
-      TvListComponents,
+      TvListComponents
     },
     data() {
       return {
         showAll:false,
-        data:{}
+        data:{},
+        list:[]
       }
     },
     watch: {},
     computed: {},
     methods: {
+      tvDetail(item){
+        this.$router.push({name:'/tvDetail',query:{id:item.id}})
+      },
       init() {
         this.$vux.loading.show();
-        this.$axios.post(this.$api.emcee, {id: this.$route.params.data.id})
+        this.$axios.post(this.$api.search, {keywords: this.$route.query.keywords})
           .then(res => {
-            this.data = res.data;
+            this.data = res.data.compere[0]||{};
+            this.list = res.data.column;
             this.$vux.loading.hide();
           })
           .catch(err => {
@@ -74,6 +94,13 @@
       font-size: 32px;
     }
     .m-emcee {
+      margin-bottom:20px;
+      .noData{
+        padding:30px;
+        text-align: center;
+        color:#fff;
+        background: @c5;
+      }
       .infoDesc{
         padding:40px 0 20px;
         font-size: 24px;
@@ -142,4 +169,49 @@
     }
 
   }
+  .m-tvList-comp{
+    padding:30px 0;
+    background: @c5;
+    .list{
+      padding-top:10px;
+      display: flex;
+      flex-wrap: wrap;
+      .item{
+        margin-left:2.5%;
+        margin-top:20px;
+        color:#fff;
+        width: 30%;
+        height:410px;
+        position: relative;
+        .tag{
+          position: absolute;
+          top:0;
+          right:0;
+          background: @c1;
+          padding:5px;
+          width: 100px;
+          border-radius: 0 0 0 10px;
+          text-align: center;
+          &.end{
+            background: #666;
+          }
+        }
+        .title{
+          margin-left:10px;
+        }
+        .date{
+          margin-left: 10px;
+        }
+        img{
+          width: 100%;
+        }
+      }
+    }
+    .noData{
+      padding:30px;
+      text-align: center;
+      color:#fff;
+    }
+  }
+
 </style>

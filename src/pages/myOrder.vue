@@ -3,14 +3,14 @@
     <div class="m-head">
       <span @click="$router.go(-1)">返回</span>
     </div>
-    <div class="m-myCollect">
-      <ul v-if="list.length">
+    <div v-if="list.length" class="m-myCollect">
+      <ul>
         <li v-for="item in list" @click="href()">
           <div class="left">
             <img :src="item.column_img" alt="">
           </div>
           <div class="right">
-            <div class="title">古绵纯</div>
+            <div class="title">{{item.goods_name}}</div>
             <div class="info">
               <div>总价￥{{item.price}}</div>
               <div>数量：{{item.num}}</div>
@@ -19,9 +19,9 @@
           </div>
         </li>
       </ul>
-      <div v-if="!list.length" class="noData">
-        暂无数据...
-      </div>
+    </div>
+    <div v-if="!list.length" class="noData">
+      暂无数据...
     </div>
   </div>
 </template>
@@ -96,6 +96,7 @@
       font-size: 32px;
     }
     .noData{
+      margin-top:200px;
       text-align: center;
     }
     .m-myCollect{

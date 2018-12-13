@@ -15,7 +15,7 @@
           <div class="img"><span>{{history.length}}</span><img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/></div>
         </div>
         <div class="m-historyList">
-          <div v-for="item in history" class="item">
+          <div @click="tvDetail(item)" v-for="item in history" class="item">
             <div class="pic"><img :src="item.column_img" alt=""></div>
             <div class="text">
               <div>{{item.title}}</div>
@@ -42,7 +42,6 @@
               <div>我的报名</div>
             </div>
             <div class="right">
-              <span>10</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -52,7 +51,6 @@
               <div>我的订单</div>
             </div>
             <div class="right">
-              <span>10</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -62,7 +60,6 @@
               <div>我的收藏</div>
             </div>
             <div class="right">
-              <span>10</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -72,7 +69,6 @@
               <div>关于</div>
             </div>
             <div class="right">
-              <span>10</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -107,6 +103,9 @@
       this.init()
     },
     methods:{
+      tvDetail(data){
+        this.$router.push({name:'/tvDetail',query:{id:data.column_item_id}})
+      },
       href(url){
         this.$router.push({name:url})
       },

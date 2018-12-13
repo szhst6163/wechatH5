@@ -1,7 +1,7 @@
 <template>
   <div class="m-search">
     <form @search='search' action="">
-      <input type="search" v-model="keyWord" placeholder="搜索栏目名称或主持人...">
+      <input type="search" v-model="keywords" placeholder="搜索栏目名称或主持人...">
       <img @click="search" src="../images/icon/search.png" alt="">
     </form>
   </div>
@@ -12,12 +12,17 @@
     name: "searchBar",
     data(){
       return{
-        keyWord:''
+        keywords:''
       }
     },
     methods:{
       search(){
-        this.$axios.post(this.$api.tvList.componentList,{keyWord:this.keyWord})
+        if(!this.keywords){
+          this.$vux.toast.show("请输入关键字");
+          return;
+        }
+        this.$router.push({name:'/searchResult',query:{keywords:this.keywords}})
+
       }
     }
   }

@@ -6,10 +6,12 @@
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
         <img :src="`${item.column_img}`" alt="">
-        <div class="title">{{item.column_title}}</div>
-        <div class="date">{{item.number}}</div>
-        <div v-if="item.status == 1" class="tag">报 名</div>
-        <div v-if="item.status == 0" class="tag end">截 止</div>
+        <div>
+          <div class="title">{{item.column_title}}</div>
+          <div class="date">{{item.number}}</div>
+          <div v-if="item.is_signup_over == 0" class="tag">报 名</div>
+          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
+        </div>
       </div>
     </div>
     <div class="noData" v-if="!list.length">暂无数据</div>
@@ -97,6 +99,9 @@
         width: 30%;
         height:410px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .tag{
           position: absolute;
           top:0;
@@ -117,6 +122,7 @@
           margin-left: 10px;
         }
         img{
+          flex:1;
           width: 100%;
         }
       }

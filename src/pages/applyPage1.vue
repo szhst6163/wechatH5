@@ -6,7 +6,7 @@
     <div class="applyPage-cont">
       <div class="m-applyPage1">
         <div class="form">
-          <div class="number"><span>参加人数</span><number-count v-model="form.num"></number-count></div>
+          <div class="number"><span>参加人数</span><number-count :max="1" v-model="form.num"></number-count></div>
           <!--<div class="number">
             <span>参加场次</span>
             <div class="selectedName">

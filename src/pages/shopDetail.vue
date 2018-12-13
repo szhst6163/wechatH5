@@ -22,7 +22,7 @@
               <i><img src="../images/icon/shopNum.png" alt=""></i>
               <div class="text">购买数量</div>
               <div class="numberCont">
-                <number-count></number-count>
+                <number-count :max="99" v-model="formData.num"></number-count>
               </div>
             </li>
           </ul>
@@ -32,20 +32,20 @@
             <li>
               <i><img src="../images/icon/userName.png" alt=""></i>
               <div class="name">姓名</div>
-              <input placeholder="请输入姓名" type="text"/>
+              <input v-model="formData.userrealname" placeholder="请输入姓名" type="text"/>
             </li>
             <li>
               <i><img src="../images/icon/phone.png" alt=""></i>
               <div class="name">手机号</div>
-              <input placeholder="请输入手机号" type="tel"/>
+              <input v-model="formData.mobile" placeholder="请输入手机号" type="tel"/>
             </li>
             <li>
               <i><img src="../images/icon/address.png" alt=""></i>
               <div class="name">收货地址</div>
-              <input placeholder="请输入收货地址" type="text"/>
+              <input v-model="formData.address" placeholder="请输入收货地址" type="text"/>
             </li>
           </ul>
-          <div class="submit">立即购买</div>
+          <div @click="submit" class="submit">立即购买</div>
         </div>
         <div class="m-shop-info">
           <div class="m-line-title">购买须知</div>
@@ -73,6 +73,9 @@
     components: {NumberCount},
     data() {
       return {
+        formData:{
+          num:1
+        },
         data:{
           goods:{},
           user:{}
@@ -87,6 +90,17 @@
       this.init()
     },
     methods: {
+      submit(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.addGoods,{...this.formData,goods_id:this.$route.query.id})
+          .then(res=>{
+            this.$vux.loading.hide();
+            this.$vux.toast.show(res.msg);
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
+      },
       init(){
         this.$vux.loading.show();
         this.$axios.post(this.$api.shop.shopDetail,{id:this.$route.query.id})

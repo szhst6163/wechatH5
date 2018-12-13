@@ -15,6 +15,12 @@
         default () {
           return 1
         }
+      },
+      max: {
+        type: Number,
+        default () {
+          return 1
+        }
       }
     },
     methods: {
@@ -24,7 +30,7 @@
         }
       },
       add () {
-        if (this.num < 1) {
+        if (this.num < this.max) {
           this.$emit("input",++this.num)
         }
       }

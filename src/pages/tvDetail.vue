@@ -7,7 +7,7 @@
       <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
-      <div @click="apply"><img src="../images/icon/baoming.png" alt="">报名</div>
+      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/baoming.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
       <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/baoming.png" alt="">收藏</div>
       <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/baoming.png" alt="">取消收藏</div>
       <div><img src="../images/icon/baoming.png" alt="">导航</div>
@@ -112,7 +112,11 @@
       confirm(){
 
       },
-      apply(){
+      apply(isOver){
+        if(isOver == 1){
+          this.$vux.toast.show("报名已截止");
+          return;
+        }
         let _this = this;
         this.dialogShow = true;
         function countDown(){
