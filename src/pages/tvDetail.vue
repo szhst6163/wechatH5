@@ -33,7 +33,7 @@
         <div v-if="tv.compere" class="emceeList">
           <div v-for="item in tv.compere" @click="emcee(item)" class="item">
             <div class="img">
-              <img src="../images/tv.jpg" alt="">
+              <img :src="item.img" alt="">
             </div>
             <span>{{item.name}}</span>
           </div>
