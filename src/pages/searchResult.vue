@@ -183,6 +183,9 @@
         width: 30%;
         height:410px;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .tag{
           position: absolute;
           top:0;
