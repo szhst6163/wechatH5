@@ -206,6 +206,7 @@
           margin-left: 10px;
         }
         img{
+          flex:1;
           width: 100%;
         }
       }
