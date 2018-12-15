@@ -104,7 +104,7 @@
     },
     methods:{
       tvDetail(data){
-        this.$router.push({name:'/tvDetail',query:{id:data.column_item_id}})
+        this.$router.push({path:'/tvDetail',query:{id:data.column_item_id}})
       },
       href(url){
         this.$router.push({name:url})

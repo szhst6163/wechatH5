@@ -78,7 +78,7 @@
         }
       },
       href(data){
-        this.$router.push({name:'/tvDetail',params:{data}})
+        this.$router.push({path:'/tvDetail',params:{id:data.id}})
       }
     },
   }

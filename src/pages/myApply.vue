@@ -5,15 +5,15 @@
     </div>
     <div class="m-myCollect">
       <ul v-if="list.length">
-        <li v-for="item in list">
+        <li @click="href(item)" v-for="item in list">
           <div class="left">
             <img :src="item.column_img" alt="">
           </div>
           <div class="right">
-            <div class="title">《直播体育》</div>
+            <div class="title">《{{item.name}}》</div>
             <div class="info">
-              <div>报名于 {{item.intime}}</div>
-              <div>地址： 深圳市深圳市深圳市</div>
+              <div>报名于 {{formatTime(item.intime)}}</div>
+              <div>地址： {{item.address}}</div>
               <div class="status">{{status(item.status)}}</div>
             </div>
           </div>
@@ -28,6 +28,7 @@
 
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
+  import formatDate from "../lib/formatDate";
   export default {
     name: 'tv-detail',
     components: {
@@ -50,6 +51,9 @@
       this.loadMore();
     },
     methods: {
+      formatTime(date){
+        return formatDate(date)
+      },
       status(data){
         let map = {1:"报名中",2:"成功",3:"失败"}
         return map[data]
@@ -78,7 +82,7 @@
         }
       },
       href(data){
-        this.$router.push({name:'/tvDetail',params:{data}})
+        this.$router.push({path:'/tvDetail',query:{id:data.id}})
       }
     },
   }

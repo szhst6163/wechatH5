@@ -52,7 +52,7 @@
     },
     methods: {
       tvDetail(item){
-        this.$router.push({name:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
+        this.$router.push({path:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
       },
       init(){
         this.$vux.loading.show();

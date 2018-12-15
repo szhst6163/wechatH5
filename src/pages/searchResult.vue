@@ -62,7 +62,7 @@
     computed: {},
     methods: {
       tvDetail(item){
-        this.$router.push({name:'/tvDetail',query:{id:item.id}})
+        this.$router.push({path:'/tvDetail',query:{id:item.id}})
       },
       init() {
         this.$vux.loading.show();

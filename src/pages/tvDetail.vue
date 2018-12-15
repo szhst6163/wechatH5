@@ -10,7 +10,7 @@
       <div @click="apply(tv.is_signup_over)"><img src="../images/icon/baoming.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
       <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/baoming.png" alt="">收藏</div>
       <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/baoming.png" alt="">取消收藏</div>
-      <div><img src="../images/icon/baoming.png" alt="">导航</div>
+      <div @click="toMap(tv)"><img src="../images/icon/baoming.png" alt="">导航</div>
     </div>
     <div class="tv-info">
       <div class="title">
@@ -87,6 +87,9 @@
     computed: {
     },
     methods: {
+      toMap(data){
+        location.href = 'http://api.map.baidu.com/geocoder?location=39.910148,116.421534&output=html'
+      },
       translateTime(date){
         return formatDate(date)
       },
