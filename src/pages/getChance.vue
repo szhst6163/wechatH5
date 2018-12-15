@@ -6,7 +6,7 @@
     <div class="m-login">
       <div class="form">
         <div class="formHead">
-          用户注册
+          兑换报名名额
         </div>
         <ul>
           <li>
