@@ -5,13 +5,13 @@
     </div>
     <div class="m-myCollect">
       <ul v-if="list.length">
-        <li v-for="item in list">
+        <li @click="href(item)" v-for="item in list">
           <div class="left">
             <img :src="item.column_img" alt="">
           </div>
           <div class="right">
             <div class="title">《{{item.name}}》</div>
-            <div class="time">收藏于 {{translateTime(item.initime)}}</div>
+            <div class="time">收藏于 {{translateTime(item.intime*1000)}}</div>
           </div>
         </li>
       </ul>
@@ -78,7 +78,7 @@
         }
       },
       href(data){
-        this.$router.push({path:'/tvDetail',params:{id:data.id}})
+        this.$router.push({path:'/tvDetail',query:{id:data.column_item_id}})
       }
     },
   }

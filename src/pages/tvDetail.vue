@@ -17,6 +17,7 @@
         《{{tv.detail.column_title}}》
       </div>
       <div class="infoItem">
+        <div><img src="../images/icon/baoming.png" alt=""><span>截止时间</span><span>{{translateTime(tv.detail.signuptime*1000)}}</span></div>
         <div><img src="../images/icon/baoming.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
         <div><img src="../images/icon/baoming.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
@@ -42,7 +43,7 @@
     </div>
     <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
     <common-dialog @close="dialogShow = false" v-if="dialogShow">
-      <slot>确定人数后锁座，10分钟内填写完资料 否则报名资格失效</slot>
+      <slot><div class="dialogText"><b>占座成功！</b>请认真观看以下内容：确认好节目时间和地点再报名，在确认报名后的15分钟内须完善观看人的个人信息（姓名、电话、身份证），<b>超时此名额自动作废</b>，现场观看人员须与本次报名人员信息一致，否则此名额自动作废。</div></slot>
       <div slot="btn" class="bottom" @click="nextPage">
         <div class="btns">
           <div class="okBtn" :class="{disable:confirmTime > 0}">确定 <span v-if="confirmTime>0">({{confirmTime}}s)</span></div>

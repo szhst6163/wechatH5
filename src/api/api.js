@@ -6,7 +6,7 @@ const apiUrl = {
   collect:"/api/user/addcollect",
   unCollect:"/api/user/canclecollect",
   search:"/api/search/search",
-  myview:"/api/user/myview",
+  myview:"/api/user/index",
   getchance:"/api/user/getchance",
   getTicket1:'/api/user/add_signup_first',
   getTicket2:'/api/user/add_signup_second',
@@ -14,6 +14,7 @@ const apiUrl = {
   myorder:'/api/user/myorder',
   mycollect:'/api/user/mycollect',
   emcee:'/api/compere/view',
+  mysignup:'/api/user/mysignup',
   addGoods:'/api/goods/add',
   index: {
     getList: '/api/ad/lists',

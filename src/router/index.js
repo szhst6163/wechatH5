@@ -18,6 +18,7 @@ import register from '@/pages/register'
 import userIndex from '@/pages/userIndex'
 import getChance from '@/pages/getChance'
 import searchResult from '@/pages/searchResult'
+import applySuc from '@/pages/applySuc'
 
 Vue.use(Router)
 
@@ -32,6 +33,12 @@ export default new Router({
       path: '/',
       name: '/userIndex',
       component: userIndex,
+      meta: {}
+    },
+    {
+      path: '/applySuc',
+      name: '/applySuc',
+      component: applySuc,
       meta: {}
     },
     {

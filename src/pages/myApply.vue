@@ -5,7 +5,7 @@
     </div>
     <div class="m-myCollect">
       <ul v-if="list.length">
-        <li @click="href(item)" v-for="item in list">
+        <li @click="href('/tvDetail',item)" v-for="item in list">
           <div class="left">
             <img :src="item.column_img" alt="">
           </div>
@@ -14,7 +14,8 @@
             <div class="info">
               <div>报名于 {{formatTime(item.intime)}}</div>
               <div>地址： {{item.address}}</div>
-              <div class="status">{{status(item.status)}}</div>
+              <div>是否过期： {{item.is_outoftime == 1?'过期':'未过期'}}</div>
+              <div @click.stop="href2('/applyPage2',item)" class="status"><div>继续报名{{status(item.status)}}</div></div>
             </div>
           </div>
         </li>
@@ -61,7 +62,7 @@
       loadMore(){
         if(this.isLock||this.isOver) return;
         this.isLock = true;
-        this.$axios.post(this.$api.myorder,this.params)
+        this.$axios.post(this.$api.mysignup,this.params)
           .then(res=>{
             this.isLock = false;
             if(res.data.length < this.params.page_size){this.isOver = true;}
@@ -81,8 +82,11 @@
           this.loadMore();
         }
       },
-      href(data){
-        this.$router.push({path:'/tvDetail',query:{id:data.id}})
+      href(url,data){
+        this.$router.push({path:url,query:{id:data.column_item_id}})
+      },
+      href2(url,data){
+        this.$router.push({name:url,params:{sign_id:data.id}})
       }
     },
   }
@@ -131,8 +135,15 @@
               margin-top:30px;
               color:@c6;
               .status{
-                font-size: 30px;
-                color:@c1;
+                padding-right: 20px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                >div{
+                  padding:0 10px;
+                  border:1px solid @c1;
+                  color:@c1;
+                }
               }
           }
           }

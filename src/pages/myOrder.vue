@@ -5,7 +5,7 @@
     </div>
     <div v-if="list.length" class="m-myCollect">
       <ul>
-        <li v-for="item in list" @click="href()">
+        <li v-for="item in list" @click="href(item)">
           <div class="left">
             <img :src="item.column_img" alt="">
           </div>
@@ -78,7 +78,7 @@
         }
       },
       href(data){
-        this.$router.push({name:'/tvDetail',params:{data}})
+        this.$router.push({path:'/shopDetail',query:data})
       }
     },
   }

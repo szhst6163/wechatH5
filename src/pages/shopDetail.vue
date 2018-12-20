@@ -96,6 +96,7 @@
           .then(res=>{
             this.$vux.loading.hide();
             this.$vux.toast.show(res.msg);
+            this.$router.go(-1)
           })
           .catch(err=>{
             this.$vux.loading.hide();

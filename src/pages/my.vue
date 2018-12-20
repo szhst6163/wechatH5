@@ -26,7 +26,7 @@
       </div>
       <div class="m-func-list">
         <ul>
-          <li class="item">
+          <li @click="href('/getChance')" class="item">
             <div class="name">
               <img src="../images/icon/shopPrice.png" alt="">
               <div>我的报名机会</div>
@@ -60,6 +60,7 @@
               <div>我的收藏</div>
             </div>
             <div class="right">
+              <span>{{my.count_collect}}</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>

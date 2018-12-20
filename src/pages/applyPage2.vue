@@ -42,8 +42,8 @@
     computed: {},
     methods: {
       init() {
-        let num = this.$route.params.num;
-        for (let i = 0;i <num; i++) {
+//        let num = this.$route.params.num;
+        for (let i = 0;i <1; i++) {
           this.formList.push({
             name:'',
             mobile:'',
