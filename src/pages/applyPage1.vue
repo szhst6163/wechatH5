@@ -6,6 +6,9 @@
     <div class="applyPage-cont">
       <div class="m-applyPage1">
         <div class="form">
+          <div class="waringIcon">
+            <img src="../images/icon/warning.png" alt="">
+          </div>
           <div class="formInfo">
             <div class="infoTitle">活动声明</div>
             <p>
@@ -21,6 +24,9 @@
         </div>
         <div @click="next" class="submit">
           <span>提交</span>
+        </div>
+        <div class="clickBtn">
+          <img src="../images/icon/clickBtn.png" alt="">
         </div>
       </div>
     </div>
@@ -91,6 +97,19 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
+    .waringIcon{
+      >img{
+        width: 325px;
+        height:159px;
+      }
+    }
+    .clickBtn{
+      text-align: right;
+      >img{
+        width: 325px;
+        height:159px;
+      }
+    }
     .submit{
       width: 100%;
       margin:0 auto;
@@ -98,7 +117,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-bottom:50px;
+      padding-bottom:30px;
       span{
         display: block;
         width: 500px;
