@@ -1,20 +1,22 @@
 <template>
   <div class="m-cont">
     <div class="m-applySuc">
-      <div class="suc">
-        <span>报名成功！请携带个人身份证准时参加！详细信息请在“我的报名”查看。</span>
-      </div>
-      <div class="formInfo">
-        <div class="infoTitle">您的报名信息</div>
-        <p>
-          节目名称：快乐大本营
-          参加时间：2019年5月20号14:00整，（请提前15分钟到达现场准备入场）
-          参加地址：湖南广电演播厅（长沙星沙XXX路XXX号）
-          取票流程：请于2019年5月20日13:00整，携带本人身份证，在星沙XXX地址取票，取票、咨询电话：13510013007
-        </p>
-      </div>
-      <div @click="submit" class="submit">
-        <span>确定</span>
+      <div class="cont">
+        <div class="suc">
+          <span>报名成功！请携带个人身份证准时参加！详细信息请在“我的报名”查看。</span>
+        </div>
+        <div class="formInfo">
+          <div class="infoTitle">您的报名信息</div>
+          <p>
+            节目名称：{{info.column_title}}<br>
+            参加时间：{{translateTime(info.starttime*1000)}}，（请提前15分钟到达现场准备入场）<br>
+            参加地址：{{info.address}}<br>
+            取票流程：请于{{info.address}}!!!整，携带本人身份证，在{{info.getaddr}}取票，取票咨询电话：<a :href="`tel:${info.getmobile}`">{{info.getmobile}}</a><br>
+          </p>
+        </div>
+        <div @click="submit" class="submit">
+          <span>确定</span>
+        </div>
       </div>
     </div>
   </div>
@@ -22,22 +24,40 @@
 
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
+  import formatDate from "../lib/formatDate";
 
   export default {
     name: 'tv-detail',
     components: {},
     data() {
       return {
-        formList: []
+        info:{}
       }
     },
-    computed: {},
+    computed: {
+      ...mapGetters(['getTvInfo'])
+    },
     methods: {
+      translateTime(date){
+        return formatDate(date)
+      },
       submit() {
         this.$router.replace({name: "index"})
       },
+      init(){
+        this.$vux.loading.show();
+        this.$axios.post(this.$api.tvList.tvDetail,{id:this.getTvInfo.info.id})
+          .then(res=>{
+            this.info = res.data.detail;
+            this.$vux.loading.hide();
+          })
+          .catch(err=>{
+            this.$vux.loading.hide();
+          })
+      },
     },
     mounted() {
+      this.init()
     },
   }
 
@@ -49,25 +69,35 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
-    padding-bottom: 150px;
-    .m-applySuc{
-      padding:40px 0;
+    .m-applySuc {
+      background-image: url('../images/icon/pic1.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
       font-size: 28px;
-      .suc{
+      .cont {
+        height: 100vh;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.5);
         padding:30px;
       }
-      .formInfo{
-        padding:30px;
-        .infoTitle{
-          margin:20px;
+      .suc {
+        padding: 30px;
+      }
+      .formInfo {
+        padding: 30px;
+        .infoTitle {
+          margin: 20px;
         }
-        >p{
-          margin-bottom:20px;
+        > p {
+          margin-bottom: 20px;
+          a{
+            color: @c1;
+          }
         }
       }
     }
     .submit {
-      margin: 0 auto;
+      margin: 50px auto;
       text-align: center;
       display: flex;
       align-items: center;

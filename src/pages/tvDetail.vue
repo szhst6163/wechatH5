@@ -7,19 +7,20 @@
       <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
-      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/baoming.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
-      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/baoming.png" alt="">收藏</div>
-      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/baoming.png" alt="">取消收藏</div>
-      <div @click="toMap(tv)"><img src="../images/icon/baoming.png" alt="">导航</div>
+      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
+      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt="">收藏</div>
+      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt="">取消收藏</div>
+      <div @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>
     </div>
     <div class="tv-info">
       <div class="title">
         《{{tv.detail.column_title}}》
       </div>
       <div class="infoItem">
-        <div><img src="../images/icon/baoming.png" alt=""><span>截止时间</span><span>{{translateTime(tv.detail.signuptime*1000)}}</span></div>
-        <div><img src="../images/icon/baoming.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
-        <div><img src="../images/icon/baoming.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
+        <div><img src="../images/icon/detailTime.png" alt=""><span>报名时间</span><span>{{translateTime(tv.detail.starttime*1000)}}</span></div>
+        <div><img src="../images/icon/detailTime.png" alt=""><span>截止时间</span><span>{{translateTime(tv.detail.signuptime*1000)}}</span></div>
+        <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
+        <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
       <div class="infoDesc">
         <div class="head">录制地点：{{tv.detail.address}}</div>
@@ -89,7 +90,7 @@
     },
     methods: {
       toMap(data){
-        location.href = 'http://api.map.baidu.com/geocoder?location=39.910148,116.421534&output=html'
+        location.href = 'http://api.map.baidu.com/geocoder?marker=39.990912172420714,116.32715863448607&coord_type=gcj02&output=html&src=webapp.baidu.openAPIdemo'
       },
       translateTime(date){
         return formatDate(date)
@@ -178,15 +179,15 @@
     }
     .fnBtn{
       display: flex;
-      padding:5px 20px;
+      padding:20px;
       background: @c5;
       >div{
         display: flex;
         align-items: center;
         margin-right:10px;
         img{
-          width:32px;
-          height: 80px;
+          width:25px;
+          height: 25px;
           margin-right:10px;
         }
       }
@@ -194,15 +195,15 @@
     .tv-info{
       margin-top:20px;
       background: @c5;
-      padding:0 20px;
       .title{
+        padding:0 20px;
         height: 90px;
         line-height: 90px;
         font-size: 36px;
         border-bottom:1px solid #262a40;
       }
       .infoItem{
-        padding:30px 0;
+        padding:30px;
         border-bottom:1px solid #262a40;
         >div{
           height: 50px;
@@ -219,10 +220,9 @@
         }
       }
       .infoDesc{
-        padding:20px 0;
+        padding:30px;
         font-size: 24px;
         .head{
-          padding-left:30px;
           color:@c1;
         }
         .main{

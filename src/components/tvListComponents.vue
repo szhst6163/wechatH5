@@ -21,6 +21,8 @@
 
 <script>
   import clone from '../lib/json/clone'
+  import {mapMutations, mapActions, mapGetters} from 'vuex'
+
   export default {
     name: 'tv-list-components',
     data(){
@@ -46,16 +48,22 @@
         }
       }
     },
+    computed:{
+      ...mapGetters(['getTvInfo'])
+    },
     beforeDestroy(){
       window.removeEventListener('scroll',this.handleScroll)
     },
-    mounted(){
+      mounted(){
       this.params = {...this.params,page:1, page_size:10};
       window.addEventListener('scroll', this.handleScroll);
       this.loadMore();
     },
     methods: {
+      ...mapMutations(['setTvInfo']),
       tvDetail(item){
+        this.setTvInfo({name:'info',data:item});
+        console.log(this.getTvInfo)
         this.$router.push({path:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
       },
       loadMore(){

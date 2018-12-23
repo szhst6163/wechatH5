@@ -1,10 +1,20 @@
 <template>
   <div class="m-cont">
     <div class="m-userIndex">
-      <div class="btns">
-        <span @click="href('/login')">登陆</span>
-        <span @click="href('/register')">注册</span>
+      <div class="user-head">
+        <img src="../images/icon/userIndex-head.png" alt="">
       </div>
+      <div class="userCont">
+        <div class="btns">
+          <span @click="href('/login')">
+            <img src="../images/icon/login-login.png" alt="">
+          </span>
+          <span @click="href('/register')">
+               <img src="../images/icon/login-resign.png" alt="">
+          </span>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -38,21 +48,38 @@
     color: #fff;
     font-size: 24px;
     .m-userIndex{
-      height:100vh;
-      display: flex;
       align-items: center;
-      background: @c5;
-      .btns{
-        width: 100%;
+      background: url('../images/icon/login-bg.jpg');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      .user-head{
+        height: 600px;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
+      }
+      .userCont{
+        background-image: url('../images/icon/userIndex-border.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 750px;
+        height: 750px;
         display: flex;
-        justify-content: space-around;
-        span{
-          width: 200px;
-          height: 80px;
-          line-height: 80px;
-          text-align: center;
-          background: @c6;
-          border-radius: 21px;
+        align-items: center;
+        justify-content: center;
+        .btns{
+          width: 80%;
+          display: flex;
+          justify-content: space-around;
+          margin-top:20%;
+          span{
+            width: 200px;
+            text-align: center;
+            img{
+              width: 100%;
+            }
+          }
         }
       }
 

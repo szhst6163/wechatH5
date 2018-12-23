@@ -59,7 +59,6 @@
             this.$vux.loading.show();
             this.$axios.post(this.$api.login,this.form)
               .then(res=>{
-                console.log(res)
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg);
                 this.$router.replace({name:"index"})
@@ -85,6 +84,9 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
+    background: url('../images/icon/pic2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
     .submit{
       width: 100%;
       margin:0 auto;

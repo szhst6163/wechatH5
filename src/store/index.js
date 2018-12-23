@@ -9,24 +9,19 @@ import clone from "../lib/json/clone";
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    startDate: '',
-    endDate: '',
-    repairInfo: {},
+    tvInfo: {
+      info:{}
+    },
   },
   getters: {
-    startDate: state => state.startDate,
-    endDate: state => state.endDate,
-    repairInfo: state => state.repairInfo,
+    getTvInfo: state => state.tvInfo,
   },
   mutations: {
-    setRepairInfo(state, evt) {
-      state.repairInfo[evt.name] = evt.data
-    },
-    setDealScene(state, evt) {
-      state.repairInfo.dealScene[evt.name] = evt.data
+    setTvInfo(state, evt) {
+      state.tvInfo[evt.name] = evt.data
     },
     clearRepairInfo(state, evt) {
-      state.repairInfo = {}
+      state.tvInfo = {info:{}}
     },
   },
   actions: {}
