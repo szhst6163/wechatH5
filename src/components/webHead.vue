@@ -46,10 +46,10 @@
 
   .m-head {
     font-size: 32px;
-    background: #000;
+    background: @c5;
     color: #fff;
-    background: url("../images/icon/titlePic.png");
-    background-size: cover;
+    /*background: url("../images/icon/titlePic.png");*/
+    /*background-size: cover;*/
     .m-head-contain {
       display: flex;
       justify-content: space-around;

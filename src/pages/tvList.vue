@@ -87,6 +87,7 @@
       height:410px;
     }
     .m-hot-tv{
+      padding:20px 10px;
       padding-bottom:0;
       margin-top:20px;
       background: @c5;
