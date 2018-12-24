@@ -1,7 +1,7 @@
 <template>
   <div class="m-cont">
     <div class="m-head">
-      <span @click="$router.push({name:'/tvList'})">返回</span>
+      <span @click="$router.push({path:'/tvList'})">返回</span>
     </div>
     <div class="m-video">
       <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
@@ -10,7 +10,7 @@
       <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
       <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt="">收藏</div>
       <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt="">取消收藏</div>
-      <div @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>
+      <!--<div @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>-->
     </div>
     <div class="tv-info">
       <div class="title">
@@ -44,10 +44,16 @@
     </div>
     <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
     <common-dialog @close="dialogShow = false" v-if="dialogShow">
-      <slot><div class="dialogText"><b>占座成功！</b>请认真观看以下内容：确认好节目时间和地点再报名，在确认报名后的15分钟内须完善观看人的个人信息（姓名、电话、身份证），<b>超时此名额自动作废</b>，现场观看人员须与本次报名人员信息一致，否则此名额自动作废。</div></slot>
+      <slot>
+        <div class="dialogText">
+          <p><b>重要提示：</b></p>
+          <p>1、报名成功须在<b>15分钟</b>内填写观看人资料（姓名、身份证、电话），超时名额自动作废，同时将消耗一次报名机会。</p>
+          <p>2、现场观看人须与本次报名填写信息一致，否则视为此名额自动作废。</p>
+        </div>
+      </slot>
       <div slot="btn" class="bottom" @click="nextPage">
         <div class="btns">
-          <div class="okBtn" :class="{disable:confirmTime > 0}">确定 <span v-if="confirmTime>0">({{confirmTime}}s)</span></div>
+          <div class="okBtn" :class="{disable:confirmTime > 0}">确认报名 <span v-if="confirmTime>0">({{confirmTime}}s)</span></div>
         </div>
       </div>
     </common-dialog>
@@ -55,6 +61,7 @@
 </template>
 
 <script>
+  var signId = '';
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import WebHead from '../components/webHead';
   import SearchBar from "../components/searchBar";
@@ -98,7 +105,17 @@
       nextPage(){
         if(this.confirmTime <= 0){
           this.dialogShow = false;
-          this.$router.push({name:"/applyPage1",params:{column_item_id:this.$route.query.id}})
+          this.$axios.post(this.$api.getTicket1,{column_item_id:this.$route.query.id,num:1})
+            .then(res=>{
+              signId = res.data.sign_id;
+              this.dialogShow = true;
+              this.$vux.loading.hide();
+              this.$vux.toast.show(res.msg);
+              this.$router.push({path:"/applyPage1",query:{column_item_id:this.$route.query.id,sign_id:signId}})
+            })
+            .catch(err=>{
+              this.$vux.loading.hide();
+            })
         }
       },
       collect(){
@@ -151,7 +168,7 @@
           })
       },
       emcee(data){
-        this.$router.push({name:'/emcee',params:{data}})
+        this.$router.push({path:'/emcee',query:{data}})
       }
     },
     mounted() {
@@ -249,7 +266,7 @@
       }
       .emceeList{
         display: flex;
-        padding:20px 0 10px;
+        padding:10px 20px;
         .item{
           color:#fff;
           display: flex;

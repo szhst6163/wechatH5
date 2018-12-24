@@ -73,16 +73,7 @@
 //          })
       },
       next(){
-        this.$vux.loading.show();
-        this.$axios.post(this.$api.getTicket1,{column_item_id:this.$route.params.column_item_id,num:this.form.num})
-          .then(res=>{
-            this.$vux.loading.hide();
-            this.$vux.toast.show(res.msg)
-            this.$router.replace({name: '/applyPage2',params:{num:this.form.num,sign_id:res.data.sign_id}})
-          })
-          .catch(err=>{
-            this.$vux.loading.hide();
-          })
+        this.$router.replace({path: '/applyPage2',query:{num:this.form.num,sign_id:this.$route.query.sign_id}})
       },
     },
     mounted() {

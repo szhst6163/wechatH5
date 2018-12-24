@@ -28,7 +28,7 @@
         <ul>
           <li @click="href('/getChance')" class="item">
             <div class="name">
-              <img src="../images/icon/shopPrice.png" alt="">
+              <img src="../images/icon/flag.png" alt="">
               <div>我的报名机会</div>
             </div>
             <div class="right">
@@ -38,7 +38,7 @@
           </li>
           <li @click="href('/myApply')" class="item">
             <div class="name">
-              <img src="../images/icon/shopPrice.png" alt="">
+              <img src="../images/icon/coupons.png" alt="">
               <div>我的报名</div>
             </div>
             <div class="right">
@@ -47,7 +47,7 @@
           </li>
           <li @click="href('/myOrder')" class="item">
             <div class="name">
-              <img src="../images/icon/shopPrice.png" alt="">
+              <img src="../images/icon/activity.png" alt="">
               <div>我的订单</div>
             </div>
             <div class="right">
@@ -56,20 +56,11 @@
           </li>
           <li @click="href('/myCollect')" class="item">
             <div class="name">
-              <img src="../images/icon/shopPrice.png" alt="">
+              <img src="../images/icon/like.png" alt="">
               <div>我的收藏</div>
             </div>
             <div class="right">
               <span>{{my.count_collect}}</span>
-              <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
-            </div>
-          </li>
-          <li class="item">
-            <div class="name">
-              <img src="../images/icon/shopPrice.png" alt="">
-              <div>关于</div>
-            </div>
-            <div class="right">
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -108,7 +99,7 @@
         this.$router.push({path:'/tvDetail',query:{id:data.column_item_id}})
       },
       href(url){
-        this.$router.push({name:url})
+        this.$router.push({path:url})
       },
       init(){
         this.$vux.loading.show();
@@ -215,7 +206,7 @@
             img{
               width: 30px;
               height:30px;
-              margin-right:20px;
+              margin-right:10px;
             }
           }
         }

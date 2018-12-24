@@ -4,6 +4,12 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-applyPage1">
+      <div class="warning">
+        <img src="../images/icon/warning.png" alt="">
+        <div>
+         注意！确认报名后的15分钟内须完善观看人的个人信息（姓名、电话、身份证），超时此名额自动作废，现场观看人员须与本次报名人员信息一致，否则此名额自动作废。
+        </div>
+      </div>
       <div v-for="(item,i) in formList" class="form">
         <div class="user">用户{{i+1}}</div>
         <ul>
@@ -63,18 +69,18 @@
       },
       submit() {
         this.$vux.loading.show();
-        this.$axios.post(this.$api.getTicket2,{info:this.formList,sign_id:this.$route.params.sign_id})
+        this.$axios.post(this.$api.getTicket2,{info:this.formList,sign_id:this.$route.query.sign_id})
           .then(res=>{
             this.$vux.toast.show(res.msg);
             this.$vux.loading.hide();
-            this.$router.replace({name: "index"})
+            this.$router.replace({path: "/applySuc"})
           })
           .catch(err=>{
             this.$vux.loading.hide();
           })
       },
       href(data) {
-        this.$router.push({name: '/tvDetail', params: {data}})
+        this.$router.push({path: '/tvDetail', query: {data}})
       }
     },
     mounted() {
@@ -117,13 +123,21 @@
     .m-applyPage1 {
       color: #fff;
       font-size: 30px;
-      background: @c5;
+      .warning{
+        padding:30px;
+        margin-bottom:30px;
+        background: @c5;
+        img{
+          width: 50%;
+        }
+      }
       .user {
-        padding: 10px 30px;
+        padding: 20px 30px;
       }
       .form {
+        background: @c5;
         ul {
-          padding: 20px 40px;
+          padding: 30px 40px;
           li {
             padding: 0 40px;
             background: @c7;

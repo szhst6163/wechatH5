@@ -21,7 +21,7 @@
           this.$vux.toast.show("请输入关键字");
           return;
         }
-        this.$router.push({name:'/searchResult',query:{keywords:this.keywords}})
+        this.$router.push({path:'/searchResult',query:{keywords:this.keywords}})
 
       }
     }

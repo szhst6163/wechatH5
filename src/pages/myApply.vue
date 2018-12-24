@@ -10,12 +10,13 @@
             <img :src="item.column_img" alt="">
           </div>
           <div class="right">
-            <div class="title">《{{item.name}}》</div>
+            <div class="title">《{{item.column_name}}》</div>
             <div class="info">
               <div>报名于 {{formatTime(item.intime)}}</div>
               <div>地址： {{item.address}}</div>
-              <div>是否过期： {{item.is_outoftime == 1?'过期':'未过期'}}</div>
-              <div @click.stop="href2('/applyPage2',item)" class="status"><div>继续报名{{status(item.status)}}</div></div>
+              <div v-if="item.status == 1 && item.is_outoftime == 0" @click.stop="href2('/applyPage1',item)" class="status"><div>继续报名</div></div>
+              <div v-if="item.status == 2" @click.stop="href2('/applySuc',item)" class="status"><div>报名成功</div></div>
+              <div v-if="item.status == 3 && item.is_outoftime == 1" @click.stop="href2('/applyPage2',item)" class="status"><div>报名失败</div></div>
             </div>
           </div>
         </li>
@@ -86,7 +87,7 @@
         this.$router.push({path:url,query:{id:data.column_item_id}})
       },
       href2(url,data){
-        this.$router.push({name:url,params:{sign_id:data.id}})
+        this.$router.push({path:url,query:{sign_id:data.id}})
       }
     },
   }

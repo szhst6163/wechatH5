@@ -19,7 +19,7 @@
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
       </div>
-      <tv-list-components :params="{compere_id:this.$route.params.data.id}" :title="'相关推荐'" class="m-tvList"></tv-list-components>
+      <tv-list-components :params="{compere_id:this.$route.query.data.id}" :title="'相关推荐'" class="m-tvList"></tv-list-components>
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@
     methods: {
       init() {
         this.$vux.loading.show();
-        this.$axios.post(this.$api.emcee, {id: this.$route.params.data.id})
+        this.$axios.post(this.$api.emcee, {id: this.$route.query.data.id})
           .then(res => {
             this.data = res.data;
             this.$vux.loading.hide();

@@ -7,7 +7,7 @@
       </div>
       <search-bar></search-bar>
       <div class="tvType">
-        <div @click="tvcloums(item)" v-for="item in tv" class="tvItem">
+        <div @click="tvcloums(item)" v-for="item in tv" class="tvItem" :style="{backgroundImage:`url(${item.img})`}">
           <div class="name1">{{item.name}}</div>
           <div class="name2">{{item.introduce}}</div>
         </div>
@@ -17,7 +17,7 @@
       <div class="m-line-title">热门栏目</div>
       <div class="funList">
         <div @click="tvDetail(item)" v-for="item in hotcolumn" class="item">
-          <div class="img"><img :src="item.icon||defImg" alt=""></div>
+          <div class="img"><img :src="item.img||defImg" alt=""></div>
           <div>{{item.column_title}}</div>
         </div>
       </div>
@@ -67,10 +67,10 @@
           })
       },
       tvcloums(data){
-        this.$router.push({name:"/tvcloums",params:{tv_id:data.id}})
+        this.$router.push({path:"/tvcloums",query:{tv_id:data.id}})
       },
       getChance(data){
-        this.$router.push({name:"/getChance",params:{tv_id:data.id}})
+        this.$router.push({path:"/getChance",query:{tv_id:data.id}})
       }
     },
     mounted() {
@@ -143,6 +143,7 @@
         padding-bottom:0;
         .tvItem{
           background: @c1;
+          background-size: 100% 100%;
           box-sizing: border-box;
           padding:30px 20px;
           margin-top:20px;

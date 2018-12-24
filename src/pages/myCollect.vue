@@ -10,7 +10,7 @@
             <img :src="item.column_img" alt="">
           </div>
           <div class="right">
-            <div class="title">《{{item.name}}》</div>
+            <div class="title">《{{item.column_name}}》</div>
             <div class="time">收藏于 {{translateTime(item.intime*1000)}}</div>
           </div>
         </li>

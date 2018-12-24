@@ -43,7 +43,6 @@
 
 <style scoped lang="less">
   @import "../assets/common";
-
   .m-cont {
     color: #fff;
     font-size: 24px;

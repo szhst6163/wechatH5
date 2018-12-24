@@ -61,7 +61,7 @@
               .then(res=>{
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg);
-                this.$router.replace({name:"index"})
+                this.$router.replace({path:"index"})
               })
               .catch(err=>{
                 this.$vux.loading.hide();
@@ -69,7 +69,7 @@
           })
       },
       href(data) {
-        this.$router.push({name: '/tvDetail', params: {data}})
+        this.$router.push({path: '/tvDetail', query: {data}})
       }
     },
     mounted() {

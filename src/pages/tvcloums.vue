@@ -7,7 +7,7 @@
       <div class="m-swiper">
         <swiper-banner></swiper-banner>
       </div>
-      <tv-list-components :params="this.$route.params" :title="'录制栏目'" class="m-tvList"></tv-list-components>
+      <tv-list-components :params="this.$route.query" :title="'录制栏目'" class="m-tvList"></tv-list-components>
     </div>
   </div>
 </template>
