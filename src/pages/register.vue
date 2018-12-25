@@ -115,7 +115,7 @@
               .then(res=>{
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg)
-                this.$router.replace({path:"index"})
+                this.$router.replace({path:"/login"})
               })
               .catch(err=>{
                 this.$vux.loading.hide();

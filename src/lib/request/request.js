@@ -53,7 +53,9 @@ service.interceptors.response.use(
       if (response.data.error !== 0) {
         Vue.$vux.toast.show(response.data.msg);
         if (response.data.error === 400) {
-          location.href = '/login'
+          setTimeout(()=>{
+            location.href = '/login'
+          },3000)
         }
         return Promise.reject(response)
       } else {

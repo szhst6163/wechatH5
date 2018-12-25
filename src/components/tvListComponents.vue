@@ -8,7 +8,7 @@
         <img :src="`${item.column_img}`" alt="">
         <div>
           <div class="title">{{item.column_title}}</div>
-          <div class="date">{{item.number}}</div>
+          <div class="date">{{translateTime(item.starttime)}}</div>
           <div v-if="item.is_signup_over == 0" class="tag">报 名</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
         </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import formatDate from "../lib/formatDate";
   import clone from '../lib/json/clone'
   import {mapMutations, mapActions, mapGetters} from 'vuex'
 
@@ -61,6 +62,9 @@
     },
     methods: {
       ...mapMutations(['setTvInfo']),
+      translateTime(date){
+        return formatDate(date*1000,'yyyy-MM-dd')
+      },
       tvDetail(item){
         this.setTvInfo({name:'info',data:item});
         console.log(this.getTvInfo)

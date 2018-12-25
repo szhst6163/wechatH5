@@ -86,6 +86,7 @@
     font-size: 24px;
     background: url('../images/icon/pic2.png');
     background-size: 100%;
+    background-position-y: center;
     background-repeat: no-repeat;
     .submit{
       width: 100%;
@@ -114,7 +115,7 @@
         padding:10px 30px;
       }
       .form{
-        background: @c5;
+        background: #2e2a61;
         padding:50px 0;
         border-radius: 20px;
         .formHead{
