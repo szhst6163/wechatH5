@@ -8,6 +8,7 @@
         <img :src="`${item.column_img}`" alt="">
         <div>
           <div class="title">{{item.column_title}}</div>
+          <div class="date">报名时间</div>
           <div class="date">{{translateTime(item.starttime)}}</div>
           <div v-if="item.is_signup_over == 0" class="tag">报 名</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
@@ -131,6 +132,7 @@
           margin-left:10px;
         }
         .date{
+          color: @c2;
           margin-left: 10px;
         }
         img{

@@ -10,7 +10,7 @@
       <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
       <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt="">收藏</div>
       <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt="">取消收藏</div>
-      <!--<div @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>-->
+      <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>
     </div>
     <div class="tv-info">
       <div class="title">
@@ -95,7 +95,8 @@
     },
     methods: {
       toMap(data){
-        location.href = 'http://api.map.baidu.com/geocoder?marker=39.990912172420714,116.32715863448607&coord_type=gcj02&output=html&src=webapp.baidu.openAPIdemo'
+        let loc = data.detail.latlon.split(',');
+        location.href = `http://api.map.baidu.com/marker?location=${loc[0]},${loc[1]}&title=录制地点&content=${data.detail.address}&output=html`
       },
       translateTime(date){
         return formatDate(date)
