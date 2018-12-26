@@ -96,7 +96,7 @@
     methods: {
       toMap(data){
         let loc = data.detail.latlon.split(',');
-        location.href = `http://api.map.baidu.com/marker?location=${loc[0]},${loc[1]}&title=录制地点&content=${data.detail.address}&output=html`
+        location.href = `http://api.map.baidu.com/marker?location=${loc[1]},${loc[0]}&title=录制地点&content=${data.detail.address}&output=html`
       },
       translateTime(date){
         return formatDate(date)
