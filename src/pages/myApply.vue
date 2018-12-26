@@ -16,7 +16,7 @@
               <div>地址： {{item.address}}</div>
               <div v-if="item.status == 1 && item.is_outoftime == 0" @click.stop="href2('/applyPage1',item)" class="status"><div>继续报名</div></div>
               <div v-if="item.status == 2" @click.stop="href2('/applySuc',item)" class="status"><div>报名成功</div></div>
-              <div v-if="item.status == 3 && item.is_outoftime == 1" @click.stop="href2('/applyPage2',item)" class="status"><div>报名失败</div></div>
+              <div v-if="item.status == 4" @click.stop="failTips" class="status"><div>报名失败</div></div>
             </div>
           </div>
         </li>
@@ -56,8 +56,11 @@
       formatTime(date){
         return formatDate(date)
       },
+      failTips(){
+        this.$vux.toast.show('未在15分钟内填写完整资料');
+      },
       status(data){
-        let map = {1:"报名中",2:"成功",3:"失败"}
+        let map = {1:"报名中",2:"成功",3:"失败"};
         return map[data]
       },
       loadMore(){
@@ -141,9 +144,10 @@
                 justify-content: flex-end;
                 align-items: center;
                 >div{
-                  padding:0 10px;
-                  border:1px solid @c1;
-                  color:@c1;
+                  padding:10px 30px;
+                  background:@c1;
+                  color:#fff;
+                  border-radius:20px;
                 }
               }
           }

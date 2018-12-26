@@ -16,7 +16,7 @@
         </div>
         <div class="m-historyList">
           <div @click="tvDetail(item)" v-for="item in history" class="item">
-            <div class="pic"><img :src="item.column_img" alt=""></div>
+            <div class="pic"><img :src="item.column_image" alt=""></div>
             <div class="text">
               <div>{{item.title}}</div>
               <div>{{item.time}}</div>
@@ -42,6 +42,7 @@
               <div>我的报名</div>
             </div>
             <div class="right">
+              <span>{{my.count_signup}}</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -51,6 +52,7 @@
               <div>我的订单</div>
             </div>
             <div class="right">
+              <span>{{my.count_order}}</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
@@ -65,6 +67,9 @@
             </div>
           </li>
         </ul>
+      </div>
+      <div @click="logout" class="logout">
+        退出登录
       </div>
     </div>
   </div>
@@ -101,6 +106,14 @@
       href(url){
         this.$router.push({path:url})
       },
+      logout(){
+        var keys=document.cookie.match(/[^ =;]+(?=\=)/g);
+        if (keys) {
+          for (var i = keys.length; i--;)
+            document.cookie=keys[i]+'=0;expires=' + new Date( 0).toUTCString()
+        }
+        this.$router.replace({path:'/'})
+      },
       init(){
         this.$vux.loading.show();
         Promise.all([this.$axios.post(this.$api.myview),this.$axios.post(this.$api.myhistory),])
@@ -123,6 +136,15 @@
   .m-cont{
     font-size: 30px;
     color:#fff;
+    .logout{
+      margin:100px auto;
+      width: 80%;
+      height:80px;
+      line-height: 80px;
+      border-radius: 20px;
+      text-align: center;
+      background: @c4;
+    }
     .my-head{
       margin-bottom:20px;
       background: @c5;

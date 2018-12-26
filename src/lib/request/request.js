@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import router from '../../router'
 import {
   ToastPlugin
 } from 'vux'
@@ -53,9 +54,7 @@ service.interceptors.response.use(
       if (response.data.error !== 0) {
         Vue.$vux.toast.show(response.data.msg);
         if (response.data.error === 400) {
-          setTimeout(()=>{
-            location.href = '/login'
-          },3000)
+          router.push({path:'/'})
         }
         return Promise.reject(response)
       } else {

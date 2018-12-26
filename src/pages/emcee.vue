@@ -28,12 +28,10 @@
   import {mapMutations, mapActions, mapGetters} from 'vuex'
   import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
-  import SwiperBanner from "../components/swiperBanner";
 
   export default {
     name: 'tv-list',
     components: {
-      SwiperBanner,
       TvListComponents,
     },
     data() {

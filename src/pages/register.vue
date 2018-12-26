@@ -62,8 +62,8 @@
     methods: {
       very(){
         return new Promise((resolve,reject)=>{
-          if(!this.form.username){
-            this.$vux.toast.show('手机号不能为空');
+          if(!this.form.username||this.form.username.length<11){
+            this.$vux.toast.show('手机号不正确');
             reject()
           }else if(!this.form.smscode){
             this.$vux.toast.show('短信验证码不能为空');

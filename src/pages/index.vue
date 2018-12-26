@@ -3,6 +3,7 @@
     <web-head :active="0"></web-head>
     <div class="m-swiper">
       <swiper :code="'index'"></swiper>
+      <swiper-component></swiper-component>
     </div>
     <div class="m-classify">
       <search-bar></search-bar>
@@ -24,7 +25,7 @@
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
   import WebHead from '../components/webHead';
-  import Swiper from '../components/swiperBanner.vue'
+  import Swiper from '../components/swiperComponent.vue'
   import SearchBar from "../components/searchBar";
   import TvListComponents from "../components/tvListComponents.vue";
 

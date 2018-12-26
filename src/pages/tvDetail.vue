@@ -1,10 +1,10 @@
 <template>
   <div class="m-cont">
     <div class="m-head">
-      <span @click="$router.push({path:'/tvList'})">返回</span>
+      <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-video">
-      <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
+      <iframe v-if="tv.detail.videourl" :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
       <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
@@ -17,8 +17,6 @@
         《{{tv.detail.column_title}}》
       </div>
       <div class="infoItem">
-        <div><img src="../images/icon/detailTime.png" alt=""><span>报名时间</span><span>{{translateTime(tv.detail.starttime*1000)}}</span></div>
-        <div><img src="../images/icon/detailTime.png" alt=""><span>截止时间</span><span>{{translateTime(tv.detail.signuptime*1000)}}</span></div>
         <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
         <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
@@ -184,9 +182,12 @@
     color:#fff;
     font-size: 24px;
     .m-video{
+      width: 100%;
+      overflow: auto;
       >iframe{
-        height: 400px;
         width: 100%;
+        height: 400px;
+        overflow: auto;
       }
     }
     .m-head {

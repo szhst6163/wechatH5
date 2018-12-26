@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'swiper-banner',
+    name: 'swiper-component',
     data(){
       return {
         list:[]
