@@ -14,6 +14,8 @@ import {
 import 'lib-flexible'
 import "./assets/resetStyle.less";
 import wxConfig from './api/wxConfig'
+import './permission' // permission control
+
 Vue.config.productionTip = false;
 FastClick.attach(document.body);
 Vue.component('swiper', Swiper);
