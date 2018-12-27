@@ -7,21 +7,21 @@
       <iframe v-if="tv.detail.videourl" :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="fnBtn">
-      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt="">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
-      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt="">收藏</div>
-      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt="">取消收藏</div>
-      <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt="">导航</div>
+      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
+      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
+      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
+      <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
     </div>
     <div class="tv-info">
       <div class="title">
         《{{tv.detail.column_title}}》
       </div>
       <div class="infoItem">
+        <div><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span><span>{{tv.detail.address}}</span></div>
         <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
         <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
       <div class="infoDesc">
-        <div class="head">录制地点：{{tv.detail.address}}</div>
         <div class="main" :class="{showAll:showAll}" v-html="tv.detail.introduce">
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
@@ -198,16 +198,22 @@
     }
     .fnBtn{
       display: flex;
-      padding:20px;
+      padding:40px;
+      justify-content: space-between;
       background: @c5;
       >div{
+        flex:1;
         display: flex;
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
         margin-right:10px;
+        height: 200px;
+        font-size: 32px;
         img{
-          width:25px;
-          height: 25px;
-          margin-right:10px;
+          width:100px;
+          height: 100px;
+          margin-top:20px;
         }
       }
     }
@@ -290,11 +296,6 @@
 
         }
       }
-    }
-    .m-tvList{
-      padding:20px 0;
-      background: @c5;
-      margin-top:20px;
     }
   }
 </style>

@@ -55,11 +55,6 @@
         height: 410px;
         background: @c5;
       }
-      .m-tvList{
-        margin-top:20px;
-        padding:30px 10px;
-        background: @c5;
-      }
     }
 
   }

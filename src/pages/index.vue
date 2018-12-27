@@ -3,21 +3,19 @@
     <web-head :active="0"></web-head>
     <div class="m-swiper">
       <swiper :code="'index'"></swiper>
-      <swiper-component></swiper-component>
     </div>
-    <div class="m-classify">
-      <search-bar></search-bar>
+    <!--<div class="m-classify">
       <div class="funList">
         <div @click="href('/tvList')" class="item">
-          <div class="img"><img src="../images/icon/baoming.png" alt=""></div>
-          <div>报名</div>
+          <div class="img"><img src="../images/icon/baomingIcon.png" alt=""></div>
+          <div class="text"><img src="../images/icon/baomingText.png" alt=""></div>
         </div>
         <div @click="href('/shop')" class="item">
           <div class="img"><img src="../images/icon/shop.png" alt=""></div>
           <div>商品</div>
         </div>
       </div>
-    </div>
+    </div>-->
     <tv-list-components class="m-tvList"></tv-list-components>
   </div>
 </template>
@@ -78,27 +76,27 @@
       .funList {
         display: flex;
         justify-content: space-around;
-        margin-top: 40px;
         .item {
           color: #fff;
           display: flex;
           align-items: center;
           flex-direction: column;
+          width: 200px;
+          padding:0 50px 20px;
+          border:5px solid #fff;
+          border-radius: 10px;
+          .text{
+            width: 100px;
+            img{
+              width: 100%;
+            }
+          }
           .img {
-            width: 90px;
-            height: 90px;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
             > img {
               width: 100%;
               height: 100%;
-            }
-          }
-          &:nth-child(1) {
-            > .img {
-              background: @c1;
             }
           }
           &:nth-child(2) {
@@ -108,11 +106,6 @@
           }
         }
       }
-    }
-    .m-tvList {
-      margin-top: 20px;
-      padding: 30px 10px;
-      background: @c5;
     }
   }
 </style>

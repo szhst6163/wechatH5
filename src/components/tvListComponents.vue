@@ -1,5 +1,5 @@
 <template>
-  <div class="m-tvList-comp">
+  <div v-if="list" class="m-tvList-comp">
     <div class="m-line-title">
       {{title}}
     </div>
@@ -101,6 +101,16 @@
 <style lang="less" scoped>
   @import "../assets/common";
   .m-tvList-comp{
+    margin:40px 30px;
+    background: @c5;
+    border:solid #000;
+    border-image-source: url(../images/icon/bg3.png);
+    border-image-width:100px;
+    border-image-slice:100 100 100 100;
+    border-image-outset: 20px;// 边框图片outset设置为20px，那么背景图将会从盒子最外边界向外上右下左各延伸20px。
+    border-image-repeat: repeat;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     .list{
       padding-top:10px;
       display: flex;
@@ -109,7 +119,7 @@
         margin-left:2.5%;
         margin-top:20px;
         color:#fff;
-        width: 30%;
+        width: 45%;
         height:410px;
         position: relative;
         display: flex;
@@ -132,7 +142,7 @@
           margin-left:10px;
         }
         .date{
-          color: @c2;
+          color: #00daff;
           margin-left: 10px;
         }
         img{

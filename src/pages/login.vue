@@ -115,7 +115,7 @@
         padding:10px 30px;
       }
       .form{
-        background: #2e2a61;
+        background: @c8;
         padding:50px 0;
         border-radius: 20px;
         .formHead{

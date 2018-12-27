@@ -1,5 +1,8 @@
 <template>
   <div class="m-head">
+    <div class="head-logo">
+      <img src="../images/icon/pic3.png" alt="">
+    </div>
     <div class="m-head-contain">
       <div @click="href('/index')" class="head-item" :class="{active:active === 0}">
         <div>推荐
@@ -47,9 +50,19 @@
   .m-head {
     font-size: 32px;
     background: @c5;
+    padding:0;
     color: #fff;
     /*background: url("../images/icon/titlePic.png");*/
     /*background-size: cover;*/
+    .head-logo{
+      height: 180px;
+      background: url('../images/icon/head-top.jpg') no-repeat;
+      background-size: 100% 100%;
+      img{
+        width: 260px;
+        height: 200px;
+      }
+    }
     .m-head-contain {
       display: flex;
       justify-content: space-around;

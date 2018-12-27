@@ -132,11 +132,6 @@
           }
         }
       }
-      .m-tvList{
-        margin-top:20px;
-        padding:30px 10px;
-        background: @c5;
-      }
     }
 
   }

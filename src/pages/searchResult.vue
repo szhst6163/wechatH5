@@ -161,17 +161,10 @@
           }
         }
       }
-      .m-tvList{
-        margin-top:20px;
-        padding:30px 10px;
-        background: @c5;
-      }
     }
 
   }
   .m-tvList-comp{
-    padding:30px 0;
-    background: @c5;
     .list{
       padding-top:10px;
       display: flex;

@@ -96,6 +96,9 @@
       }
     }
     .m-login {
+      background: url('../images/icon/bg2.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
       color: #fff;
       height: 80vh;
       font-size: 30px;
@@ -106,9 +109,10 @@
         padding:10px 30px;
       }
       .form{
-        background: @c5;
+        background: @c8;
         padding:50px 0;
         border-radius: 20px;
+        width: 80%;
         .formHead{
           text-align: center;
         }

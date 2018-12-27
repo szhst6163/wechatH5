@@ -17,7 +17,7 @@
       <div class="m-line-title">热门栏目</div>
       <div class="funList">
         <div @click="tvDetail(item)" v-for="item in hotcolumn" class="item">
-          <div class="img"><img :src="item.img||defImg" alt=""></div>
+          <div class="img"><img :src="item.column_img||defImg" alt=""></div>
           <div>{{item.column_title}}</div>
         </div>
       </div>
@@ -122,12 +122,13 @@
       padding:30px 0;
       background: @c5;
       .getChance{
+        background: url('../images/icon/bg5.png') no-repeat;
+        background-size: 100% 100%;
         text-align: center;
         width: 620px;
         height: 80px;
         line-height: 80px;
         margin:0 auto 30px;
-        background: @c7;
         color: @c2;
         box-sizing: border-box;
         border-radius: 20px;
@@ -161,11 +162,6 @@
           }
         }
       }
-    }
-    .m-tvList{
-      margin-top:20px;
-      padding:30px 10px;
-      background: @c5;
     }
   }
 </style>
