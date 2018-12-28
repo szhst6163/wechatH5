@@ -138,6 +138,10 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
+    background: url('../images/icon/pic2.png');
+    background-size: 100%;
+    background-position-y: center;
+    background-repeat: no-repeat;
     .submit{
       width: 100%;
       margin:0 auto;
@@ -168,6 +172,8 @@
         background: @c5;
         padding:50px 0;
         border-radius: 20px;
+        margin:30px;
+        background: @c8;
         .formHead{
           text-align: center;
         }

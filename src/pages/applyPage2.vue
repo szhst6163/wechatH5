@@ -68,19 +68,39 @@
 //          })
       },
       submit() {
-        this.$vux.loading.show();
-        this.$axios.post(this.$api.getTicket2,{info:this.formList,sign_id:this.$route.query.sign_id})
+//        this.$vux.loading.show();
+        this.valid()
           .then(res=>{
-            this.$vux.toast.show(res.msg);
-            this.$vux.loading.hide();
-            this.$router.replace({path: "/applySuc"})
+            this.$axios.post(this.$api.getTicket2,{info:this.formList,sign_id:this.$route.query.sign_id})
+              .then(res=>{
+                this.$vux.toast.show(res.msg);
+                this.$vux.loading.hide();
+                this.$router.replace({path: "/applySuc"})
+              })
+              .catch(err=>{
+                this.$vux.loading.hide();
+              })
           })
-          .catch(err=>{
-            this.$vux.loading.hide();
-          })
+
       },
       href(data) {
         this.$router.push({path: '/tvDetail', query: {data}})
+      },
+      valid(){
+        return new Promise((resolve,reject)=>{
+          if(!this.formList[0].name){
+            this.$vux.toast.show("姓名不能为空");
+            reject()
+          }else if(!this.formList[0].mobile||this.formList[0].mobile.length<11){
+            this.$vux.toast.show("电话格式不正确");
+            reject()
+          }else if(!this.formList[0].identitynum){
+            this.$vux.toast.show("身份证不能为空");
+            reject()
+          }else{
+            resolve()
+          }
+        })
       }
     },
     mounted() {

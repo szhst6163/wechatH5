@@ -4,6 +4,8 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-login">
+      <img src="../images/icon/pic3.png" alt="">
+
       <div class="form">
         <div class="formHead">
           兑换报名名额
@@ -79,6 +81,9 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
+    .m-head{
+      padding:30px;
+    }
     .submit{
       width: 100%;
       margin:0 auto;
@@ -96,15 +101,11 @@
       }
     }
     .m-login {
-      background: url('../images/icon/bg2.png');
-      background-size: 100%;
-      background-repeat: no-repeat;
-      color: #fff;
       height: 80vh;
       font-size: 30px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       .user{
         padding:10px 30px;
       }

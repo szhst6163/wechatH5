@@ -22,6 +22,7 @@
         <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
       </div>
       <div class="infoDesc">
+        <div class="head">栏目简介</div>
         <div class="main" :class="{showAll:showAll}" v-html="tv.detail.introduce">
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
@@ -248,6 +249,7 @@
         padding:30px;
         font-size: 24px;
         .head{
+          font-size: 28px;
           color:@c1;
         }
         .main{
