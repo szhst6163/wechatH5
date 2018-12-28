@@ -172,6 +172,7 @@
         .img{
           display: flex;
           position: absolute;
+          align-items: center;
           right: 30px;
         }
       }
