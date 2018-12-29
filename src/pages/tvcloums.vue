@@ -4,9 +4,6 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div class="m-tv-cloums">
-      <div class="m-swiper">
-        <swiper-component></swiper-component>
-      </div>
       <tv-list-components :params="this.$route.query" :title="'录制栏目'" class="m-tvList"></tv-list-components>
     </div>
   </div>
@@ -16,12 +13,10 @@
   import {mapMutations, mapActions, mapGetters} from 'vuex'
   import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
-  import swiperComponent from "../components/swiperComponent.vue";
 
   export default {
     name: 'tv-list',
     components: {
-      swiperComponent,
       TvListComponents,
     },
     data() {

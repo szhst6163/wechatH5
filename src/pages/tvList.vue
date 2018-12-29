@@ -8,8 +8,6 @@
       <search-bar></search-bar>
       <div class="tvType">
         <div @click="tvcloums(item)" v-for="item in tv" class="tvItem" :style="{backgroundImage:`url(${item.img})`}">
-          <div class="name1">{{item.name}}</div>
-          <div class="name2">{{item.introduce}}</div>
         </div>
       </div>
     </div>

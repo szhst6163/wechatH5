@@ -3,23 +3,32 @@
     <div class="m-head">
       <span @click="$router.go(-1)">返回</span>
     </div>
-    <div class="m-video">
-      <iframe v-if="tv.detail.videourl" :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
-    </div>
-    <div class="fnBtn">
-      <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
-      <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
-      <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
-      <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
+    <div v-if="tv.detail.videourl&&showVideo" class="m-video">
+      <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
     </div>
     <div class="tv-info">
-      <div class="title">
-        《{{tv.detail.column_title}}》
+      <div class="info-content">
+        <div @click="showVideo = true" class="img">
+          <div class="playIcon">
+            <img src="../images/icon/play.png" alt="">
+          </div>
+          <img :src="tv.detail.column_img" alt="">
+        </div>
+        <div class="infoItem">
+          <div class="title">
+            《{{tv.detail.column_title}}》
+          </div>
+          <div><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span><span>{{tv.detail.address}}</span></div>
+          <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
+          <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
+        </div>
       </div>
-      <div class="infoItem">
-        <div><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span><span>{{tv.detail.address}}</span></div>
-        <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
-        <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
+
+      <div class="fnBtn">
+        <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
+        <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
+        <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
+        <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
       </div>
       <div class="infoDesc">
         <div class="head">栏目简介</div>
@@ -81,6 +90,7 @@
         confirmTime:3,
         showAll:false,
         dialogShow:false,
+        showVideo:false,
         Timmer:null,
         tv:{
           detail:{}
@@ -157,6 +167,7 @@
         }
       },
       init(){
+        this.showVideo = false;
         this.$vux.loading.show();
         this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id})
           .then(res=>{
@@ -221,16 +232,43 @@
     .tv-info{
       margin-top:20px;
       background: @c5;
+      .info-content{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom:40px;
+        border-bottom:1px solid #262a40;
+        .img{
+          position: relative;
+          width: 234px;
+          height: 216px;
+          .playIcon{
+            background: rgba(0,0,0,0.3);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+              width: 50px;
+              height: 50px;
+            }
+          }
+          img{
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
       .title{
-        padding:0 20px;
         height: 90px;
         line-height: 90px;
         font-size: 36px;
-        border-bottom:1px solid #262a40;
+        margin-bottom:20px;
       }
       .infoItem{
-        padding:30px;
-        border-bottom:1px solid #262a40;
         >div{
           height: 50px;
           display: flex;
@@ -256,6 +294,9 @@
           max-height: 200px;
           overflow: hidden;
           transition:all .5s;
+          img{
+            width: 100%;
+          }
           &.showAll{
             max-height: none;
           }
