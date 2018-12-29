@@ -101,8 +101,8 @@
           flex-direction: column;
           width: 25%;
           .img{
-            width: 90px;
-            height:90px;
+            width: 180px;
+            height:160px;
             border-radius: 10px;
             padding:10px;
             margin-bottom:10px;
