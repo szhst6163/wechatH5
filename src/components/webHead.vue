@@ -58,7 +58,6 @@
   @import "../assets/common";
 
   .m-head {
-    font-size: 28px;
     background: @c5;
     padding:0;
     color: #fff;
@@ -74,6 +73,7 @@
       }
     }
     .m-head-contain {
+      font-size: 26px;
       display: flex;
       justify-content: space-around;
       align-items: center;
