@@ -6,12 +6,13 @@
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
         <img :src="`${item.column_img}`" alt="">
-        <div>
+        <div class="item-info-text">
           <div class="title">{{item.column_title}}</div>
-          <div class="date">报名时间</div>
-          <div class="date">{{translateTime(item.starttime)}}</div>
+          <div class="date"><span v-if="item.is_signup_over == 2">报名时间</span></div>
+          <div class="date"><span v-if="item.is_signup_over == 2">{{translateTime(item.starttime)}}</span></div>
           <div v-if="item.is_signup_over == 0" class="tag">报 名</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
+          <div v-if="item.is_signup_over == 2" class="tag end">未开始</div>
         </div>
       </div>
     </div>
@@ -48,6 +49,12 @@
           return {
           }
         }
+      },
+      type:{
+        type:Object,
+        default() {
+          return ''
+        }
       }
     },
     computed:{
@@ -57,7 +64,11 @@
       window.removeEventListener('scroll',this.handleScroll)
     },
       mounted(){
-      this.params = {...this.params,page:1, page_size:10};
+      if(this.type === 'index'){
+        this.params = {...this.params,page:1, page_size:4};
+      }else{
+        this.params = {...this.params,page:1, page_size:10};
+      }
       window.addEventListener('scroll', this.handleScroll);
       this.loadMore();
     },
@@ -115,8 +126,13 @@
       padding-top:10px;
       display: flex;
       flex-wrap: wrap;
+      .item-info-text{
+        >div{
+          height: 36px;
+        }
+      }
       .item{
-        margin-left:2.5%;
+        margin-left:3.5%;
         margin-top:20px;
         color:#fff;
         width: 45%;

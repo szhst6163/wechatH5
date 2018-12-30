@@ -2,8 +2,9 @@
   <div class="m-cont">
     <web-head :active="1"></web-head>
     <div class="m-classify">
-      <div @click="getChance" class="getChance">
-        兑换报名机会
+      <div class="gonggao">
+        <img src="../images/icon/gongao.png" alt="">
+        综艺通行证为企业（官方）专属定制，不得出售
       </div>
       <search-bar></search-bar>
       <div class="tvType">
@@ -21,6 +22,9 @@
       </div>
     </div>
     <tv-list-components class="m-tvList"></tv-list-components>
+    <div class="index-footer">
+      报名咨询热线：400－833－8283，合作洽谈QQ：330175679
+    </div>
   </div>
 </template>
 
@@ -66,9 +70,6 @@
       },
       tvcloums(data){
         this.$router.push({path:"/tvcloums",query:{tv_id:data.id}})
-      },
-      getChance(data){
-        this.$router.push({path:"/getChance",query:{tv_id:data.id}})
       }
     },
     mounted() {
@@ -119,19 +120,27 @@
     .m-classify{
       padding:30px 0;
       background: @c5;
-      .getChance{
+      .gonggao{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: url('../images/icon/bg5.png') no-repeat;
         background-size: 100% 100%;
         text-align: center;
-        width: 620px;
+        width: 100%;
         height: 80px;
         line-height: 80px;
         margin:0 auto 30px;
-        color: @c2;
+        color: #fff;
         box-sizing: border-box;
         border-radius: 20px;
-        font-size: 30px;
-
+        font-size: 26px;
+        img{
+          width: 30px;
+          height:30px;
+          margin-right:10px;
+          margin-left:-10px;
+        }
       }
       .tvType{
         color:#fff;

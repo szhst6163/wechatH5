@@ -11,7 +11,7 @@
             节目名称：{{info.column_title}}<br>
             参加时间：{{translateTime(info.starttime*1000)}}，（请提前15分钟到达现场准备入场）<br>
             参加地址：{{info.address}}<br>
-            取票流程：请于{{translateTime(info.getTime*1000)}}，携带本人身份证，在{{info.getaddr}}取票，取票咨询电话：<a :href="`tel:${info.getmobile}`">{{info.getmobile}}</a><br>
+            取票流程：请于{{translateTime(info.gettime*1000)}}，携带本人身份证，在{{info.getaddr}}取票，取票咨询电话：<a :href="`tel:${info.getmobile}`">{{info.getmobile}}</a><br>
           </p>
         </div>
         <div @click="submit" class="submit">

@@ -9,6 +9,9 @@
         </div>
         <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
       </div>
+      <div @click="getChance" class="getChance">
+        兑换机会
+      </div>
       <div class="myHistory">
         <div class="m-line-title">
           <span>我的浏览记录</span>
@@ -46,7 +49,7 @@
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
           </li>
-          <li @click="href('/myOrder')" class="item">
+          <!--<li @click="href('/myOrder')" class="item">
             <div class="name">
               <img src="../images/icon/activity.png" alt="">
               <div>我的订单</div>
@@ -55,7 +58,7 @@
               <span>{{my.count_order}}</span>
               <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
             </div>
-          </li>
+          </li>-->
           <li @click="href('/myCollect')" class="item">
             <div class="name">
               <img src="../images/icon/like.png" alt="">
@@ -71,6 +74,9 @@
       <div @click="logout" class="logout">
         退出登录
       </div>
+    </div>
+    <div class="index-footer">
+      报名咨询热线：400－833－8283，合作洽谈QQ：330175679
     </div>
   </div>
 </template>
@@ -100,6 +106,9 @@
       this.init()
     },
     methods:{
+      getChance(data){
+        this.$router.push({path:"/getChance",query:{tv_id:data.id}})
+      },
       tvDetail(data){
         this.$router.push({path:'/tvDetail',query:{id:data.column_item_id}})
       },
@@ -136,6 +145,28 @@
   .m-cont{
     font-size: 30px;
     color:#fff;
+    .getChance{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('../images/icon/bg5.png') no-repeat;
+      background-size: 100% 100%;
+      text-align: center;
+      width: 80%;
+      height: 80px;
+      line-height: 80px;
+      margin:0 auto 30px;
+      color: @c2;
+      box-sizing: border-box;
+      border-radius: 20px;
+      font-size: 26px;
+      img{
+        width: 30px;
+        height:30px;
+        margin-right:10px;
+        margin-left:-10px;
+      }
+    }
     .logout{
       margin:100px auto;
       width: 80%;

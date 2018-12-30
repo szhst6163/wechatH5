@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/pages/index'
 import tvList from '@/pages/tvList'
-import shop from '@/pages/shop'
+import noice from '@/pages/noice'
 import my from '@/pages/my'
 import shopDetail from '@/pages/shopDetail'
 import tvDetail from '@/pages/tvDetail'
@@ -126,11 +126,17 @@ export default new Router({
       meta: {}
     },
     {
-      path: '/shop',
-      name: '/shop',
-      component: shop,
+      path: '/noice',
+      name: '/noice',
+      component: noice,
       meta: {}
     },
+    // {
+    //   path: '/shop',
+    //   name: '/shop',
+    //   component: shop,
+    //   meta: {}
+    // },
     {
       path: '/my',
       name: '/my',

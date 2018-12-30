@@ -141,6 +141,7 @@
           transition:all .5s;
           padding:0 40px;
           >p{
+            word-break: break-word;
             text-indent:25px
           }
           &.showAll{

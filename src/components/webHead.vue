@@ -1,22 +1,32 @@
 <template>
   <div class="m-head">
     <div class="head-logo">
-      <img src="../images/icon/pic3.png" alt="">
+      <img src="../images/icon/userIndex-head.png" alt="">
     </div>
     <div class="m-head-contain">
       <div @click="href('/index')" class="head-item" :class="{active:active === 0}">
-        <div>推荐
-          <div class="line"></div>
+        <div>
+          <img src="../images/icon/index-head1.png" alt="">
+          热门推荐
         </div>
       </div>
       <div @click="href('/tvList')" class="head-item" :class="{active:active === 1}">
-        <div>栏目</div>
+        <div>
+          <img src="../images/icon/index-head2.png" alt="">
+          栏目分类
+        </div>
       </div>
-      <div @click="href('/shop')" class="head-item" :class="{active:active === 2}">
-        <div>商品</div>
+      <div @click="href('/noice')" class="head-item" :class="{active:active === 2}">
+        <div>
+          <img src="../images/icon/index-head3.png" alt="">
+          报名须知
+        </div>
       </div>
       <div @click="href('/my')" class="head-item" :class="{active:active === 3}">
-        <div>我的</div>
+        <div>
+          <img src="../images/icon/index-head4.png" alt="">
+          个人中心
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +58,7 @@
   @import "../assets/common";
 
   .m-head {
-    font-size: 32px;
+    font-size: 28px;
     background: @c5;
     padding:0;
     color: #fff;
@@ -58,8 +68,8 @@
       height: 180px;
       background: url('../images/icon/head-top.jpg') no-repeat;
       background-size: 100% 100%;
+      overflow: hidden;
       img{
-        width: 260px;
         height: 200px;
       }
     }
@@ -69,6 +79,13 @@
       align-items: center;
       height: 100px;
       .head-item {
+        display: flex;
+        align-items: center;
+        img{
+          width: 40px;
+          height: 40px;
+          margin-right:10px;
+        }
         &.active {
           &:nth-child(1) > div {
             border-color: @c1;
@@ -115,15 +132,15 @@
           position: relative;
           padding: 0 10px;
           border-bottom: 2PX solid transparent;
-          &:before {
-            content: '';
-            display: block;
-            width: 18px;
-            height: 18px;
-            border: 2PX solid;
-            border-radius: 50%;
-            margin-right: 10px;
-          }
+          /*&:before {*/
+            /*content: '';*/
+            /*display: block;*/
+            /*width: 18px;*/
+            /*height: 18px;*/
+            /*border: 2PX solid;*/
+            /*border-radius: 50%;*/
+            /*margin-right: 10px;*/
+          /*}*/
         }
       }
     }

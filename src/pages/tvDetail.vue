@@ -87,7 +87,7 @@
     },
     data() {
       return {
-        confirmTime:3,
+        confirmTime:5,
         showAll:false,
         dialogShow:false,
         showVideo:false,
@@ -148,6 +148,9 @@
         if(isOver == 1){
           this.$vux.toast.show("报名已截止");
           return;
+        }else if(isOver == 2){
+          this.$vux.toast.show("还没到报名时间哦");
+          return;
         }
         let _this = this;
         this.dialogShow = true;
@@ -194,6 +197,13 @@
   .m-cont{
     color:#fff;
     font-size: 24px;
+    .dialogText{
+      font-size: 30px;
+      color:@c5;
+      b{
+        color:@c4;
+      }
+    }
     .m-video{
       width: 100%;
       overflow: auto;

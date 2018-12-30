@@ -26,7 +26,7 @@
             <div class="value"><input v-model="rePassword" type="password"></div>
           </li>
           <li>
-            <div class="name">兑换码</div>
+            <div class="name">通行证密码</div>
             <div class="value"><input v-model="form.code" type="text"></div>
           </li>
         </ul>
