@@ -65,7 +65,7 @@
     },
       mounted(){
       if(this.type === 'index'){
-        this.params = {...this.params,page:1, page_size:4};
+        this.params = {...this.params,page:1, page_size:6};
       }else{
         this.params = {...this.params,page:1, page_size:10};
       }
