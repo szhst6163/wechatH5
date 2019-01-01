@@ -9,6 +9,8 @@
       <search-bar></search-bar>
       <div class="tvType">
         <div @click="tvcloums(item)" v-for="item in tv" class="tvItem" :style="{backgroundImage:`url(${item.img})`}">
+          <div class="name1">{{item.name}}</div>
+          <div class="name2">{{item.introduce}}</div>
         </div>
       </div>
     </div>
@@ -60,7 +62,7 @@
         this.$vux.loading.show();
         Promise.all([this.$axios.post(this.$api.tvList.index,{code:this.code}),this.$axios.post(this.$api.tvList.componentList,{ishot:2})])
           .then(res=>{
-            this.tv = res[0].data.tv;
+            this.tv = res[0].data.recommend;
             this.hotcolumn = res[1].data;
             this.$vux.loading.hide();
           })
@@ -69,7 +71,7 @@
           })
       },
       tvcloums(data){
-        this.$router.push({path:"/tvcloums",query:{tv_id:data.id}})
+        this.$router.push({path:"/tvcloums",query:{column_cat_id:data.id}})
       }
     },
     mounted() {

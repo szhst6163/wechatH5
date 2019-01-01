@@ -84,6 +84,9 @@
       },
       loadMore(){
         if(this.isLock||this.isOver) return;
+        if(this.type === 'index'){
+          this.isOver = true;
+        }
         this.isLock = true;
         this.$axios.post(this.$api.tvList.componentList,this.params)
           .then(res=>{
