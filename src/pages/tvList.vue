@@ -3,8 +3,11 @@
     <web-head :active="1"></web-head>
     <div class="m-classify">
       <div class="gonggao">
-        <img src="../images/icon/gongao.png" alt="">
-        综艺通行证为企业（官方）专属定制，不得出售
+        <div class="gonggaoBd">
+          <div class="gonggaoText">
+            综艺通行证为企业（官方）专属定制，不得出售
+          </div>
+        </div>
       </div>
       <search-bar></search-bar>
       <div class="tvType">
@@ -126,10 +129,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: url('../images/icon/bg5.png') no-repeat;
+        background: url('../images/icon/nhd.png') no-repeat;
         background-size: 100% 100%;
         text-align: center;
-        width: 100%;
+        width: 85%;
         height: 80px;
         line-height: 80px;
         margin:0 auto 30px;
@@ -137,6 +140,13 @@
         box-sizing: border-box;
         border-radius: 20px;
         font-size: 26px;
+        .gonggaoBd{
+          width: 90%;
+          overflow: hidden;
+          .gonggaoText{
+            animation: roll 6s linear infinite;
+          }
+        }
         img{
           width: 30px;
           height:30px;
@@ -173,4 +183,20 @@
       }
     }
   }
+  @keyframes roll
+  {
+    0% {
+      transform: translateX(110%);
+    }
+    /*30%{*/
+      /*transform: translateX(0);*/
+    /*}*/
+    /*60%{*/
+      /*transform: translateX(0);*/
+    /*}*/
+    100%{
+      transform: translateX(-110%);
+    }
+  }
+
 </style>

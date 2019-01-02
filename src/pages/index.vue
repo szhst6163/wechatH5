@@ -18,6 +18,7 @@
     </div>-->
     <tv-list-components :type="'index'" class="m-tvList"></tv-list-components>
     <div class="index-footer">
+      <div><img src="../images/icon/pic1.png" alt=""></div>
       报名咨询热线：400－833－8283，合作洽谈QQ：330175679
     </div>
   </div>

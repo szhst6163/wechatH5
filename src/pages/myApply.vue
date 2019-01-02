@@ -16,8 +16,8 @@
               <div>地址： {{item.address}}</div>
               <div v-if="item.status == 1 && item.is_outoftime == 0" @click.stop="href2('/applyPage1',item)" class="status"><div>继续报名</div></div>
               <div v-if="item.status == 2" @click.stop="href2('/applySuc',item)" class="status"><div>报名成功</div></div>
-              <div v-if="item.status == 4" @click.stop class="status"><div>报名失败</div></div>
-              <div v-if="item.status == 1 && item.is_outoftime == 1" @click.stop="failTips" class="status"><div>报名超时</div></div>
+              <div v-if="item.status == 4" @click.stop="failTips(item.status)" class="status"><div>已取消</div></div>
+              <div v-if="item.status == 1 && item.is_outoftime == 1" @click.stop="failTips(item.status)" class="status"><div>报名超时</div></div>
             </div>
           </div>
         </li>
@@ -57,8 +57,12 @@
       formatTime(date){
         return formatDate(date)
       },
-      failTips(){
-        this.$vux.toast.show('未在15分钟内填写完整资料');
+      failTips(type){
+        if(type === 4){
+          this.$vux.toast.show('由于在电话审核时，报名人自愿放弃报名。');
+        }else{
+          this.$vux.toast.show('由于报名人未在15分钟内完善观看人资料，自动作废。');
+        }
       },
       status(data){
         let map = {1:"报名中",2:"成功",3:"失败"};

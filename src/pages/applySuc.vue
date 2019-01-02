@@ -42,7 +42,7 @@
         return formatDate(date)
       },
       submit() {
-        this.$router.replace({path: "index"})
+        this.$router.go(-1)
       },
       init(){
         this.$vux.loading.show();
