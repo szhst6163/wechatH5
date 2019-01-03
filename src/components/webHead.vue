@@ -1,7 +1,10 @@
 <template>
   <div class="m-head">
-    <div class="head-logo">
+   <!-- <div v-if="!getHeaderImg" class="head-logo">
       <img src="../images/icon/userIndex-head.png" alt="">
+    </div>-->
+    <div class="head-logo-nodata">
+      <img :src="getHeaderImg" alt="">
     </div>
     <div class="m-head-contain">
       <div @click="href('/index')" class="head-item" :class="{active:active === 0}">
@@ -33,6 +36,8 @@
 </template>
 
 <script>
+  import {mapMutations, mapActions, mapGetters} from 'vuex'
+
   export default {
     name: "webHead",
     props: {
@@ -43,13 +48,27 @@
         }
       }
     },
-    computed: {},
+    computed: {
+      ...mapGetters(['getHeaderImg'])
+    },
     methods: {
+      ...mapMutations(['setHeaderImg']),
       href(url){
         this.$router.push(url)
+      },
+      initHead(){
+        if(this.getHeaderImg) return;
+        this.$axios.post(this.$api.index.getList, {code:'header'})
+          .then(res => {
+            this.setHeaderImg(res.data[0].img);
+          })
+          .catch(err => {
+            this.$vux.loading.hide();
+          })
       }
     },
     mounted() {
+      this.initHead()
     }
   }
 </script>
@@ -63,13 +82,19 @@
     color: #fff;
     /*background: url("../images/icon/titlePic.png");*/
     /*background-size: cover;*/
-    .head-logo{
+    /*.head-logo{
       height: 180px;
       background: url('../images/icon/head-top.jpg') no-repeat;
       background-size: 100% 100%;
       overflow: hidden;
       img{
         height: 200px;
+      }
+    }*/
+    .head-logo-nodata{
+      min-height: 180px;
+      img{
+        width: 100%;
       }
     }
     .m-head-contain {

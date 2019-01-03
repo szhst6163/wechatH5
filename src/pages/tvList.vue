@@ -129,16 +129,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: url('../images/icon/nhd.png') no-repeat;
-        background-size: 100% 100%;
         text-align: center;
+        background: @c7;
         width: 85%;
-        height: 80px;
-        line-height: 80px;
+        height: 60px;
+        line-height: 60px;
         margin:0 auto 30px;
         color: #fff;
         box-sizing: border-box;
-        border-radius: 20px;
+        border-radius: 100px;
         font-size: 26px;
         .gonggaoBd{
           width: 90%;

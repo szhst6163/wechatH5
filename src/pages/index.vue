@@ -18,7 +18,10 @@
     </div>-->
     <tv-list-components :type="'index'" class="m-tvList"></tv-list-components>
     <div class="index-footer">
-      <div><img src="../images/icon/pic1.png" alt=""></div>
+      <div>
+        <div class="text">赶快报名参加吧!</div>
+        <img src="../images/icon/pic1.png" alt="">
+      </div>
       报名咨询热线：400－833－8283，合作洽谈QQ：330175679
     </div>
   </div>
@@ -30,6 +33,7 @@
   import Swiper from '../components/swiperComponent.vue'
   import SearchBar from "../components/searchBar";
   import TvListComponents from "../components/tvListComponents.vue";
+  import storage from "../lib/storage";
 
   export default {
     name: 'index',
@@ -55,7 +59,8 @@
       //   ]
       // });
     },
-    computed: {},
+    computed: {
+    },
     mounted() {
     },
     methods: {

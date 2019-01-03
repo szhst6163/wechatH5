@@ -9,9 +9,9 @@
         </div>
         <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
       </div>
-      <div @click="getChance" class="getChance">
+     <!-- <div @click="getChance" class="getChance">
         兑换机会
-      </div>
+      </div>-->
       <div class="myHistory">
         <div class="m-line-title">
           <span>我的浏览记录</span>

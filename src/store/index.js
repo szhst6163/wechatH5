@@ -13,9 +13,10 @@ export default new Vuex.Store({
       info:{},
       sign_id:null
     },
+    headerImg:null
   },
   getters: {
-    getTvInfo: state => state.tvInfo,
+    getHeaderImg: state => state.headerImg,
   },
   mutations: {
     setTvInfo(state, evt) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     clearRepairInfo(state, evt) {
       state.tvInfo = {info:{}}
+    },
+    setHeaderImg(state, evt) {
+      state.headerImg = evt
     },
   },
   actions: {}

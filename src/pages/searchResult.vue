@@ -37,7 +37,6 @@
         </div>
       </div>
     </div>
-    <tv-list-components v-if="!list.length"></tv-list-components>
   </div>
 </template>
 
