@@ -97,9 +97,6 @@
       href2(url,data){
         this.$router.push({path:url,query:{id:data.column_item_id,sign_id:data.id}})
       },
-      href3(url,data){
-        this.$router.push({path:url,query:{id:data.column_item_id}})
-      },
     },
   }
 
