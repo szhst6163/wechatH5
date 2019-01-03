@@ -58,7 +58,6 @@
       }
     },
     computed:{
-      ...mapGetters(['getTvInfo'])
     },
     beforeDestroy(){
       window.removeEventListener('scroll',this.handleScroll)
@@ -73,13 +72,10 @@
       this.loadMore();
     },
     methods: {
-      ...mapMutations(['setTvInfo']),
       translateTime(date){
         return formatDate(date*1000,'yyyy-MM-dd')
       },
       tvDetail(item){
-        this.setTvInfo({name:'info',data:item});
-        console.log(this.getTvInfo)
         this.$router.push({path:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
       },
       loadMore(){

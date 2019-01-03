@@ -10,7 +10,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tvInfo: {
-      info:{}
+      info:{},
+      sign_id:null
     },
   },
   getters: {

@@ -121,7 +121,7 @@
               this.dialogShow = true;
               this.$vux.loading.hide();
               this.$vux.toast.show(res.msg);
-              this.$router.push({path:"/applyPage1",query:{column_item_id:this.$route.query.id,sign_id:signId}})
+              this.$router.push({path:"/applyPage1",query:{id:this.$route.query.id,sign_id:signId}})
             })
             .catch(err=>{
               this.$vux.loading.hide();

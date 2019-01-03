@@ -73,7 +73,7 @@
 //          })
       },
       next(){
-        this.$router.replace({path: '/applyPage2',query:{num:this.form.num,sign_id:this.$route.query.sign_id}})
+        this.$router.push({path: '/applyPage2',query:{num:this.form.num,sign_id:this.$route.query.sign_id,id:this.$route.query.id}})
       },
     },
     mounted() {

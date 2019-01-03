@@ -69,13 +69,14 @@
       },
       submit() {
 //        this.$vux.loading.show();
+        console.log(this.$route)
         this.valid()
           .then(res=>{
             this.$axios.post(this.$api.getTicket2,{info:this.formList,sign_id:this.$route.query.sign_id})
               .then(res=>{
                 this.$vux.toast.show(res.msg);
                 this.$vux.loading.hide();
-                this.$router.replace({path: "/applySuc"})
+                this.$router.push({path: "/applySuc",query:{id:this.$route.query.id}})
               })
               .catch(err=>{
                 this.$vux.loading.hide();

@@ -35,7 +35,6 @@
       }
     },
     computed: {
-      ...mapGetters(['getTvInfo'])
     },
     methods: {
       translateTime(date){
@@ -46,7 +45,7 @@
       },
       init(){
         this.$vux.loading.show();
-        this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id||this.getTvInfo.info.id})
+        this.$axios.post(this.$api.tvList.tvDetail,{id:this.$route.query.id})
           .then(res=>{
             this.info = res.data.detail;
             this.$vux.loading.hide();
