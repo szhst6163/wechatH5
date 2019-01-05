@@ -19,7 +19,7 @@
     <tv-list-components :type="'index'" class="m-tvList"></tv-list-components>
     <div class="index-footer">
       <div>
-        <div class="text">赶快报名参加吧!</div>
+        <img src="../images/icon/text1.png" alt="">
         <img src="../images/icon/pic1.png" alt="">
       </div>
       报名咨询热线：400－833－8283，合作洽谈QQ：330175679
