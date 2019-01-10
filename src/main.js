@@ -25,6 +25,10 @@ Vue.use(ToastPlugin, {type:'text',position: 'middle',width:"auto"});
 Vue.prototype.$api = apiUrl
 Vue.prototype.wxConfig = wxConfig;
 /* eslint-disable no-new */
+import 'babel-polyfill'
+import Es6Promise from 'es6-promise'
+require('es6-promise').polyfill()
+Es6Promise.polyfill()
 new Vue({
   el: '#app',
   router,

@@ -182,7 +182,7 @@
           })
       },
       emcee(data){
-        this.$router.push({path:'/emcee',query:{data}})
+        this.$router.push({path:'/emcee',query:data})
       }
     },
     mounted() {

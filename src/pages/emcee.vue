@@ -19,7 +19,7 @@
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
       </div>
-      <tv-list-components :params="{compere_id:this.$route.query.data.id}" :title="'相关推荐'" class="m-tvList"></tv-list-components>
+      <tv-list-components :params="{compere_id:this.$route.query.id}" :title="'相关推荐'" class="m-tvList"></tv-list-components>
     </div>
   </div>
 </template>
