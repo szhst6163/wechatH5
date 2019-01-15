@@ -216,6 +216,7 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
         .item{
+          margin:4px;
           display: inline-block;
           text-align: center;
           .text{
