@@ -112,11 +112,14 @@
           background: @c8;
           margin-bottom:20px;
           .left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 250px;
             height: 250px;
             img {
-              width: 100%;
-              height: 100%;
+              width: 80%;
+              height: 80%;
             }
           }
           .right {
