@@ -168,13 +168,12 @@
     .list{
       padding-top:10px;
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
+      padding:23px;
       .item{
-        margin-left:2.5%;
         margin-top:20px;
         color:#fff;
-        width: 30%;
-        height:410px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -200,7 +199,8 @@
         }
         img{
           flex:1;
-          width: 100%;
+          width: 300px;
+          height:300px;
         }
       }
     }

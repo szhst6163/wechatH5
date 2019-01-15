@@ -75,7 +75,7 @@
             this.$vux.toast.show('两次密码输入不一致');
             reject()
           }else if(!this.form.code){
-            this.$vux.toast.show('兑换码不能为空');
+            this.$vux.toast.show('综艺通行证不能为空');
             reject()
           }else{
             resolve()

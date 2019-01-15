@@ -5,20 +5,23 @@
     </div>
     <div class="m-login">
       <img src="../images/icon/pic3.png" alt="">
-
       <div class="form">
         <div class="formHead">
-          兑换报名名额
+          综艺通行证
         </div>
         <ul>
           <li>
-            <div class="name">兑换码</div>
-            <div class="value"><input v-model="form.code" type="text"></div>
+            <div class="name">综艺通行证</div>
+            <div class="value"><input v-model="form.code" placeholder="请输入综艺通行证" type="text"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
           <span>兑换</span>
         </div>
+      </div>
+      <div class="formTips">
+        Tips: <br>
+        请输入《综艺通行证》密码兑换报名机会，一个密码可兑换一个机会，注册时使用的密码已自动兑换。
       </div>
     </div>
   </div>
@@ -43,7 +46,7 @@
       very(){
         return new Promise((resolve,reject)=>{
           if(!this.form.code){
-            this.$vux.toast.show('兑换码不能为空');
+            this.$vux.toast.show('综艺通行证不能为空');
             reject()
           }else{
             resolve()
@@ -93,7 +96,7 @@
       justify-content: center;
       span{
         display: block;
-        width: 500px;
+        width: 550px;
         background: @c1;
         border-radius: 20px;
         height:80px;
@@ -109,6 +112,15 @@
       .user{
         padding:10px 30px;
       }
+      .formTips{
+        border-top:1PX dashed @c5;
+        font-size: 18px;
+        box-sizing: border-box;
+        background: @c8;
+        padding:50px;
+        border-radius: 20px;
+        width: 80%;
+      }
       .form{
         background: @c8;
         padding:50px 0;
@@ -118,7 +130,7 @@
           text-align: center;
         }
         ul {
-          padding: 20px 40px;
+          padding: 20px;
           li {
             padding: 0 40px;
             background: @c7;

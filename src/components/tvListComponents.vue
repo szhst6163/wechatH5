@@ -10,9 +10,9 @@
           <div class="title">{{item.column_title}}</div>
           <div class="date"><span v-if="item.is_signup_over == 2">报名时间</span></div>
           <div class="date"><span v-if="item.is_signup_over == 2">{{translateTime(item.starttime)}}</span></div>
-          <div v-if="item.is_signup_over == 0" class="tag">报 名</div>
+          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
-          <div v-if="item.is_signup_over == 2" class="tag end">未开始</div>
+          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
         </div>
       </div>
     </div>
