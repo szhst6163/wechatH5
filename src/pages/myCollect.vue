@@ -109,16 +109,14 @@
         li {
           display: flex;
           align-items: center;
-          background: @c7;
+          background: @c8;
           margin-bottom:20px;
           .left {
-            width: 200px;
-            height: 300px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
+            width: 250px;
+            height: 250px;
             img {
               width: 100%;
+              height: 100%;
             }
           }
           .right {
