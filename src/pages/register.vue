@@ -34,6 +34,14 @@
           <span>注册</span>
         </div>
       </div>
+      <common-dialog @close="close" class="dialog-cont" v-if="warnShow">
+        <div class="dialogWarn">
+          <div>{{msg}}</div>
+        </div>
+        <div slot="btn" class="bottom" @click="warnShow = false">
+          确定
+        </div>
+      </common-dialog>
     </div>
   </div>
 </template>
@@ -41,16 +49,19 @@
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
   import regular from "../lib/regular";
+  import CommonDialog from "../components/commonDialog.vue";
 
   export default {
     name: 'tv-detail',
-    components: {},
+    components: {CommonDialog},
     data() {
       return {
         codeTime:0,
         isDown:false,
+        warnShow:false,
         Timmer:null,
         rePassword:'',
+        msg:"",
         form:{
           username:'',
           password:'',
@@ -60,22 +71,29 @@
     },
     computed: {},
     methods: {
+      close(){
+        this.warnShow = false
+      },
+      showToast(msg){
+        this.warnShow = true
+        this.msg = msg;
+      },
       very(){
         return new Promise((resolve,reject)=>{
           if(!this.form.username||this.form.username.length<11){
-            this.$vux.toast.show('手机号不正确');
+            this.showToast('手机号不正确');
             reject()
           }else if(!this.form.smscode){
-            this.$vux.toast.show('短信验证码不能为空');
+            this.showToast('短信验证码不能为空');
             reject()
           }else if(!this.form.password){
-            this.$vux.toast.show('密码不能为空');
+            this.showToast('密码不能为空');
             reject()
           }else if(this.form.password !== this.rePassword){
-            this.$vux.toast.show('两次密码输入不一致');
+            this.showToast('两次密码输入不一致');
             reject()
           }else if(!this.form.code){
-            this.$vux.toast.show('综艺通行证不能为空');
+            this.showToast('综艺通行证不能为空');
             reject()
           }else{
             resolve()
@@ -84,7 +102,7 @@
       },
       getCode(){
         if(!this.form.username||!regular.mobile(this.form.username)){
-          this.$vux.toast.show("请输入正确的手机号码！");
+          this.showToast("请输入正确的手机号码！");
           return;
         }
         let that = this;
@@ -134,7 +152,19 @@
 
 <style scoped lang="less">
   @import "../assets/common";
-
+  .dialog-cont{
+    .bottom{
+      color:#fff;
+      justify-content: center;
+    }
+    .dialogWarn{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+    }
+  }
   .m-cont {
     color: #fff;
     font-size: 24px;
