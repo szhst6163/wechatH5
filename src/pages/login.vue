@@ -18,6 +18,9 @@
         <div @click="submit" class="submit">
           <span>登陆</span>
         </div>
+        <div class="wechat">
+          <img @click="wechat" src="../images/icon/wechat.png" alt="">
+        </div>
       </div>
     </div>
   </div>
@@ -70,6 +73,10 @@
       },
       href(data) {
         this.$router.push({path: '/tvDetail', query: {data}})
+      },
+      wechat(){
+        console.log(location.origin + '/api/weixin/auth')
+        location.href = location.origin + '/api/weixin/auth'
       }
     },
     mounted() {
@@ -88,6 +95,14 @@
     background-size: 100%;
     background-position-y: center;
     background-repeat: no-repeat;
+    .wechat{
+      margin-top:20px;
+      text-align: center;
+      img{
+        width: 100px;
+        height: 100px;
+      }
+    }
     .submit{
       width: 100%;
       margin:0 auto;
