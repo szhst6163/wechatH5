@@ -112,7 +112,7 @@
             that.codeTime = 60;
             this.isDown = true;
             countDown()
-          })
+          });
         function countDown(){
           setTimeout(()=>{
             if(that.codeTime > 0){

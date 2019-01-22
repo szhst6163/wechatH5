@@ -4,8 +4,8 @@
     <div class="m-my">
       <div class="my-head">
         <div class="pic">
-          <img :src="my.headimg" alt="">
-          <div class="name">{{my.name}}</div>
+          <img :src="my.headimg||userDef" alt="">
+          <div class="name">{{my.mobile}}</div>
         </div>
         <img class="m-arrowRight" src="../images/icon/arrowRight.png" alt=""/>
       </div>
@@ -84,7 +84,7 @@
 <script>
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import WebHead from "../components/webHead.vue";
-
+  import userDef from '../images/icon/userDef.png'
   export default {
     name: 'my',
     components: {
@@ -92,6 +92,7 @@
     },
     data() {
       return {
+        userDef,
         my:{},
         history:[]
       }
@@ -188,8 +189,9 @@
         align-items: center;
         img{
           margin-right:30px;
+          border:1PX solid #dbdbdb;
+          border-radius: 100px 100px;
           overflow: hidden;
-          border-radius: 100% 100%;
           width: 120px;
           height: 120px;
         }
