@@ -2,7 +2,7 @@
   <div class="m-cont">
     <div class="m-login">
       <div class="form">
-        <div class="formHead">
+        <div @click="print" class="formHead">
           用户登陆
         </div>
         <ul>
@@ -45,6 +45,9 @@
     },
     computed: {},
     methods: {
+      print(){
+        window.print();
+      },
       very(){
         return new Promise((resolve,reject)=>{
           if(!this.form.username){

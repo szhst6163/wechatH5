@@ -7,12 +7,12 @@
       <img src="../images/icon/pic3.png" alt="">
       <div class="form">
         <div class="formHead">
-          综艺通行证
+          兑换报名机会
         </div>
         <ul>
           <li>
-            <div class="name">综艺通行证</div>
-            <div class="value"><input v-model="form.code" placeholder="请输入综艺通行证" type="text"></div>
+            <div class="name">通行证密码</div>
+            <div class="value"><input v-model="form.code" placeholder="请区分英文字母大小写" type="text"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
@@ -109,6 +109,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      img{
+        width: 560px;
+        height: 187px;
+        margin:100px 0;
+      }
       .user{
         padding:10px 30px;
       }
@@ -151,6 +156,7 @@
               height: 100%;
               display: flex;
               input {
+                font-size: 24px;
                 padding: 0 20px;
                 width: 100%;
                 border: none;

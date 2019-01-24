@@ -33,6 +33,9 @@
         <div @click="submit" class="submit">
           <span>注册</span>
         </div>
+        <div @click="toLogin" class="to-login">
+          <span>已有账号？</span>
+        </div>
       </div>
       <common-dialog @close="close" class="dialog-cont" v-if="warnShow">
         <div class="dialogWarn">
@@ -71,6 +74,9 @@
     },
     computed: {},
     methods: {
+      toLogin(){
+        this.$router.push({path:'/login',query:{noreg:this.$route.query.noreg}})
+      },
       close(){
         this.warnShow = false
       },
@@ -172,6 +178,24 @@
     background-size: 100%;
     background-position-y: center;
     background-repeat: no-repeat;
+    .to-login{
+      width: 100%;
+      margin:0 auto;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      text-decoration:underline;
+      span{
+        display: block;
+        width: 200px;
+        border-radius: 20px;
+        height:80px;
+        line-height: 80px;
+        margin-right:30px;
+        margin-top:30px;
+      }
+    }
     .submit{
       width: 100%;
       margin:0 auto;

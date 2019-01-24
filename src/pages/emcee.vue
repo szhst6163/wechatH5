@@ -45,7 +45,7 @@
     methods: {
       init() {
         this.$vux.loading.show();
-        this.$axios.post(this.$api.emcee, {id: this.$route.query.data.id})
+        this.$axios.post(this.$api.emcee, {id: this.$route.query.id})
           .then(res => {
             this.data = res.data;
             this.$vux.loading.hide();
