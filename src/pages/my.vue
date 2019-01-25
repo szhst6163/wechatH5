@@ -77,6 +77,7 @@
     </div>
     <div class="index-footer">
       报名咨询热线：400－833－8283，合作洽谈QQ：330175679
+      <div>© xxzyztc.com 版权所有 &nbsp;<a href="http://www.miibeian.gov.cn"> ICP证：粤ICP备19006959</a></div>
     </div>
   </div>
 </template>

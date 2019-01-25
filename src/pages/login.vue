@@ -3,7 +3,7 @@
     <div class="m-login">
       <div class="form">
         <div @click="print" class="formHead">
-          用户登陆
+          用户登录
         </div>
         <ul>
           <li>
@@ -16,7 +16,7 @@
           </li>
         </ul>
         <div @click="submit" class="submit">
-          <span>登陆</span>
+          <span>登录</span>
         </div>
         <div v-if="!this.$route.query.noreg" class="wechat">
           <img @click="wechat" src="../images/icon/wechat.png" alt="">
@@ -36,10 +36,10 @@
       return {
         veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
         form:{
-//          username:'18675521031',
-//          password:'123456'
-          username:'',
-          password:''
+         username:'18675521031',
+         password:'123456'
+          // username:'',
+          // password:''
         }
       }
     },

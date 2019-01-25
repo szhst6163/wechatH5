@@ -27,7 +27,7 @@
           </li>
           <li>
             <div class="name">通行证密码</div>
-            <div class="value"><input v-model="form.code" type="text"></div>
+            <div class="value"><input placeholder="请区分英文字母大小写" v-model="form.code" type="text"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
