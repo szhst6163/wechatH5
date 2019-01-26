@@ -41,7 +41,7 @@
         return formatDate(date)
       },
       submit() {
-        this.$router.go(-1)
+        this.$router.replace({path:'/myApply'})
       },
       init(){
         this.$vux.loading.show();
