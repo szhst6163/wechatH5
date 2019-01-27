@@ -62,6 +62,7 @@
         codeTime:0,
         isDown:false,
         warnShow:false,
+        isLock:false,
         Timmer:null,
         rePassword:'',
         msg:"",
@@ -112,12 +113,17 @@
           return;
         }
         let that = this;
-        if(this.isDown) return;
+        if(this.isDown||this.isLock) return;
+        this.isLock = true;
         this.$axios.post(this.$api.sendSms,{mobile:this.form.username,type:1})
           .then(res=>{
             that.codeTime = 60;
             this.isDown = true;
+            this.isLock = false;
             countDown()
+          })
+          .catch(e=>{
+            this.isLock = false;
           });
         function countDown(){
           setTimeout(()=>{
