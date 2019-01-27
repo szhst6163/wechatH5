@@ -7,7 +7,7 @@
       <div class="warning">
         <img src="../images/icon/warning.png" alt="">
         <div>
-         注意！确认报名后的15分钟内须完善观看人的个人信息（姓名、电话、身份证），超时此名额自动作废，现场观看人员须与本次报名人员信息一致，否则此名额自动作废。
+          注意！请在15分钟内完善以下信息，超时本次报名将自动作废。现场参加活动者须与本次填写信息一致，否则我方不提供入场门票。
         </div>
       </div>
       <div v-for="(item,i) in formList" class="form">
@@ -18,7 +18,7 @@
             <div class="value"><input v-model="item.name" type="text"></div>
           </li>
           <li>
-            <div class="name">电话</div>
+            <div class="name">手机</div>
             <div class="value"><input v-model="item.mobile" type="tel"></div>
           </li>
           <li>

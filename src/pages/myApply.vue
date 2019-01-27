@@ -59,9 +59,9 @@
       },
       failTips(type){
         if(type === 4){
-          this.$vux.toast.show('由于在电话审核时，报名人自愿放弃报名。');
+          this.$vux.toast.show('在与参加活动者电话确认报名时，参加者自愿放弃报名。');
         }else{
-          this.$vux.toast.show('由于报名人未在15分钟内完善观看人资料，自动作废。');
+          this.$vux.toast.show('未在15分钟内完善参加活动者个人信息，本报名自动作废。');
         }
       },
       status(data){

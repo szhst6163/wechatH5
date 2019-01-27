@@ -31,9 +31,9 @@
         <div @click="tvDetail(item)" v-for="item in list" class="item">
           <img :src="`${item.column_img}`" alt="">
           <div class="title">{{item.column_title}}</div>
-          <div class="date">{{item.number}}</div>
-          <div v-if="item.status == 1" class="tag">报 名</div>
-          <div v-if="item.status == 0" class="tag end">截 止</div>
+          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
+          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
+          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
         </div>
       </div>
     </div>
