@@ -18,26 +18,36 @@
         <div @click="submit" class="submit">
           <span>登录</span>
         </div>
-        <div v-if="!this.$route.query.noreg" class="wechat">
+        <div v-if="!$route.query.noreg" class="wechat">
           <img @click="wechat" src="../images/icon/wechat.png" alt="">
         </div>
       </div>
     </div>
+    <common-dialog @close="warnShow = false" class="dialog-cont" v-if="warnShow">
+      <div class="dialogWarn">
+        <div>首次使用微信登陆需登陆绑定账号，请使用账号密码登陆。</div>
+      </div>
+      <div slot="btn" class="bottom" @click="warnShow = false">
+        确定
+      </div>
+    </common-dialog>
   </div>
 </template>
 
 <script>
   import {mapMutations, mapActions, mapGetters} from 'vuex'
+  import CommonDialog from "../components/commonDialog";
 
   export default {
     name: 'tv-detail',
-    components: {},
+    components: {CommonDialog},
     data() {
       return {
-        veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
-        form:{
-         username:'18675521031',
-         password:'123456'
+        warnShow:false,
+        veryForm: [{name: 'username', text: "手机号"}, {name: 'password', text: "密码"}],
+        form: {
+          username: '18675521031',
+          password: '123456'
           // username:'',
           // password:''
         }
@@ -45,33 +55,33 @@
     },
     computed: {},
     methods: {
-      print(){
+      print() {
         window.print();
       },
-      very(){
-        return new Promise((resolve,reject)=>{
-          if(!this.form.username){
+      very() {
+        return new Promise((resolve, reject) => {
+          if (!this.form.username) {
             this.$vux.toast.show('手机号不能为空');
             reject()
-          }else if(!this.form.password){
+          } else if (!this.form.password) {
             this.$vux.toast.show('密码不能为空');
             reject()
-          }else{
+          } else {
             resolve()
           }
         })
       },
-      submit(){
+      submit() {
         this.very()
-          .then(()=>{
+          .then(() => {
             this.$vux.loading.show();
-            this.$axios.post(this.$api.login,this.form)
-              .then(res=>{
+            this.$axios.post(this.$api.login, this.form)
+              .then(res => {
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg);
-                this.$router.replace({path:"index"})
+                this.$router.replace({path: "index"})
               })
-              .catch(err=>{
+              .catch(err => {
                 this.$vux.loading.hide();
               })
           })
@@ -79,12 +89,14 @@
       href(data) {
         this.$router.push({path: '/tvDetail', query: {data}})
       },
-      wechat(){
-        console.log(location.origin + '/api/weixin/auth')
+      wechat() {
         location.href = location.origin + '/api/weixin/auth'
       }
     },
     mounted() {
+      if (this.$route.query.noreg) {
+        this.warnShow = true
+      }
     },
   }
 
@@ -93,6 +105,22 @@
 <style scoped lang="less">
   @import "../assets/common";
 
+  .dialog-cont {
+    .bottom {
+      color: #fff;
+      justify-content: center;
+    }
+    .dialogWarn {
+      text-align: center;
+      font-size: 32px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+    }
+  }
+
   .m-cont {
     color: #fff;
     font-size: 24px;
@@ -100,27 +128,27 @@
     background-size: 100%;
     background-position-y: center;
     background-repeat: no-repeat;
-    .wechat{
-      margin-top:20px;
+    .wechat {
+      margin-top: 20px;
       text-align: center;
-      img{
+      img {
         width: 100px;
         height: 100px;
       }
     }
-    .submit{
+    .submit {
       width: 100%;
-      margin:0 auto;
+      margin: 0 auto;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      span{
+      span {
         display: block;
         width: 500px;
         background: @c1;
         border-radius: 20px;
-        height:80px;
+        height: 80px;
         line-height: 80px;
       }
     }
@@ -131,14 +159,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      .user{
-        padding:10px 30px;
+      .user {
+        padding: 10px 30px;
       }
-      .form{
+      .form {
         background: @c8;
-        padding:50px 0;
+        padding: 50px 0;
         border-radius: 20px;
-        .formHead{
+        .formHead {
           text-align: center;
         }
         ul {
