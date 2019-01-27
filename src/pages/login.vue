@@ -43,45 +43,44 @@
     components: {CommonDialog},
     data() {
       return {
-        warnShow:false,
-        veryForm: [{name: 'username', text: "手机号"}, {name: 'password', text: "密码"}],
-        form: {
-          username: '18675521031',
-          password: '123456'
-          // username:'',
-          // password:''
+        warnShow:false,veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
+        form:{
+//         username:'18675521031',
+//         password:'123456'
+           username:'',
+           password:''
         }
       }
     },
     computed: {},
     methods: {
-      print() {
+      print(){
         window.print();
       },
-      very() {
-        return new Promise((resolve, reject) => {
-          if (!this.form.username) {
+      very(){
+        return new Promise((resolve,reject)=>{
+          if(!this.form.username){
             this.$vux.toast.show('手机号不能为空');
             reject()
-          } else if (!this.form.password) {
+          }else if(!this.form.password){
             this.$vux.toast.show('密码不能为空');
             reject()
-          } else {
+          }else{
             resolve()
           }
         })
       },
-      submit() {
+      submit(){
         this.very()
-          .then(() => {
+          .then(()=>{
             this.$vux.loading.show();
-            this.$axios.post(this.$api.login, this.form)
-              .then(res => {
+            this.$axios.post(this.$api.login,this.form)
+              .then(res=>{
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg);
-                this.$router.replace({path: "index"})
+                this.$router.replace({path:"index"})
               })
-              .catch(err => {
+              .catch(err=>{
                 this.$vux.loading.hide();
               })
           })
@@ -89,7 +88,8 @@
       href(data) {
         this.$router.push({path: '/tvDetail', query: {data}})
       },
-      wechat() {
+      wechat(){
+        console.log(location.origin + '/api/weixin/auth')
         location.href = location.origin + '/api/weixin/auth'
       }
     },
@@ -128,27 +128,27 @@
     background-size: 100%;
     background-position-y: center;
     background-repeat: no-repeat;
-    .wechat {
-      margin-top: 20px;
+    .wechat{
+      margin-top:20px;
       text-align: center;
-      img {
+      img{
         width: 100px;
         height: 100px;
       }
     }
-    .submit {
+    .submit{
       width: 100%;
-      margin: 0 auto;
+      margin:0 auto;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      span {
+      span{
         display: block;
         width: 500px;
         background: @c1;
         border-radius: 20px;
-        height: 80px;
+        height:80px;
         line-height: 80px;
       }
     }
@@ -159,14 +159,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      .user {
-        padding: 10px 30px;
+      .user{
+        padding:10px 30px;
       }
-      .form {
+      .form{
         background: @c8;
-        padding: 50px 0;
+        padding:50px 0;
         border-radius: 20px;
-        .formHead {
+        .formHead{
           text-align: center;
         }
         ul {
