@@ -1,15 +1,19 @@
 <template>
   <div v-if="list" class="m-tvList-comp">
     <div class="m-line-title">
-      {{title}}
+      <div>{{title}}</div>
+      <div class="line-title-more"><span @click="$router.push('/tvList')">更多></span></div>
     </div>
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
         <img :src="`${item.column_img}`" alt="">
         <div class="item-info-text">
           <div class="title">{{item.column_title}}</div>
-          <div class="date"><span v-if="item.is_signup_over == 2">报名时间</span></div>
-          <div class="date"><span v-if="item.is_signup_over == 2">{{translateTime(item.starttime)}}</span></div>
+          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间</span></div>
+          <div v-if="item.is_signup_over == 2" class="date"><span>{{translateTime(item.starttime)}}</span></div>
+          <div v-if="item.is_signup_over == 0 || item.is_signup_over == 1" class="date"><span>录制时间</span></div>
+          <div v-if="item.is_signup_over == 0 || item.is_signup_over == 1" class="date"><span>{{translateTime(item.videotime)}}</span></div>
+
           <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
           <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
@@ -73,7 +77,7 @@
     },
     methods: {
       translateTime(date){
-        return formatDate(date*1000,'yyyy-MM-dd')
+        return formatDate(date*1000)
       },
       tvDetail(item){
         this.$router.push({path:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})
