@@ -9,10 +9,8 @@
         <img :src="`${item.column_img}`" alt="">
         <div class="item-info-text">
           <div class="title">{{item.column_title}}</div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间</span></div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>{{translateTime(item.starttime)}}</span></div>
-          <div v-if="item.is_signup_over == 0 || item.is_signup_over == 1" class="date"><span>录制时间</span></div>
-          <div v-if="item.is_signup_over == 0 || item.is_signup_over == 1" class="date"><span>{{translateTime(item.videotime)}}</span></div>
+          <div class="date"><span>{{translateTime(item.videotime)}}</span></div>
+          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间 {{translateTime2(item.starttime)}}</span></div>
 
           <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
           <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
@@ -76,6 +74,9 @@
       this.loadMore();
     },
     methods: {
+      translateTime2(date){
+        return formatDate(date*1000,'yyyy-MM-dd hh:mm')
+      },
       translateTime(date){
         return formatDate(date*1000)
       },
@@ -139,11 +140,12 @@
         margin-top:20px;
         color:#fff;
         width: 45%;
-        height:410px;
+        height:430px;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        >img{
+          width: 300px;
+          height: 300px;
+        }
         .tag{
           position: absolute;
           top:0;
@@ -157,15 +159,8 @@
             background: #666;
           }
         }
-        .title{
-          margin-left:10px;
-        }
         .date{
           color: #00daff;
-          margin-left: 10px;
-        }
-        img{
-          flex:1;
           width: 100%;
         }
       }
