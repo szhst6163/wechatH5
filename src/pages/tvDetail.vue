@@ -330,6 +330,7 @@
       .emceeList{
         display: flex;
         padding:10px 20px;
+        overflow: auto;
         .item{
           color:#fff;
           display: flex;
