@@ -44,10 +44,10 @@
       return {
         warnShow:false,veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
         form:{
-        username:'18675521031',
-        password:'123456'
-           // username:'',
-           // password:''
+//        username:'18675521031',
+//        password:'123456'
+            username:'',
+            password:''
         }
       }
     },
