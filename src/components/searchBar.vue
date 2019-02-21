@@ -33,8 +33,8 @@
   .m-search {
     margin: 0 auto;
     width: 600px;
-    background: @c7;
-    border-radius: 5px;
+    background: rgba(255,255,255,.6);
+    border-radius: 100px;
     position: relative;
     padding-right: 20px;
     form {
@@ -44,8 +44,8 @@
       height: 66px;
       line-height: 72px;
       img {
-        width: 40px;
-        height: 40px;
+        width: 46px;
+        height: 37px;
       }
       input {
         flex: 1;
@@ -55,6 +55,9 @@
         background: none;
         color: #fff;
         line-height: 36px;
+        &::-webkit-input-placeholder { /* WebKit browsers */
+          color: #fff;
+        }
       }
     }
 

@@ -2,13 +2,7 @@
   <div class="m-cont">
     <web-head :active="1"></web-head>
     <div class="m-classify">
-      <div class="gonggao">
-        <div class="gonggaoBd">
-          <div class="gonggaoText">
-            综艺通行证为企业（官方）专属定制，不得出售
-          </div>
-        </div>
-      </div>
+      <swiper-component class="m-classify-swiper"></swiper-component>
       <search-bar></search-bar>
       <div class="tvType">
         <div @click="tvcloums(item)" v-for="item in tv" class="tvItem" :style="{backgroundImage:`url(${item.img})`}">
@@ -40,9 +34,11 @@
   import SearchBar from "../components/searchBar";
   import TvListComponents from "../components/tvListComponents.vue";
   import defImg from '../images/icon/baoming.png'
+  import SwiperComponent from "../components/swiperComponent.vue";
   export default {
     name: 'tv-list',
     components: {
+      SwiperComponent,
       TvListComponents,
       SearchBar,
       WebHead,
@@ -92,10 +88,9 @@
       height:410px;
     }
     .m-hot-tv{
-      padding:20px 10px;
+      padding:20px 50px;
       padding-bottom:0;
       margin-top:20px;
-      background: @c5;
       .funList{
         display: flex;
         flex-wrap: wrap;
@@ -107,16 +102,15 @@
           align-items: center;
           flex-direction: column;
           width: 25%;
+          height: 38.75%;
           .img{
-            width: 180px;
-            height:160px;
+            width: 100%;
             border-radius: 10px;
             padding:10px;
             margin-bottom:10px;
             box-sizing: border-box;
             >img{
               width: 100%;
-              height: 100%;
             }
           }
         }
@@ -125,50 +119,23 @@
 
     .m-classify{
       padding:30px 0;
-      background: @c5;
-      .gonggao{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: @c7;
-        width: 85%;
-        height: 60px;
-        line-height: 60px;
-        margin:0 auto 30px;
-        color: #fff;
-        box-sizing: border-box;
-        border-radius: 100px;
-        font-size: 26px;
-        .gonggaoBd{
-          width: 90%;
-          overflow: hidden;
-          .gonggaoText{
-            animation: roll 6s linear infinite;
-          }
-        }
-        img{
-          width: 30px;
-          height:30px;
-          margin-right:10px;
-          margin-left:-10px;
-        }
+      .m-classify-swiper{
+        margin-bottom:50px;
       }
       .tvType{
         color:#fff;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding:20px 20px;
-        padding-bottom:0;
+        padding:0 60px;
         .tvItem{
           background: @c1;
           background-size: 100% 100%;
           box-sizing: border-box;
           padding:30px 20px;
-          margin-top:20px;
-          width: 344px;
-          height:200px;
+          margin-top:30px;
+          width: 300px;
+          height:174px;
           display: flex;
           flex-direction: column;
           justify-content: center;

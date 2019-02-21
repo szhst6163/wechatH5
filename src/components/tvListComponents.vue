@@ -127,15 +127,16 @@
         }
       }
       .item{
-        margin-left:3.5%;
         margin-top:20px;
         color:#fff;
-        width: 45%;
-        height:430px;
+        height:320px;
         position: relative;
+        &:nth-child(even){
+          margin-left:20px;
+        }
         >img{
-          width: 300px;
-          height: 300px;
+          width: 310px;
+          height: 200px;
         }
         .tag{
           position: absolute;
