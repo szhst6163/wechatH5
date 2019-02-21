@@ -143,7 +143,7 @@
           position: absolute;
           top:0;
           right:0;
-          background: @c1;
+          background: #3861c2;
           padding:5px;
           width: 100px;
           border-radius: 0 0 0 10px;

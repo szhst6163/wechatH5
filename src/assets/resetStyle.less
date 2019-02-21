@@ -1,6 +1,11 @@
 @import "~vux/src/styles/reset.less";
 @import "common";
 body{
+  input {
+    &::-webkit-input-placeholder { /* WebKit browsers */
+      color: #fff;
+    }
+  }
   &:before {
     content: ' ';
     position: fixed;
@@ -139,7 +144,7 @@ body{
     align-items: center;
     font-size: 26px;
     font-weight: 600;
-    color:#fff;
+    color:@c6;
     margin-bottom:20px;
     .line-title-more{
       flex:1;

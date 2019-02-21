@@ -117,6 +117,7 @@
       text-align: center;
     }
     .m-myCollect{
+      padding-bottom:60px;
       ul{
         li{
           padding:20px;
@@ -125,8 +126,8 @@
           display: flex;
           align-items: center;
           .left{
-            width: 200px;
-            height: 300px;
+            width: 233px;
+            height: 150px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -151,7 +152,8 @@
                 >div{
                   padding:10px 30px;
                   background:@c1;
-                  color:#fff;
+                  color:@c6;
+                  font-weight: 600;
                   border-radius:20px;
                 }
               }

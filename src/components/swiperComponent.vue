@@ -66,7 +66,7 @@
       height: 56px;
       line-height: 56px;
       padding:0 35px;
-      background: rgba(255,255,255,0.6);
+      background: @c7;
       &.gonggao{
         font-size: 26px;
         border-radius:0 0 30px 30px;

@@ -7,7 +7,6 @@
       <div class="tvType">
         <div @click="tvcloums(item)" v-for="item in tv" class="tvItem" :style="{backgroundImage:`url(${item.img})`}">
           <div class="name1">{{item.name}}</div>
-          <div class="name2">{{item.introduce}}</div>
         </div>
       </div>
     </div>
@@ -129,7 +128,6 @@
         justify-content: space-between;
         padding:0 60px;
         .tvItem{
-          background: @c1;
           background-size: 100% 100%;
           box-sizing: border-box;
           padding:30px 20px;
@@ -139,9 +137,18 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
-          border-radius: 10px;
+          border-radius: 30px;
+          position: relative;
+          overflow: hidden;
           .name1{
             font-size: 32px;
+            position: absolute;
+            bottom: 0;
+            left:0;
+            width: 100%;
+            color:#000;
+            background: @c7;
+            text-align: center;
           }
           .name2{
             font-size: 24px;

@@ -94,10 +94,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color:@c10;
+      font-weight: 600;
       span{
         display: block;
         width: 550px;
-        background: @c1;
+        background: @c6;
         border-radius: 20px;
         height:80px;
         line-height: 80px;
@@ -139,12 +141,12 @@
           li {
             padding: 0 40px;
             background: @c7;
-            height: 80px;
-            line-height: 80px;
+            height: 74px;
+            line-height: 74px;
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            border-radius: 20px;
+            border-radius: 100px;
             .name {
               width: 200px;
               height: 60px;
@@ -156,6 +158,9 @@
               height: 100%;
               display: flex;
               input {
+                &::-webkit-input-placeholder { /* WebKit browsers */
+                  color: #fff;
+                }
                 font-size: 24px;
                 padding: 0 20px;
                 width: 100%;

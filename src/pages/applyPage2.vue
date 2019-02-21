@@ -127,10 +127,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color:@c10;
+      font-weight: 600;
       span {
         display: block;
         width: 500px;
-        background: @c1;
+        background: @c6;
         border-radius: 20px;
         height: 80px;
         line-height: 80px;

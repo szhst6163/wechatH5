@@ -76,7 +76,7 @@
       .cont {
         height: 100vh;
         box-sizing: border-box;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.3);
         padding:30px;
       }
       .suc {
@@ -101,10 +101,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color:@c10;
+      font-weight: 600;
       span {
         display: block;
         width: 500px;
-        background: @c1;
+        background: @c6;
         border-radius: 20px;
         height: 80px;
         line-height: 80px;

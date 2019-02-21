@@ -180,7 +180,6 @@
   .m-cont {
     color: #fff;
     font-size: 24px;
-    background: url('../images/icon/pic2.png');
     background-size: 100%;
     background-position-y: center;
     background-repeat: no-repeat;
@@ -209,6 +208,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color:@c6;
+      font-weight: 600;
       span{
         display: block;
         width: 500px;
