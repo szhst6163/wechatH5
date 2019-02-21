@@ -1,7 +1,7 @@
 <template>
   <div class="m-cont">
-    <web-head :active="0"></web-head>
-    <div class="m-swiper">
+    <web-head class="web-head" :active="0"></web-head>
+    <div class="m-swiper-cont">
       <swiper :code="'index'"></swiper>
     </div>
     <!--<div class="m-classify">
@@ -18,10 +18,6 @@
     </div>-->
     <tv-list-components :type="'index'" class="m-tvList"></tv-list-components>
     <div class="index-footer">
-      <div>
-        <img src="../images/icon/text1.png" alt="">
-        <img src="../images/icon/pic1.png" alt="">
-      </div>
       <div>报名咨询热线：400－833－8283，业务联络QQ：330175679</div>
       <div>© xxzyztc.com 版权所有 &nbsp;<a href="http://www.miibeian.gov.cn"> ICP证：粤ICP备19006959</a></div>
     </div>
@@ -77,8 +73,9 @@
   @import "../assets/common";
 
   .m-cont {
-    .m-swiper {
-      height: 410px;
+    .m-swiper-cont {
+      margin-top:60px;
+      overflow: hidden;
     }
     .m-classify {
       padding: 30px 0;

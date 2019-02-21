@@ -2,7 +2,7 @@
   <div v-if="list" class="m-tvList-comp">
     <div class="m-line-title">
       <div>{{title}}</div>
-      <div class="line-title-more"><span @click="$router.push('/tvList')">更多></span></div>
+      <div class="line-title-more"><span @click="$router.push('/tvList')"><<< 更多</span></div>
     </div>
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
@@ -42,7 +42,7 @@
       title:{
         type:String,
         default() {
-          return "栏目报名推荐"
+          return "相关推荐"
         }
       },
       params:{
@@ -116,16 +116,7 @@
 <style lang="less" scoped>
   @import "../assets/common";
   .m-tvList-comp{
-    margin:40px 30px;
-    background: @c5;
-    border:solid #000;
-    border-image-source: url(../images/icon/bg3.png);
-    border-image-width:100px;
-    border-image-slice:100 100 100 100;
-    border-image-outset: 20px;// 边框图片outset设置为20px，那么背景图将会从盒子最外边界向外上右下左各延伸20px。
-    border-image-repeat: repeat;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    margin:50px;
     .list{
       padding-top:10px;
       display: flex;
