@@ -18,62 +18,6 @@
         </div>
       </div>
     </div>
-    <div class="list">
-      <div @click="tvDetail(item)" v-for="item in list" class="item">
-        <img :src="`${item.column_img}`" alt="">
-        <div class="item-info-text">
-          <div class="title">{{item.column_title}}</div>
-          <div class="date"><span>{{translateTime(item.videotime)}}</span></div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间 {{translateTime2(item.starttime)}}</span></div>
-
-          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
-          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
-          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
-        </div>
-      </div>
-    </div>
-    <div class="list">
-      <div @click="tvDetail(item)" v-for="item in list" class="item">
-        <img :src="`${item.column_img}`" alt="">
-        <div class="item-info-text">
-          <div class="title">{{item.column_title}}</div>
-          <div class="date"><span>{{translateTime(item.videotime)}}</span></div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间 {{translateTime2(item.starttime)}}</span></div>
-
-          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
-          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
-          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
-        </div>
-      </div>
-    </div>
-    <div class="list">
-      <div @click="tvDetail(item)" v-for="item in list" class="item">
-        <img :src="`${item.column_img}`" alt="">
-        <div class="item-info-text">
-          <div class="title">{{item.column_title}}</div>
-          <div class="date"><span>{{translateTime(item.videotime)}}</span></div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间 {{translateTime2(item.starttime)}}</span></div>
-
-          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
-          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
-          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
-        </div>
-      </div>
-    </div>
-    <div class="list">
-      <div @click="tvDetail(item)" v-for="item in list" class="item">
-        <img :src="`${item.column_img}`" alt="">
-        <div class="item-info-text">
-          <div class="title">{{item.column_title}}</div>
-          <div class="date"><span>{{translateTime(item.videotime)}}</span></div>
-          <div v-if="item.is_signup_over == 2" class="date"><span>报名时间 {{translateTime2(item.starttime)}}</span></div>
-
-          <div v-if="item.is_signup_over == 0" class="tag">报名中</div>
-          <div v-if="item.is_signup_over == 1" class="tag end">截 止</div>
-          <div v-if="item.is_signup_over == 2" class="tag end">即将报名</div>
-        </div>
-      </div>
-    </div>
     <div class="noData" v-if="!list.length">暂无数据</div>
     <div class="noData" v-if="isLock">加载中...</div>
   </div>
