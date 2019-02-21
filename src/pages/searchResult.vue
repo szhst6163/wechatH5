@@ -98,12 +98,10 @@
         padding:30px;
         text-align: center;
         color:#fff;
-        background: @c5;
       }
       .infoDesc{
         padding:40px 0 20px;
         font-size: 24px;
-        background: @c5;
         .emcess-info{
           .item{
             color:#fff;

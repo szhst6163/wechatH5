@@ -48,7 +48,6 @@
     .m-tv-cloums {
       .m-swiper {
         height: 410px;
-        background: @c5;
       }
     }
 

@@ -147,7 +147,6 @@
       .warning{
         padding:30px;
         margin-bottom:30px;
-        background: @c5;
         img{
           width: 50%;
         }
@@ -156,7 +155,6 @@
         padding: 20px 30px;
       }
       .form {
-        background: @c5;
         ul {
           padding: 30px 40px;
           li {

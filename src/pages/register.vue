@@ -229,7 +229,6 @@
         padding:10px 30px;
       }
       .form{
-        background: @c5;
         padding:50px 0;
         border-radius: 20px;
         margin:30px;

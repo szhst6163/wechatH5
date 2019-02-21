@@ -103,7 +103,6 @@
     }
     .m-myCollect {
       padding: 20px 0;
-      background: @c5;
       margin-top: 20px;
       ul {
         li {

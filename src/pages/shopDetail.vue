@@ -137,7 +137,6 @@
         color: #fff;
         margin-top:20px;
         .salesItem,.userItem {
-          background: @c5;
           padding: 30px;
           margin-bottom:20px;
           ul {
@@ -207,7 +206,6 @@
       .m-shop-info{
         margin-bottom:30px;
         padding:30px 5px;
-        background: @c5;
         .info-cont{
           padding:30px 10px;
           img{

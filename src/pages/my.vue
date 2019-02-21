@@ -180,7 +180,6 @@
     }
     .my-head{
       margin-bottom:20px;
-      background: @c5;
       display: flex;
       justify-content: space-between;
       padding:30px;
@@ -199,7 +198,6 @@
       }
     }
     .myHistory{
-      background: @c5;
       .m-line-title{
         padding:30px;
         position: relative;
@@ -233,8 +231,8 @@
           }
           .pic{
             margin:0 auto;
-            width: 200px;
-            height: 200px;
+            width: 232px;
+            height: 150px;
             img{
               width: 100%;
               height: 100%;
@@ -244,14 +242,13 @@
       }
     }
     .m-func-list{
-      background: @c5;
       padding:0 30px 40px;
       ul{
         .item{
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-bottom:1px solid #212b4d;
+          border-bottom:1px solid #fff;
           .right{
             display: flex;
             align-items: center;

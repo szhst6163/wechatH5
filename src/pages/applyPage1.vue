@@ -125,7 +125,6 @@
     .m-applyPage1 {
       color: #fff;
       font-size: 30px;
-      background: @c5;
       width: 100%;
       .user{
         padding:10px 30px;

@@ -79,7 +79,6 @@
     }
     .m-classify {
       padding: 30px 0;
-      background: @c5;
       .funList {
         display: flex;
         justify-content: space-around;

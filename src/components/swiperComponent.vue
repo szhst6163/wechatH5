@@ -50,7 +50,6 @@
   @import "../assets/common";
   .m-swiper-comp{
     position: relative;
-    border-radius: 30px;
     margin:0 auto;
     width: 650px;
     height: 260px;
@@ -60,15 +59,17 @@
       height: 100%;
     }
     .swiper-text{
+      box-sizing: border-box;
       position: absolute;
       bottom: 0;
-      width: 100%;
+      width: 650px;
       height: 56px;
       line-height: 56px;
       padding:0 35px;
       background: rgba(255,255,255,0.6);
       &.gonggao{
         font-size: 26px;
+        border-radius:0 0 30px 30px;
         .gonggaoBd{
           width: 90%;
           overflow: hidden;

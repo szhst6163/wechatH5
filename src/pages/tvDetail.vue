@@ -224,7 +224,6 @@
       display: flex;
       padding:40px;
       justify-content: space-between;
-      background: @c5;
       >div{
         flex:1;
         display: flex;
@@ -243,13 +242,11 @@
     }
     .tv-info{
       margin-top:20px;
-      background: @c5;
       .info-content{
         display: flex;
         justify-content: space-around;
         align-items: center;
         padding-bottom:40px;
-        border-bottom:1px solid #262a40;
         .img{
           position: relative;
           width: 234px;
