@@ -78,7 +78,7 @@
         return formatDate(date*1000,'yyyy-MM-dd hh:mm')
       },
       translateTime(date){
-        return formatDate(date*1000)
+        return formatDate(date*1000,'yyyy-MM-dd hh:mm')
       },
       tvDetail(item){
         this.$router.push({path:'/tvDetail',query:{id:item.id,t:new Date().getTime()}})

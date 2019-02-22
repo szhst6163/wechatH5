@@ -15,7 +15,6 @@ import applyPage1 from '@/pages/applyPage1'
 import applyPage2 from '@/pages/applyPage2'
 import login from '@/pages/login'
 import register from '@/pages/register'
-import userIndex from '@/pages/userIndex'
 import getChance from '@/pages/getChance'
 import searchResult from '@/pages/searchResult'
 import applySuc from '@/pages/applySuc'
@@ -27,12 +26,6 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: index,
-      meta: {}
-    },
-    {
-      path: '/',
-      name: '/userIndex',
-      component: userIndex,
       meta: {}
     },
     {
@@ -66,7 +59,7 @@ export default new Router({
       meta: {}
     },
     {
-      path: '/login',
+      path: '/',
       name: '/login',
       component: login,
       meta: {}

@@ -141,6 +141,7 @@
           position: relative;
           overflow: hidden;
           .name1{
+            border-radius:0 0 30px 30px;
             font-size: 32px;
             position: absolute;
             bottom: 0;

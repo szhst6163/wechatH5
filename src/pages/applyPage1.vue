@@ -114,7 +114,7 @@
         display: block;
         width: 500px;
         background: @c6;
-        border-radius: 20px;
+        border-radius: 100px;
         height:80px;
         line-height: 80px;
       }

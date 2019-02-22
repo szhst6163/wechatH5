@@ -1,22 +1,30 @@
 <template>
   <div class="m-cont">
-    <div class="m-login">
+    <div @touchmove.prevent class="m-login">
       <div class="form">
-        <div @click="print" class="formHead">
-          用户登录
+        <div class="formHead">
         </div>
         <ul>
           <li>
-            <div class="name">手机号</div>
+            <div class="name">
+              <img src="../images/icon/shouji.png" alt="">
+              手机号
+            </div>
             <div class="value"><input v-model="form.username" type="tel" maxlength="11"></div>
           </li>
           <li>
-            <div class="name">密码</div>
+            <div class="name">
+              <img src="../images/icon/mima.png" alt="">
+              密码
+            </div>
             <div class="value"><input v-model="form.password" type="password"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
           <span>登录</span>
+        </div>
+        <div class="resign">
+          <span @click="href">注册账号</span>
         </div>
         <div v-if="!$route.query.noreg" class="wechat">
           <img @click="wechat" src="../images/icon/wechat.png" alt="">
@@ -42,53 +50,49 @@
     components: {CommonDialog},
     data() {
       return {
-        warnShow:false,veryForm:[{name:'username',text:"手机号"},{name:'password',text:"密码"}],
-        form:{
-       username:'18675521031',
-       password:'123456'
-            // username:'',
-            // password:''
+        warnShow: false, veryForm: [{name: 'username', text: "手机号"}, {name: 'password', text: "密码"}],
+        form: {
+          // username: '18675521031',
+          // password: '123456'
+          username:'',
+          password:''
         }
       }
     },
     computed: {},
     methods: {
-      print(){
-        window.print();
-      },
-      very(){
-        return new Promise((resolve,reject)=>{
-          if(!this.form.username){
+      very() {
+        return new Promise((resolve, reject) => {
+          if (!this.form.username) {
             this.$vux.toast.show('手机号不能为空');
             reject()
-          }else if(!this.form.password){
+          } else if (!this.form.password) {
             this.$vux.toast.show('密码不能为空');
             reject()
-          }else{
+          } else {
             resolve()
           }
         })
       },
-      submit(){
+      submit() {
         this.very()
-          .then(()=>{
+          .then(() => {
             this.$vux.loading.show();
-            this.$axios.post(this.$api.login,this.form)
-              .then(res=>{
+            this.$axios.post(this.$api.login, this.form)
+              .then(res => {
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg);
-                this.$router.replace({path:"index"})
+                this.$router.replace({path: "index"})
               })
-              .catch(err=>{
+              .catch(err => {
                 this.$vux.loading.hide();
               })
           })
       },
-      href(data) {
-        this.$router.push({path: '/tvDetail', query: {data}})
+      href() {
+        this.$router.push({path: '/register'})
       },
-      wechat(){
-        console.log(location.origin + '/api/weixin/auth')
+      wechat() {
         location.href = location.origin + '/api/weixin/auth'
       }
     },
@@ -121,71 +125,83 @@
   }
 
   .m-cont {
-    color: #fff;
-    font-size: 24px;
-    background-size: 100%;
-    background-position-y: center;
-    background-repeat: no-repeat;
-    .wechat{
-      margin-top:20px;
+    &:before {
+      background-image: url("../images/icon/login-bg.jpg");
+    }
+    .wechat {
+      margin-top: 30px;
       text-align: center;
-      img{
-        width: 100px;
-        height: 100px;
+      img {
+        width: 97px;
+        height: 78px;
       }
     }
-    .submit{
+    .resign{
+      font-size: 26px;
+      text-align: right;
+      padding-right:80px;
+    }
+    .submit {
       width: 100%;
-      margin:0 auto;
+      margin: 0 auto;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      color:@c10;
+      color: @c10;
       font-weight: 600;
-      span{
+      font-size: 28px;
+      margin-bottom:20px;
+      span {
         display: block;
-        width: 500px;
+        width: 450px;
         background: @c6;
-        border-radius: 20px;
-        height:80px;
+        border-radius: 100px;
+        height: 80px;
         line-height: 80px;
       }
     }
     .m-login {
       color: #fff;
       height: 100vh;
-      font-size: 30px;
+      font-size: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      .user{
-        padding:10px 30px;
+      .user {
+        padding: 10px 30px;
       }
-      .form{
-        background: @c8;
-        padding:50px 0;
+      .form {
+        padding: 50px 0;
         border-radius: 20px;
-        .formHead{
-          text-align: center;
+        .formHead {
+          width: 509px;
+          height: 540px;
         }
         ul {
           padding: 20px 40px;
           li {
-            padding: 0 40px;
+            box-sizing: border-box;
+            width: 450px;
+            padding: 0 30px;
             background: @c7;
             height: 80px;
             line-height: 80px;
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            border-radius: 20px;
+            border-radius: 100px;
+            margin-bottom: 26px;
             .name {
+              display: flex;
+              align-items: center;
               height: 60px;
               line-height: 60px;
-              padding-right: 20px;
-              width: 100px;
-              border-right: 1px solid #fff;
+              width: 116px;
+              img{
+                width: 19px;
+                height: 29px;
+                margin-right:20px;
+              }
             }
             .value {
               height: 100%;

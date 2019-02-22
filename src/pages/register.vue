@@ -76,7 +76,7 @@
     computed: {},
     methods: {
       toLogin(){
-        this.$router.push({path:'/login',query:{noreg:this.$route.query.noreg}})
+        this.$router.push({path:'/',query:{noreg:this.$route.query.noreg}})
       },
       close(){
         this.warnShow = false
@@ -145,7 +145,7 @@
               .then(res=>{
                 this.$vux.loading.hide();
                 this.$vux.toast.show(res.msg)
-                this.$router.replace({path:"/login"})
+                this.$router.replace({path:"/"})
               })
               .catch(err=>{
                 this.$vux.loading.hide();
@@ -202,19 +202,20 @@
       }
     }
     .submit{
-      width: 100%;
+      width: 450px;
       margin:0 auto;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      color:@c6;
+      color: @c1;
+      font-size: 28px;
       font-weight: 600;
       span{
         display: block;
         width: 500px;
-        background: @c1;
-        border-radius: 20px;
+        background: @c6;
+        border-radius: 100px;
         height:80px;
         line-height: 80px;
       }
@@ -222,7 +223,7 @@
     .m-login {
       color: #fff;
       height: 100vh;
-      font-size: 30px;
+      font-size: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -231,15 +232,19 @@
       }
       .form{
         padding:50px 0;
-        border-radius: 20px;
+        border-radius: 30px;
         margin:30px;
-        background: @c8;
+        background: @c7;
         .formHead{
+          font-size: 32px;
           text-align: center;
         }
         ul {
-          padding: 20px 40px;
+          padding: 20px 70px;
+          width: 580px;
+          box-sizing: border-box;
           li {
+            box-sizing: border-box;
             padding: 0 40px;
             background: @c7;
             height: 80px;
@@ -247,21 +252,21 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            border-radius: 20px;
+            border-radius: 100px;
+            width: 450px;
             &.smsCode{
               justify-content: space-around;
               position: relative;
               .getCode{
                 position: absolute;
                 right:20px;
-                top:20%;
+                top:26%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 160px;
-                border:1px solid @c1;
-                color:@c1;
-                padding:10px;
+                border:1px solid @c6;
+                color:@c6;
+                padding:5px;
                 text-align: center;
                 font-size: 20px;
                 line-height: 30px;
@@ -269,12 +274,13 @@
             }
             .name {
               width: 200px;
-              height: 60px;
-              line-height: 60px;
-              padding-right: 20px;
+              height: 40px;
+              line-height: 40px;
+              padding-right: 10px;
               border-right: 1px solid #fff;
             }
             .value {
+              font-size: 24px;
               height: 100%;
               display: flex;
               input {
@@ -283,7 +289,11 @@
                 border: none;
                 background: none;
                 height: 100%;
+                line-height: 40px;
                 color: #fff;
+                &::-webkit-input-placeholder { /* WebKit browsers */
+                  font-size: 16px;
+                }
               }
             }
           }

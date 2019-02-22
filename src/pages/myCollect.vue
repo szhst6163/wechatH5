@@ -47,7 +47,7 @@
     },
     methods: {
       translateTime(date) {
-        return formatDate(date)
+        return formatDate(date,'yyyy-MM-dd hh:mm')
       },
       status(data) {
         let map = {1: "待处理", 2: "已处理"}
@@ -108,7 +108,7 @@
         li {
           display: flex;
           align-items: center;
-          background: @c8;
+          background: @c7;
           margin-bottom:20px;
           .left {
             display: flex;

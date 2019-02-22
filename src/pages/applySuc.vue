@@ -38,7 +38,7 @@
     },
     methods: {
       translateTime(date){
-        return formatDate(date)
+        return formatDate(date,'yyyy-MM-dd hh:mm')
       },
       submit() {
         this.$router.replace({path:'/myApply'})
@@ -69,7 +69,7 @@
     color: #fff;
     font-size: 24px;
     .m-applySuc {
-      background-image: url('../images/icon/pic1.png');
+      /*background-image: url('../images/icon/pic1.png');*/
       background-size: 100%;
       background-repeat: no-repeat;
       font-size: 28px;
@@ -78,6 +78,7 @@
         box-sizing: border-box;
         background: rgba(0, 0, 0, 0.3);
         padding:30px;
+        padding-top:200px;
       }
       .suc {
         padding: 30px;
@@ -104,10 +105,10 @@
       color:@c10;
       font-weight: 600;
       span {
+        border-radius: 100px;
         display: block;
         width: 500px;
         background: @c6;
-        border-radius: 20px;
         height: 80px;
         line-height: 80px;
       }

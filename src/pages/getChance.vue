@@ -100,9 +100,9 @@
         display: block;
         width: 550px;
         background: @c6;
-        border-radius: 20px;
         height:80px;
         line-height: 80px;
+        border-radius: 100px;
       }
     }
     .m-login {
@@ -123,13 +123,13 @@
         border-top:1PX dashed @c5;
         font-size: 18px;
         box-sizing: border-box;
-        background: @c8;
+        background: @c7;
         padding:50px;
         border-radius: 20px;
         width: 80%;
       }
       .form{
-        background: @c8;
+        background: @c7;
         padding:50px 0;
         border-radius: 20px;
         width: 80%;

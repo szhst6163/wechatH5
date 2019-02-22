@@ -122,7 +122,7 @@
         li{
           padding:20px;
           margin-top:20px;
-          background: @c8;
+          background: @c7;
           display: flex;
           align-items: center;
           .left{

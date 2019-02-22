@@ -147,6 +147,10 @@
   .m-cont{
     font-size: 30px;
     color:#fff;
+    .m-my{
+      padding:0 30px;
+      box-sizing: border-box;
+    }
     .getChance{
       display: flex;
       align-items: center;
@@ -212,7 +216,7 @@
         box-sizing: border-box;
         padding-left:30px;
         padding-bottom:30px;
-        width: 100vw;
+        width: 100%;
         overflow-x: auto;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;

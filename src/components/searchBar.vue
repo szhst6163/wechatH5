@@ -33,7 +33,7 @@
   .m-search {
     margin: 0 auto;
     width: 600px;
-    background: rgba(255,255,255,.6);
+    background: rgba(255,255,255,.3);
     border-radius: 100px;
     position: relative;
     padding-right: 20px;

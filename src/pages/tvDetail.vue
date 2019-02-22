@@ -4,7 +4,7 @@
       <span @click="$router.go(-1)">返回</span>
     </div>
     <div v-if="tv.detail.videourl&&showVideo" class="m-video">
-      <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder=0 allowfullscreen></iframe>
+      <iframe :src="tv.detail.videourl+'&height=100%&width=100%'" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="tv-info">
       <div class="info-content">
@@ -18,20 +18,19 @@
           <div class="title">
             《{{tv.detail.column_title}}》
           </div>
-          <div><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span><span>{{tv.detail.address}}</span></div>
-          <div><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
-          <div><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span><span>18—45周岁可参加</span></div>
+          <div class="infoItem-i">
+            <div class="text"><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span></div>
+            <div class="locationText"><span>{{tv.detail.address}}</span></div>
+          </div>
+          <div class="infoItem-i">
+            <div class="text"><img src="../images/icon/detailTime.png" alt=""><span>录制时间</span></div>
+            <div><span>{{translateTime(tv.detail.videotime*1000)}}</span></div>
+          </div>
+          <div class="infoItem-i"><div class="text"><img src="../images/icon/detailRequired.png" alt=""><span>观众要求</span></div><div><span>18—45周岁可参加</span></div></div>
         </div>
       </div>
-
-      <div class="fnBtn">
-        <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
-        <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
-        <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
-        <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
-      </div>
       <div class="infoDesc">
-        <div class="head">栏目简介</div>
+        <div class="head">栏 目 简 介</div>
         <div class="main" :class="{showAll:showAll}" v-html="tv.detail.introduce">
         </div>
         <div class="footer"><img @click="showAll = !showAll" :class="{showAll:showAll}" src="../images/icon/arrowRight.png" alt=""></div>
@@ -48,6 +47,12 @@
             <span>{{item.name}}</span>
           </div>
         </div>
+      </div>
+      <div class="fnBtn">
+        <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
+        <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
+        <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
+        <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
       </div>
     </div>
     <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
@@ -112,7 +117,7 @@
         location.href = `http://api.map.baidu.com/marker?location=${loc[1]},${loc[0]}&title=录制地点&content=${data.detail.address}&output=html`
       },
       translateTime(date){
-        return formatDate(date)
+        return formatDate(date,'yyyy-MM-dd hh:mm')
       },
       nextPage(){
         if(this.confirmTime <= 0){
@@ -242,15 +247,18 @@
     }
     .tv-info{
       margin-top:20px;
+      padding:0 50px;
       .info-content{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         padding-bottom:40px;
         .img{
           position: relative;
-          width: 234px;
-          height: 216px;
+          width: 280px;
+          height: 180px;
+          overflow: hidden;
+          border-radius: 20px;
           .playIcon{
             background: rgba(0,0,0,0.3);
             width: 100%;
@@ -282,27 +290,46 @@
           height: 50px;
           display: flex;
           align-items: center;
-          >span{
-            margin-right: 30px;
+          &.infoItem-i{
+            display: flex;
+            align-items: center;
+            .locationText{
+              max-width: 200px;
+              overflow:hidden;
+              text-overflow:ellipsis;
+              white-space: nowrap;
+            }
+            .text{
+              display: flex;
+              margin-right:10px;
+            }
+            img{
+              margin-right:10px;
+              width: 32px;
+              height:32px;
+            }
+            >span{
+              margin-right: 30px;
+            }
+
           }
-          >img{
-            margin-right:10px;
-            width: 32px;
-            height:32px;
-          }
+
         }
       }
       .infoDesc{
-        padding:30px;
+        padding:30px 0;
         font-size: 24px;
         .head{
           font-size: 28px;
-          color:@c1;
+          color:@c6;
+          margin-bottom:30px;
         }
         .main{
           max-height: 200px;
           overflow: hidden;
           transition:all .5s;
+          word-wrap: break-word;
+          word-break: break-all;
           img{
             width: 100%;
           }
@@ -326,7 +353,7 @@
       }
       .emceeList{
         display: flex;
-        padding:10px 20px;
+        padding:10px 0;
         overflow: auto;
         .item{
           color:#fff;
@@ -336,9 +363,10 @@
           text-align: center;
           margin-right:20px;
           .img{
-            width: 140px;
-            height: 140px;
-            margin-bottom:10px;
+            border:2PX solid #b23ae9;
+            width: 120px;
+            height: 120px;
+            margin-bottom:14px;
             border-radius: 1000px;
             overflow: hidden;
             img{
