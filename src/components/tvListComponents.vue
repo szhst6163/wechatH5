@@ -2,7 +2,7 @@
   <div v-if="list" class="m-tvList-comp">
     <div class="m-line-title">
       <div>{{title}}</div>
-      <div class="line-title-more"><span @click="$router.push('/tvList')"><<< 更多</span></div>
+      <div class="line-title-more"><span v-if="isMore" @click="$router.push('/tvList')"><<< 更多</span></div>
     </div>
     <div class="list">
       <div @click="tvDetail(item)" v-for="item in list" class="item">
@@ -33,12 +33,17 @@
     data(){
       return {
         list:[],
-
         isLock:false,
         isOver:false
       }
     },
     props: {
+      isMore:{
+        type:Boolean,
+        default() {
+          return true
+        }
+      },
       title:{
         type:String,
         default() {

@@ -1,6 +1,6 @@
 <template>
   <div class="m-cont">
-    <div @touchmove.prevent class="m-login">
+    <div class="m-login">
       <div class="form">
         <div class="formHead">
         </div>
@@ -10,14 +10,14 @@
               <img src="../images/icon/shouji.png" alt="">
               手机号
             </div>
-            <div class="value"><input v-model="form.username" type="tel" maxlength="11"></div>
+            <div class="value"><input @focus="focus" @blur="blur" v-model="form.username" type="tel" maxlength="11"></div>
           </li>
           <li>
             <div class="name">
               <img src="../images/icon/mima.png" alt="">
               密码
             </div>
-            <div class="value"><input v-model="form.password" type="password"></div>
+            <div class="value"><input @focus="focus" @blur="blur" v-model="form.password" type="password"></div>
           </li>
         </ul>
         <div @click="submit" class="submit">
@@ -52,15 +52,21 @@
       return {
         warnShow: false, veryForm: [{name: 'username', text: "手机号"}, {name: 'password', text: "密码"}],
         form: {
-          // username: '18675521031',
-          // password: '123456'
-          username:'',
-          password:''
+           username: '18675521031',
+           password: '123456'
+//          username:'',
+//          password:''
         }
       }
     },
     computed: {},
     methods: {
+      focus(){
+        window.scrollTo(0,1000)
+      },
+      blur(){
+        window.scrollTo(0,0)
+      },
       very() {
         return new Promise((resolve, reject) => {
           if (!this.form.username) {
@@ -125,10 +131,12 @@
   }
 
   .m-cont {
+    width: 100%;
+    background-image: url("../images/icon/login-bg.jpg");
+    background-position: top;
+    background-size: 100vw 100vh;
     &:before {
-      background-image: url("../images/icon/login-bg.jpg");
-      background-position: top;
-      background-size: 100% 100%;
+      background: none;
     }
     .wechat {
       margin-top: 30px;
