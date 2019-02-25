@@ -94,6 +94,7 @@
         display: flex;
         flex-wrap: wrap;
         margin-top:40px;
+        text-align: center;
         .item{
           margin-bottom:20px;
           color:#fff;
@@ -101,13 +102,23 @@
           align-items: center;
           flex-direction: column;
           width: 25%;
-          height: 38.75%;
+          >div{
+            width: 100%;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+          }
           .img{
             width: 100%;
+            height: 100%;
+            overflow: hidden;
             border-radius: 10px;
             padding:10px;
             margin-bottom:10px;
             box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             >img{
               width: 100%;
             }

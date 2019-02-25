@@ -114,8 +114,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 250px;
-            height: 250px;
+            width: 310px;
+            height: 200px;
             img {
               width: 80%;
               height: 80%;

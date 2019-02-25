@@ -9,7 +9,7 @@ import request from '@/lib/request/request'
 import apiUrl from './api/api'
 import 'reset-css';
 import {
-  Swiper,ToastPlugin,LoadingPlugin,XDialog,WechatPlugin
+  ToastPlugin,LoadingPlugin,XDialog,WechatPlugin
 } from 'vux'
 import 'lib-flexible'
 import "./assets/resetStyle.less";
@@ -17,7 +17,6 @@ import wxConfig from './api/wxConfig'
 
 Vue.config.productionTip = false;
 FastClick.attach(document.body);
-Vue.component('swiper', Swiper);
 Vue.component('XDialog', XDialog);
 Vue.use(LoadingPlugin);
 Vue.use(WechatPlugin);

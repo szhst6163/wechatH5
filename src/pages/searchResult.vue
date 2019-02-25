@@ -163,24 +163,34 @@
 
   }
   .m-tvList-comp{
+    margin:50px;
+    margin-bottom:0;
     .list{
       padding-top:10px;
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
-      padding:23px;
+      .item-info-text{
+        >div{
+          height: 36px;
+        }
+      }
       .item{
         margin-top:20px;
         color:#fff;
+        height:320px;
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        &:nth-child(even){
+          margin-left:20px;
+        }
+        >img{
+          width: 310px;
+          height: 200px;
+        }
         .tag{
           position: absolute;
           top:0;
           right:0;
-          background: @c1;
+          background: #3861c2;
           padding:5px;
           width: 100px;
           border-radius: 0 0 0 10px;
@@ -189,16 +199,9 @@
             background: #666;
           }
         }
-        .title{
-          margin-left:10px;
-        }
         .date{
-          margin-left: 10px;
-        }
-        img{
-          flex:1;
-          width: 300px;
-          height:300px;
+          color: #00daff;
+          width: 100%;
         }
       }
     }
@@ -208,5 +211,6 @@
       color:#fff;
     }
   }
+
 
 </style>

@@ -16,7 +16,7 @@
         </div>
         <div class="infoItem">
           <div class="title">
-            《{{tv.detail.column_title}}》
+            <div>《{{tv.detail.column_title}}》</div>
           </div>
           <div class="infoItem-i">
             <div class="text"><img src="../images/icon/detailNav.png" alt=""><span>录制地点</span></div>
@@ -49,13 +49,14 @@
         </div>
       </div>
       <div class="fnBtn">
-        <div @click="apply(tv.is_signup_over)"><img src="../images/icon/detailApply.png" alt=""><div>{{tv.is_signup_over == 1?'截止':'报名'}}</div></div>
         <div @click="collect" v-if="!tv.is_collect"><img src="../images/icon/detail-collect.png" alt=""><div>收藏</div></div>
         <div @click="collect" v-if="tv.is_collect"><img src="../images/icon/detail-collected.png" alt=""><div>取消收藏</div></div>
         <div v-if="tv.detail.latlon" @click="toMap(tv)"><img src="../images/icon/detailNav.png" alt=""><div>导航</div></div>
       </div>
+      <div class="submitBtn">
+        <div @click="apply(tv.is_signup_over)">{{tv.is_signup_over == 1?'截止':'报名'}}</div>
+      </div>
     </div>
-    <tv-list-components :title="'相关推荐'" class="m-tvList"></tv-list-components>
     <common-dialog @close="dialogShow = false" v-if="dialogShow">
       <slot>
         <div class="dialogText">
@@ -225,9 +226,21 @@
       padding: 30px;
       font-size: 32px;
     }
+    .submitBtn{
+      background: @c6;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      width: 440px;
+      font-size: 28px;
+      font-weight: 600;
+      color:@c10;
+      border-radius: 100px;
+      margin:30px auto;
+    }
     .fnBtn{
       display: flex;
-      padding:40px;
+      padding:0 40px;
       justify-content: space-between;
       >div{
         flex:1;
@@ -236,8 +249,7 @@
         justify-content: center;
         flex-direction: column;
         margin-right:10px;
-        height: 200px;
-        font-size: 32px;
+        font-size: 28px;
         img{
           width:100px;
           height: 100px;
@@ -290,6 +302,18 @@
           height: 50px;
           display: flex;
           align-items: center;
+          overflow:hidden;
+          width: 350px;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+          &.title{
+            >div{
+              overflow:hidden;
+              width: 350px;
+              text-overflow:ellipsis;
+              white-space: nowrap;
+            }
+          }
           &.infoItem-i{
             display: flex;
             align-items: center;
@@ -320,7 +344,7 @@
         padding:30px 0;
         font-size: 24px;
         .head{
-          font-size: 28px;
+          font-size: 32px;
           color:@c6;
           margin-bottom:30px;
         }
@@ -353,8 +377,9 @@
       }
       .emceeList{
         display: flex;
-        padding:10px 0;
+        padding-top:10px;
         overflow: auto;
+        margin-bottom:0px;
         .item{
           color:#fff;
           display: flex;

@@ -1,6 +1,11 @@
 <template>
   <div class="m-swiper-comp">
-    <swiper loop auto dots-position="right" height="100%" :show-dots="false" :show-desc-mask="false" class="m-swiper" :list="list"></swiper>
+    <!--<swiper loop auto dots-position="right" height="100%" :show-dots="false" :show-desc-mask="false" class="m-swiper" :list="list"></swiper>-->
+    <swiper :options="swiperOption" ref="mySwiper">
+      <!-- slides -->
+      <swiper-slide v-for="item in list"><img class="swiper-img" :src="item.img" alt=""></swiper-slide>
+    </swiper>
+
     <div class="swiper-text gonggao">
       <div class="gonggaoBd">
         <div class="gonggaoText">
@@ -12,12 +17,21 @@
 </template>
 
 <script>
+  import 'swiper/dist/css/swiper.css'
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'
   export default {
     name: 'swiper-component',
     data(){
       return {
-        list:[]
+        list:[],
+        swiperOption:{
+          autoplay:true
+        }
       }
+    },
+    components: {
+      swiper,
+      swiperSlide
     },
     props:{
       code:{
@@ -49,12 +63,20 @@
 <style lang="less" scoped>
   @import "../assets/common";
   .m-swiper-comp{
+    border-radius:30px;
     position: relative;
     margin:0 auto;
     width: 650px;
     height: 260px;
     overflow: hidden;
+    .swiper-img{
+      width: 100%;
+      border-radius: 30px;
+      height:260px;
+    }
     .m-swiper{
+      box-sizing: border-box;
+      overflow: hidden;
       width: 100%;
       height: 100%;
       border-radius:30px;
@@ -71,8 +93,9 @@
       &.gonggao{
         font-size: 26px;
         border-radius:0 0 30px 30px;
+        z-index: 2;
         .gonggaoBd{
-          width: 90%;
+          width: 100%;
           overflow: hidden;
           .gonggaoText{
             animation: roll 6s linear infinite;
