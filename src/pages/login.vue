@@ -127,6 +127,8 @@
   .m-cont {
     &:before {
       background-image: url("../images/icon/login-bg.jpg");
+      background-position: top;
+      background-size: 100% 100%;
     }
     .wechat {
       margin-top: 30px;
