@@ -52,10 +52,10 @@
       return {
         warnShow: false, veryForm: [{name: 'username', text: "手机号"}, {name: 'password', text: "密码"}],
         form: {
-           username: '18675521031',
-           password: '123456'
-//          username:'',
-//          password:''
+//           username: '18675521031',
+//           password: '123456'
+          username:'',
+          password:''
         }
       }
     },
@@ -134,7 +134,8 @@
     width: 100%;
     background-image: url("../images/icon/login-bg.jpg");
     background-position: top;
-    background-size: 100vw 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
     &:before {
       background: none;
     }

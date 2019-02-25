@@ -33,8 +33,8 @@
         <div @click="submit" class="submit">
           <span>注册</span>
         </div>
-        <div @click="toLogin" class="to-login">
-          <span>已有账号？</span>
+        <div class="to-login">
+          <span @click="toLogin">已有账号？</span>
         </div>
       </div>
       <common-dialog @close="close" class="dialog-cont" v-if="warnShow">
@@ -193,10 +193,7 @@
       text-decoration:underline;
       span{
         display: block;
-        width: 200px;
         border-radius: 20px;
-        height:80px;
-        line-height: 80px;
         margin-right:30px;
         margin-top:30px;
       }
