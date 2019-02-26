@@ -18,7 +18,7 @@
     </div>-->
     <tv-list-components :type="'index'" class="m-tvList"></tv-list-components>
     <div class="index-footer">
-      <div>报名咨询热线：400－833－8283，业务联络QQ：330175679</div>
+      <div>报名咨询热线：400－833－8283，联系QQ：330175679</div>
       <div>© xxzyztc.com 版权所有 &nbsp;<a href="http://www.miibeian.gov.cn"> ICP证：粤ICP备19006959</a></div>
     </div>
   </div>

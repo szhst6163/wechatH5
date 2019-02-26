@@ -3,6 +3,7 @@
     <div class="m-login">
       <div class="form">
         <div class="formHead">
+          <img src="../images/icon/userIndex-logo.png" alt="">
         </div>
         <ul>
           <li>
@@ -188,6 +189,10 @@
         .formHead {
           width: 509px;
           height: 540px;
+          margin:0 auto;
+          >img{
+            width: 100%;
+          }
         }
         ul {
           padding: 20px 40px;
@@ -224,7 +229,7 @@
                 border: none;
                 background: none;
                 height: 100%;
-                color: #fff;
+                color: #4a4a4a;
               }
             }
           }
